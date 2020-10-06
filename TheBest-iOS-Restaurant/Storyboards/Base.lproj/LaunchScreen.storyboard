@@ -7,8 +7,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Lato-Bold.ttf">
-            <string>Lato-Bold</string>
+        <array key="Lato-Black.ttf">
+            <string>Lato-Black</string>
         </array>
     </customFonts>
     <scenes>
@@ -24,18 +24,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NDg-n3-39V">
-                                <rect key="frame" x="84.5" y="327" width="245.5" height="242"/>
+                                <rect key="frame" x="81.5" y="327" width="251.5" height="242"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ug6-4X-OTW">
-                                        <rect key="frame" x="22.5" y="0.0" width="200" height="200"/>
+                                        <rect key="frame" x="25.5" y="0.0" width="200" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="Ksq-tf-cdl"/>
                                             <constraint firstAttribute="height" constant="200" id="rLa-X9-MBu"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWb-2N-At6">
-                                        <rect key="frame" x="0.0" y="200" width="245.5" height="42"/>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="35"/>
+                                        <rect key="frame" x="0.0" y="200" width="251.5" height="42"/>
+                                        <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="35"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -61,6 +61,6 @@
     </scenes>
     <resources>
         <image name="Splash" width="375" height="812"/>
-        <image name="logo" width="1080" height="835"/>
+        <image name="logo" width="568" height="439"/>
     </resources>
 </document>

@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "the_best_logo_driver-01-removebg-preview.png",
+      "filename" : "ring.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "ring@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "ring@3x.png",
       "scale" : "3x"
     }
   ],
