@@ -9,7 +9,7 @@
 import UIKit
 import Closures
 
-class SignUpVC: UIViewController {
+class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
 
     @IBOutlet weak var signupBtn: UIButton!
     @IBOutlet var customTFs: [UITextField]!
@@ -26,6 +26,9 @@ class SignUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         options.append(Option(id: "", title: "Taxi", selected: false))
         options.append(Option(id: "", title: "Restaurant", selected: false))
@@ -95,7 +98,7 @@ class SignUpVC: UIViewController {
     }
 
     @IBAction func back(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func loadActions(){

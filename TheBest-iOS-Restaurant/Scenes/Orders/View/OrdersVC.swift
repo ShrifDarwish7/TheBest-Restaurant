@@ -13,7 +13,7 @@ struct order {
     var expanded: Bool
 }
 
-class OrdersVC: UIViewController {
+class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
 
     @IBOutlet weak var ordersTableView: UITableView!
     @IBOutlet weak var backBtn: UIButton!
@@ -25,6 +25,9 @@ class OrdersVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
         orders.append(order(title: "order1", expanded: false))
         orders.append(order(title: "order2", expanded: false))
@@ -49,7 +52,7 @@ class OrdersVC: UIViewController {
         }
         
         backBtn.onTap {
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
         
     }

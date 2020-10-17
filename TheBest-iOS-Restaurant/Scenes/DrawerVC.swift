@@ -48,15 +48,18 @@ class DrawerVC: UIViewController {
        // username.text = AuthServices.instance.user.name
         
         logout.addTapGesture { (_) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toLoginVC(self)
            // AuthServices.instance.isLogged = false
         }
         
         categories.addTapGesture { (_) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toCategories(self)
         }
         
         lastOrders.addTapGesture { (_) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toOrders(self)
         }
         
@@ -95,7 +98,7 @@ class DrawerVC: UIViewController {
 //    }
     
     @objc func showBlockView(){
-        UIView.animate(withDuration: 0.2, delay: 0.35, options: [], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: [], animations: {
              self.blockView.alpha = 0.5
         }) { (_) in
             

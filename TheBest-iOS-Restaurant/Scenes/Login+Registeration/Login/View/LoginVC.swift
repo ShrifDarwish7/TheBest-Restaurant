@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class LoginVC: UIViewController {
 
@@ -18,9 +19,13 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var signupBtn: UIButton!
     
+    var authPresenter: AuthPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authPresenter = AuthPresenter(authViewDelegate: self)
+        
         loadUI()
         
     }
@@ -35,7 +40,11 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginAction(_ sender: Any) {
-        Router.toHome(self)
+        guard !self.usernameTF.text!.isEmpty, !self.passTF.text!.isEmpty else {
+            self.showAlert(title: "", message: "Please enter your email and password")
+            return
+        }
+        self.authPresenter?.loginWith(email: usernameTF.text!, pass: passTF.text!, fcm: "")
     }
     
     @IBAction func signupAction(_ sender: Any) {
@@ -44,3 +53,20 @@ class LoginVC: UIViewController {
     
 }
 
+extension LoginVC: AuthViewDelegate{
+    func SVProgressStatus(_ status: Bool) {
+        if status{
+            SVProgressHUD.show()
+        }else{
+            SVProgressHUD.dismiss()
+        }
+    }
+    
+    func didCompleteLogin(_ error: Bool) {
+        if !error{
+            Router.toHome(self)
+        }
+    }
+    
+    
+}

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesVC: UIViewController {
+class CategoriesVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var upperView: UIView!
@@ -25,6 +25,9 @@ class CategoriesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeDrawer), name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
         loadUI()
@@ -43,7 +46,7 @@ class CategoriesVC: UIViewController {
         }
         
         backBtn.onTap {
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
         
         addCatView.setupShadow()

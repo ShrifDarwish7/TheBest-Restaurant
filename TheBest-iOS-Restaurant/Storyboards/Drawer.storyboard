@@ -399,7 +399,7 @@
         <image name="share" width="27" height="24.5"/>
         <image name="wallet_icon" width="26" height="27"/>
         <namedColor name="MainColor">
-            <color red="0.92156862745098034" green="0.56862745098039214" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.92199999094009399" green="0.5690000057220459" blue="0.21199999749660492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
