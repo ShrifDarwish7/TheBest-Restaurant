@@ -228,4 +228,51 @@ class APIServices{
         
     }
     
+    static func addMenu(_ name: String, completed: @escaping (Bool)->Void){
+        
+        URLCache.shared.removeAllCachedResponses()
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        
+            multipartFormData.append(name.data(using: String.Encoding.utf8)!, withName: "name")
+            
+        }, to: URL(string: ADD_MENU_API)!, method: .post, headers: SharedData.headers) { (encodingResult) in
+            
+            switch encodingResult{
+                
+            case .success(let uploadRequest,_,_):
+                
+                uploadRequest.responseData { (response) in
+                    
+                    switch response.result{
+                        
+                    case .success(let data):
+                        
+                        print("menuAdded",try? JSON(data: data))
+                        
+                        if JSON(data)["status"].stringValue == "200"{
+                            completed(true)
+                        }else{
+                            completed(false)
+                        }
+                        
+                    case .failure(let error):
+                        
+                        print("ParseError",error)
+                        completed(false)
+                        
+                    }
+                    
+                }
+                
+            case .failure(let error):
+                
+                print("error",error)
+                completed(false)
+                
+            }
+            
+        }
+        
+    }
+    
 }

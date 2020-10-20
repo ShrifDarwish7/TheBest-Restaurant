@@ -22,9 +22,9 @@ class AuthServices{
             return self.defaults.bool(forKey: "isLogged")
         }
     }
-    var myRestaurant: Myresturant{
+    var myRestaurant: MyResturant{
         get{
-            return try! JSONDecoder().decode(Myresturant.self, from: defaults.object(forKey: "myRestaurant") as? Data ?? Data())
+            return try! JSONDecoder().decode(MyResturant.self, from: defaults.object(forKey: "myRestaurant") as? Data ?? Data())
         }
         set{
             let userEncoded = try! JSONEncoder().encode(newValue)

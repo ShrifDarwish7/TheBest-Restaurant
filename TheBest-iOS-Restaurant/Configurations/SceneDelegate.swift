@@ -18,15 +18,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let _ = (scene as? UIWindowScene) else { return }
         AppDelegate.standard.window = window
-                
-        //        if AuthServices.instance.isLogged {
-        //
-        //            let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
-        //            let protectedPage = mainStoryboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
-        //            window!.rootViewController = protectedPage
-        //            window!.makeKeyAndVisible()
-        //
-        //        }
+        
+        if AuthServices.instance.isLogged {
+            
+            let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
+            let protectedPage = mainStoryboard.instantiateViewController(withIdentifier: "NavHome") as! UINavigationController
+            window!.rootViewController = protectedPage
+            window!.makeKeyAndVisible()
+            
+        }
         
     }
 
