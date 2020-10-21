@@ -14,35 +14,43 @@ class Router{
     static func toLoginVC(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
-        vc.modalPresentationStyle = .fullScreen
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
     static func toSignUp(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
-        vc.modalPresentationStyle = .fullScreen
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
     static func toHome(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
-        vc.modalPresentationStyle = .fullScreen
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
     static func toCategories(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "CategoriesVC") as! CategoriesVC
-        vc.modalPresentationStyle = .fullScreen
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
     static func toOrders(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "OrdersVC") as! OrdersVC
-        vc.modalPresentationStyle = .fullScreen
+        sender.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    static func toChooseCategory(_ sender: UIViewController){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ChooseCategoryVC") as! ChooseCategoryVC
+        sender.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    static func toChooseSubCategory(_ id: Int, _ sender: UIViewController){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ChooseSubCategoryVC") as! ChooseSubCategoryVC
+        vc.receivedId = id
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     

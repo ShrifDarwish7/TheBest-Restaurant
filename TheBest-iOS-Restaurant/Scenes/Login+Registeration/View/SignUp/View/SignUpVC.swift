@@ -20,12 +20,19 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var payTypeChooseCollection: UICollectionView!
     @IBOutlet weak var shopImage: UIImageView!
     @IBOutlet weak var shopIconView: UIView!
+    @IBOutlet weak var categoriesTF: UITextField!
     
     var options = [Option]()
     var payOptions = [Option]()
+    var categories: [MainCategory]?
+    var authPresenter: AuthPresenter?
+    var receivedSubCategories: [String]?
+    var receivedIDs: [Int]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authPresenter = AuthPresenter(authViewDelegate: self)
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -84,6 +91,14 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if let _ = self.receivedIDs, let _ = self.receivedSubCategories{
+            print(self.receivedSubCategories)
+            
+        }
+    }
+    
     func loadUI(){
         shopIconView.layer.cornerRadius = shopIconView.frame.height/2
         sendRequest.layer.cornerRadius = 15
@@ -127,5 +142,28 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
         }
     }
     
+    @IBAction func sendRequestAction(_ sender: Any) {
+        
+        for tf in self.customTFs{
+            if tf.text!.isEmpty{
+                showAlert(title: "", message: "Please fill out all registeration info")
+                return
+            }
+        }
+        
+        
+        
+    }
+    
+    @IBAction func toChoose(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            Router.toChooseCategory(self)
+        default:
+            break
+        }
+    }
+    
     
 }
+

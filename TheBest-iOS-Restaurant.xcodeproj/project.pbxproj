@@ -34,6 +34,12 @@
 		AA607152253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA607151253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift */; };
 		AA607156253F669000ABFA1B /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA607154253F669000ABFA1B /* ItemTableViewCell.swift */; };
 		AA607157253F669000ABFA1B /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA607155253F669000ABFA1B /* ItemTableViewCell.xib */; };
+		AA8B23192540690300DBBFB0 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B23182540690300DBBFB0 /* Categories.swift */; };
+		AA8B231B25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B231A25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift */; };
+		AA8B231E254074A400DBBFB0 /* ChooseCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B231D254074A300DBBFB0 /* ChooseCategoryVC.swift */; };
+		AA8B2320254074BA00DBBFB0 /* ChooseSubCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B231F254074BA00DBBFB0 /* ChooseSubCategoryVC.swift */; };
+		AA8B23252540781C00DBBFB0 /* ChooseCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B23232540781C00DBBFB0 /* ChooseCategoryTableViewCell.swift */; };
+		AA8B23262540781C00DBBFB0 /* ChooseCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA8B23242540781C00DBBFB0 /* ChooseCategoryTableViewCell.xib */; };
 		AAB14A9C253F5E9800B562F9 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB14A9B253F5E9800B562F9 /* CategoriesVC.swift */; };
 		AAB14A9F253F5EF800B562F9 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB14A9E253F5EF800B562F9 /* MainPresenter.swift */; };
 		AABC77AD252B35FF00F1B896 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABC77AC252B35FF00F1B896 /* Option.swift */; };
@@ -101,6 +107,12 @@
 		AA607151253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesVC+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		AA607154253F669000ABFA1B /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		AA607155253F669000ABFA1B /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		AA8B23182540690300DBBFB0 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		AA8B231A25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpVC+AuthViewDelegate.swift"; sourceTree = "<group>"; };
+		AA8B231D254074A300DBBFB0 /* ChooseCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryVC.swift; sourceTree = "<group>"; };
+		AA8B231F254074BA00DBBFB0 /* ChooseSubCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSubCategoryVC.swift; sourceTree = "<group>"; };
+		AA8B23232540781C00DBBFB0 /* ChooseCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		AA8B23242540781C00DBBFB0 /* ChooseCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		AAB14A9B253F5E9800B562F9 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		AAB14A9E253F5EF800B562F9 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		AABC77AC252B35FF00F1B896 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
@@ -292,6 +304,59 @@
 			path = Item;
 			sourceTree = "<group>";
 		};
+		AA8B231C2540747B00DBBFB0 /* Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				AA8B231D254074A300DBBFB0 /* ChooseCategoryVC.swift */,
+				AA8B231F254074BA00DBBFB0 /* ChooseSubCategoryVC.swift */,
+			);
+			path = Chooser;
+			sourceTree = "<group>";
+		};
+		AA8B2321254077F700DBBFB0 /* Choose */ = {
+			isa = PBXGroup;
+			children = (
+				AABC77AE252B361300F1B896 /* ChooseCollectionViewCell.swift */,
+				AABC77AF252B361300F1B896 /* ChooseCollectionViewCell.xib */,
+			);
+			path = Choose;
+			sourceTree = "<group>";
+		};
+		AA8B2322254077FE00DBBFB0 /* ChooseCategory */ = {
+			isa = PBXGroup;
+			children = (
+				AA8B23232540781C00DBBFB0 /* ChooseCategoryTableViewCell.swift */,
+				AA8B23242540781C00DBBFB0 /* ChooseCategoryTableViewCell.xib */,
+			);
+			path = ChooseCategory;
+			sourceTree = "<group>";
+		};
+		AA8B23282540908D00DBBFB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AAE10255252CDE1F0094AC55 /* Login */,
+				AAE10253252CDE000094AC55 /* SignUp */,
+				AA8B231C2540747B00DBBFB0 /* Chooser */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AA8B23292540909B00DBBFB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				AAC1DD37253B521C003D0E6B /* AuthPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		AA8B232A254090A300DBBFB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				AAC1DD31253B42F4003D0E6B /* AuthServices.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		AAB14A9A253F5E6800B562F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,14 +371,6 @@
 				AAB14A9E253F5EF800B562F9 /* MainPresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		AAC1DD30253B42E8003D0E6B /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				AAC1DD31253B42F4003D0E6B /* AuthServices.swift */,
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		AAC1DD39253B556D003D0E6B /* Interactor */ = {
@@ -367,12 +424,11 @@
 		AAE10252252CDDF20094AC55 /* Login+Registeration */ = {
 			isa = PBXGroup;
 			children = (
-				AAC1DD30253B42E8003D0E6B /* Interactor */,
-				AAE1025A252CDE5C0094AC55 /* XIBs */,
+				AA8B232A254090A300DBBFB0 /* Interactor */,
 				AAE10257252CDE340094AC55 /* Model */,
-				AAE10255252CDE1F0094AC55 /* Login */,
-				AAE10253252CDE000094AC55 /* SignUp */,
-				AAC1DD37253B521C003D0E6B /* AuthPresenter.swift */,
+				AA8B23282540908D00DBBFB0 /* View */,
+				AAE1025A252CDE5C0094AC55 /* XIBs */,
+				AA8B23292540909B00DBBFB0 /* Presenter */,
 			);
 			path = "Login+Registeration";
 			sourceTree = "<group>";
@@ -389,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				AABC77B2252B361400F1B896 /* SignUpVC.swift */,
+				AA8B231A25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -415,6 +472,7 @@
 				AABC77AC252B35FF00F1B896 /* Option.swift */,
 				AAC1DD2E253B4206003D0E6B /* LoginResponse.swift */,
 				AAC1DD33253B4E48003D0E6B /* RestaurantsInfo.swift */,
+				AA8B23182540690300DBBFB0 /* Categories.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -438,8 +496,8 @@
 		AAE1025A252CDE5C0094AC55 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				AABC77AE252B361300F1B896 /* ChooseCollectionViewCell.swift */,
-				AABC77AF252B361300F1B896 /* ChooseCollectionViewCell.xib */,
+				AA8B2322254077FE00DBBFB0 /* ChooseCategory */,
+				AA8B2321254077F700DBBFB0 /* Choose */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -572,6 +630,7 @@
 				AA3D297E25277F250083FD54 /* LaunchScreen.storyboard in Resources */,
 				AA3D29A0252780950083FD54 /* Lato-Regular.ttf in Resources */,
 				AAE10267252CE8010094AC55 /* OrdersTableViewCell.xib in Resources */,
+				AA8B23262540781C00DBBFB0 /* ChooseCategoryTableViewCell.xib in Resources */,
 				AAE1026F252D06370094AC55 /* OrdersItemsTableViewCell.xib in Resources */,
 				AA3D29A3252780950083FD54 /* Lato-Light.ttf in Resources */,
 				AA3D29A2252780950083FD54 /* Lato-BoldItalic.ttf in Resources */,
@@ -653,10 +712,12 @@
 				AAC1DD32253B42F4003D0E6B /* AuthServices.swift in Sources */,
 				AABC77B7252B361400F1B896 /* SignUpVC.swift in Sources */,
 				AAC1DD48253B5DE5003D0E6B /* MyMenusResponse.swift in Sources */,
+				AA8B231B25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift in Sources */,
 				AAE1026E252D06370094AC55 /* OrdersItemsTableViewCell.swift in Sources */,
 				AA3D298F2527805F0083FD54 /* Images.swift in Sources */,
 				AA3D298E2527805F0083FD54 /* Alert.swift in Sources */,
 				AABC77B5252B361400F1B896 /* LoginVC.swift in Sources */,
+				AA8B2320254074BA00DBBFB0 /* ChooseSubCategoryVC.swift in Sources */,
 				AABC77AD252B35FF00F1B896 /* Option.swift in Sources */,
 				AAC1DD41253B594C003D0E6B /* OrdersPresenter.swift in Sources */,
 				AA3D298D2527805F0083FD54 /* Drawer.swift in Sources */,
@@ -679,6 +740,8 @@
 				AAC1DD3B253B558A003D0E6B /* OrdersServices.swift in Sources */,
 				AAB14A9C253F5E9800B562F9 /* CategoriesVC.swift in Sources */,
 				AA3D29902527805F0083FD54 /* CustomViews.swift in Sources */,
+				AA8B23192540690300DBBFB0 /* Categories.swift in Sources */,
+				AA8B23252540781C00DBBFB0 /* ChooseCategoryTableViewCell.swift in Sources */,
 				AAC1DD50253B6713003D0E6B /* Product.swift in Sources */,
 				AAC1DD4A253B5EFF003D0E6B /* MyPlace.swift in Sources */,
 				AA3D296F25277F240083FD54 /* AppDelegate.swift in Sources */,
@@ -689,6 +752,7 @@
 				AAC1DD3E253B56FF003D0E6B /* OldOrders.swift in Sources */,
 				AA3D297125277F240083FD54 /* SceneDelegate.swift in Sources */,
 				AA607152253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift in Sources */,
+				AA8B231E254074A400DBBFB0 /* ChooseCategoryVC.swift in Sources */,
 				AAE10266252CE8010094AC55 /* OrdersTableViewCell.swift in Sources */,
 				AAE10262252CE7A40094AC55 /* OrdersVC.swift in Sources */,
 			);

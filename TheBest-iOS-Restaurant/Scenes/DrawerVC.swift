@@ -50,7 +50,7 @@ class DrawerVC: UIViewController {
         logout.addTapGesture { (_) in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toLoginVC(self)
-           // AuthServices.instance.isLogged = false
+            AuthServices.instance.isLogged = false
         }
         
         categories.addTapGesture { (_) in

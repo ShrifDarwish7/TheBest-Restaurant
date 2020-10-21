@@ -11,6 +11,8 @@ import Foundation
 let BASE_URL = "https://thebest-solution.com/"
 let LOGIN_API = BASE_URL + "Restaurants/Auth/login"
 let REGISTER_API = BASE_URL + "Restaurants/Auth/register"
+let CATEGORIES_BY_ID_API = BASE_URL + "Restaurants/Main/CategoryById/"
+let RESTAURANTS_CATEGORIES_API = BASE_URL + "Restaurants/Main/AllCategories"
 let OLD_ORDERS_API = BASE_URL + "Restaurants/Main/OldOrders"
 let MENUS_API = BASE_URL + "Restaurants/Main/MyMenus"
 let NEW_ORDERS_API = BASE_URL + "Restaurants/Main/NewOrders"

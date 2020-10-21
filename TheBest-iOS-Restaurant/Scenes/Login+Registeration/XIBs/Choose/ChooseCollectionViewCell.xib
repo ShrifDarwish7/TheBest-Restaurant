@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ChooseCollectionViewCell" id="gTV-IL-0wX" customClass="ChooseCollectionViewCell" customModule="TheBest_iOS_Restaurant" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="303" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="303" height="90"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTS-vq-Scp">
+                        <rect key="frame" x="0.0" y="0.0" width="303" height="90"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0A2-wz-rXC">
+                                <rect key="frame" x="5" y="5" width="293" height="80"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81b-qu-dUj">
+                                        <rect key="frame" x="-60" y="0.0" width="60" height="80"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MW8-su-gWM">
+                                                <rect key="frame" x="5" y="15" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="50f-3C-US7"/>
+                                                    <constraint firstAttribute="height" constant="50" id="ANC-6y-ab5"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="MW8-su-gWM" firstAttribute="centerX" secondItem="81b-qu-dUj" secondAttribute="centerX" id="2To-ga-Wb5"/>
+                                            <constraint firstAttribute="width" constant="60" id="JUT-3D-jdS"/>
+                                            <constraint firstItem="MW8-su-gWM" firstAttribute="centerY" secondItem="81b-qu-dUj" secondAttribute="centerY" id="OH2-yk-r9A"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0K-9N-19v">
+                                        <rect key="frame" x="0.0" y="0.0" width="258" height="80"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unchecked" translatesAutoresizingMaskIntoConstraints="NO" id="uGZ-S0-P9z">
+                                        <rect key="frame" x="263" y="0.0" width="30" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="pUN-Na-db6"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0A2-wz-rXC" secondAttribute="bottom" constant="5" id="9jW-te-eYY"/>
+                            <constraint firstAttribute="trailing" secondItem="0A2-wz-rXC" secondAttribute="trailing" constant="5" id="MHj-dc-iaH"/>
+                            <constraint firstItem="0A2-wz-rXC" firstAttribute="top" secondItem="rTS-vq-Scp" secondAttribute="top" constant="5" id="ehr-Df-9Rm"/>
+                            <constraint firstItem="0A2-wz-rXC" firstAttribute="leading" secondItem="rTS-vq-Scp" secondAttribute="leading" constant="5" id="msC-tL-twz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="rTS-vq-Scp" secondAttribute="trailing" id="SZ0-ov-j3h"/>
+                <constraint firstItem="rTS-vq-Scp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hj6-oL-aZy"/>
+                <constraint firstAttribute="bottom" secondItem="rTS-vq-Scp" secondAttribute="bottom" id="vbL-E5-aRa"/>
+                <constraint firstItem="rTS-vq-Scp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yZz-2c-HWM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="303" height="90"/>
+            <connections>
+                <outlet property="categoryImage" destination="MW8-su-gWM" id="VAk-NB-1T0"/>
+                <outlet property="check" destination="uGZ-S0-P9z" id="tZX-ef-7OA"/>
+                <outlet property="imageContainer" destination="81b-qu-dUj" id="Oqg-t0-stS"/>
+                <outlet property="title" destination="w0K-9N-19v" id="Fdr-BA-33T"/>
+            </connections>
+            <point key="canvasLocation" x="-45.652173913043484" y="105.13392857142857"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="unchecked" width="559" height="600"/>
+    </resources>
+</document>

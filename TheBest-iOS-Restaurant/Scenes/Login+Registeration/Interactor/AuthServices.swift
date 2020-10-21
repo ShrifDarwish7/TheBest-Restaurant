@@ -175,6 +175,62 @@ class AuthServices{
     
     }
     
+    static func getMainCategories(completed: @escaping (AllCategories?)->Void){
+            
+        Alamofire.request(URL(string: RESTAURANTS_CATEGORIES_API)!, method: .get, parameters: nil, headers: SharedData
+            .headers).responseData { (response) in
+
+            switch response.result{
+
+            case .success(let data):
+
+                do {
+                    let dataModel = try JSONDecoder().decode(AllCategories.self, from: data)
+                    print("mainCATs",dataModel)
+                    completed(dataModel)
+                } catch let error {
+                    print("parseErr",error)
+                    completed(nil)
+                }
+
+            case .failure(_):
+
+                completed(nil)
+
+            }
+
+        }
+        
+    }
+    
+    static func getCategoriesBy(id: Int, completed: @escaping (SubCategories?)->Void){
+              
+        Alamofire.request(URL(string: CATEGORIES_BY_ID_API + "\(id)")!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
+
+            switch response.result{
+
+            case .success(let data):
+
+                print("here",try! JSON(data: data))
+
+                do {
+                    let dataModel = try JSONDecoder().decode(SubCategories.self, from: data)
+                    print("SubCATs",dataModel)
+                    completed(dataModel)
+                } catch let error {
+                    print("parseErr",error)
+                    completed(nil)
+                }
+
+            case .failure(_):
+
+                completed(nil)
+
+            }
+
+        }
+        
+    }
     
 }
 
