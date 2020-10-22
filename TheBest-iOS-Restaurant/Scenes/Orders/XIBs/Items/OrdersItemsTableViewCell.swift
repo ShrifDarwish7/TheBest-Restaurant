@@ -16,10 +16,11 @@ class OrdersItemsTableViewCell: UITableViewCell {
     @IBOutlet weak var quantityValue: UILabel!
     @IBOutlet weak var priceValue: UILabel!
     
-    func loadUI(){
+    func loadUI(item: OrderItem){
         containerView.setupShadow()
         containerView.layer.cornerRadius = 15
         logo.layer.cornerRadius = logo.frame.height/2
+        quantityValue.text = "\(item.count)"
     }
     
 }

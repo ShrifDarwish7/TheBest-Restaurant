@@ -21,7 +21,9 @@ class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var drawerBtn: UIButton!
     @IBOutlet weak var drawerPosition: NSLayoutConstraint!
     
-    var orders = [order]()
+  //  var orders = [order]()
+    var oldOrders: [Order]?
+    var ordersPresenter: OrdersPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +31,16 @@ class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
-        orders.append(order(title: "order1", expanded: false))
-        orders.append(order(title: "order2", expanded: false))
-        orders.append(order(title: "order3", expanded: false))
-        orders.append(order(title: "order4", expanded: false))
-        orders.append(order(title: "order5", expanded: false))
+//        orders.append(order(title: "order1", expanded: false))
+//        orders.append(order(title: "order2", expanded: false))
+//        orders.append(order(title: "order3", expanded: false))
+//        orders.append(order(title: "order4", expanded: false))
+//        orders.append(order(title: "order5", expanded: false))
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeDrawer), name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
         loadUI()
-        self.loadOrdersTableFromNib()
-        
+        ordersPresenter = OrdersPresenter(self)
+        ordersPresenter?.getOldOrers()
     }
     
     func loadUI(){

@@ -12,12 +12,14 @@ protocol MainViewDelegate {
     func SVProgressStatus(_ show: Bool)
     func didCompleteWithMenus(_ menus: [MyMenu]?)
     func didCompleteAddMenu(_ completed: Bool)
+    func didCompleteWithReports(_ reports: ReportsResponse?)
 }
 
 extension MainViewDelegate{
     func SVProgressStatus(_ show: Bool){}
     func didCompleteWithMenus(_ menus: [MyMenu]?){}
     func didCompleteAddMenu(_ completed: Bool){}
+    func didCompleteWithReports(_ reports: ReportsResponse?){}
 }
 
 class MainPresenter{
@@ -48,6 +50,40 @@ class MainPresenter{
                 self.mainViewDelegate?.didCompleteAddMenu(true)
             }else{
                 self.mainViewDelegate?.didCompleteAddMenu(false)
+            }
+        }
+    }
+    
+    func getReports(from: Date, to: Date){
+        self.mainViewDelegate?.SVProgressStatus(true)
+        var fromPrms: String?
+        var toPrms: String?
+        let calendar = Calendar.current
+        let componentsFrom = calendar.dateComponents([.day,.month,.year], from: from)
+        let componentsTo = calendar.dateComponents([.day,.month,.year], from: to)
+        if let day = componentsFrom.day, let month = componentsFrom.month, let year = componentsFrom.year {
+            fromPrms = String(day) + "-" + String(month) + "-" + String(year)
+        }
+        
+        if let day = componentsTo.day, let month = componentsTo.month, let year = componentsTo.year {
+            toPrms = String(day) + "-" + String(month) + "-" + String(year)
+        }
+        
+        guard let _ = fromPrms, let _ = toPrms else{
+            self.mainViewDelegate?.didCompleteWithReports(nil)
+            return
+        }
+        
+        print(fromPrms)
+        print(toPrms)
+        
+        
+        APIServices.getRestaurantsReports(fromPrms!, toPrms!) { (response) in
+            self.mainViewDelegate?.SVProgressStatus(false)
+            if let _ = response{
+                self.mainViewDelegate?.didCompleteWithReports(response)
+            }else{
+                self.mainViewDelegate?.didCompleteWithReports(nil)
             }
         }
     }

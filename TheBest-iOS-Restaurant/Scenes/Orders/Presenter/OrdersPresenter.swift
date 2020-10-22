@@ -13,6 +13,11 @@ protocol OrdersViewDelegate {
     func didCompleteWith(_ orders: [Order]?)
 }
 
+extension OrdersViewDelegate{
+    func SVProgressStatus(_ status: Bool){}
+    func didCompleteWith(_ orders: [Order]?){}
+}
+
 class OrdersPresenter{
     
     var ordersViewDelegate: OrdersViewDelegate?

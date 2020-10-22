@@ -20,8 +20,10 @@ class OrdersTableViewCell: UITableViewCell {
     @IBOutlet weak var denyBtn: UIButton!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var expandBtn: UIButton!
+    @IBOutlet weak var totalLbl: UILabel!
+    @IBOutlet weak var date: UILabel!
     
-    func loadUI(){
+    func loadUI(item: Order){
         statusLbl.layer.cornerRadius = 10
         acceptBtn.layer.cornerRadius = 10
         denyBtn.layer.cornerRadius = 10
@@ -31,6 +33,10 @@ class OrdersTableViewCell: UITableViewCell {
             v.setupShadow()
             v.layer.cornerRadius = 10
         }
+        statusLbl.text = item.status
+        name.text = item.username
+        totalLbl.text = item.total + " KWD "
+        date.text = item.createdAt
     }
     
 }

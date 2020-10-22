@@ -11,50 +11,67 @@ import UIKit
 class ReportsVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var customTF: [UITextField]!
-    @IBOutlet weak var datePickerViewContainerBottomCnst: NSLayoutConstraint!
-    @IBOutlet weak var pickerView: UIDatePicker!
+    @IBOutlet weak var fromTF: UITextField!
+    @IBOutlet weak var toTF: UITextField!
+    @IBOutlet weak var ordersTableView: UITableView!
+    @IBOutlet weak var empty: UILabel!
+    @IBOutlet var customView: [UIView]!
+    @IBOutlet weak var totalOrders: UILabel!
+    @IBOutlet weak var totalMoney: UILabel!
+    @IBOutlet weak var completed: UILabel!
+    @IBOutlet weak var canceled: UILabel!
+    
+    var mainPresenter: MainPresenter?
+    var selectedFromDate: Date?
+    var selectedToDate: Date?
+    var orders: [Order]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
-        
+        mainPresenter = MainPresenter(mainViewDelegate: self)
     }
     
     func loadUI(){
         for tf in customTF{
             tf.addBottomBorder()
-            tf.addTarget(self, action: #selector(showPicker), for: .editingDidBegin)
-            tf.inputAccessoryView = UIView()
         }
-        datePickerViewContainerBottomCnst.constant = -self.view.frame.height
-        self.view.addTapGesture { (_) in
-            self.dismissPicker()
+        
+        for v in customView{
+            v.layer.cornerRadius = 15
         }
+        
+        fromTF.setInputViewDatePicker { (datePicker) in
+            datePicker.onChange { (date) in
+                let dateformatter = DateFormatter()
+                dateformatter.dateStyle = .medium
+                let date = dateformatter.string(from: datePicker.date)
+                self.fromTF.text = date
+                self.selectedFromDate = datePicker.date
+            }
+        }
+        
+        toTF.setInputViewDatePicker { (datePicker) in
+            datePicker.onChange { (date) in
+                let dateformatter = DateFormatter()
+                dateformatter.dateStyle = .medium
+                let date = dateformatter.string(from: datePicker.date)
+                self.toTF.text = date
+                self.selectedToDate = datePicker.date
+            }
+        }
+        
     }
     
-    @IBAction func back(_ sender: Any) {
+    @IBAction func back(sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func showPicker(){
-       datePickerViewContainerBottomCnst.constant = 0
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
+    @IBAction func getReports(_ sender: Any) {
+        if let _ = selectedFromDate , let _ = selectedToDate{
+            mainPresenter?.getReports(from: selectedFromDate!, to: selectedToDate!)
         }
     }
     
-    func dismissPicker(){
-        datePickerViewContainerBottomCnst.constant = -self.view.frame.height
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
-    }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        showPicker()
-    }
-
-    @IBAction func dismissPickerFromDone(_ sender: Any) {
-        self.dismissPicker()
-    }
 }

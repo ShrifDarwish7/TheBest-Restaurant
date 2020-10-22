@@ -31,6 +31,8 @@ struct Order: Codable {
     let userParent: Int
     let createdAt, updatedAt: String
     let orderItems: [OrderItem]
+    
+    var expanded: Bool?
         
     enum CodingKeys: String, CodingKey {
         case id, username
