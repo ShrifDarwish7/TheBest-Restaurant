@@ -108,7 +108,7 @@ class AuthServices{
             multipartFormData.append(restaurantsInfo.placePhone.data(using: String.Encoding.utf8)!, withName: "place_phone")
             multipartFormData.append(restaurantsInfo.lat.data(using: String.Encoding.utf8)!, withName: "lat")
             multipartFormData.append(restaurantsInfo.lng.data(using: String.Encoding.utf8)!, withName: "lng")
-            multipartFormData.append(restaurantsInfo.address.data(using: String.Encoding.utf8)!, withName: "address") // from google maps api
+            multipartFormData.append(restaurantsInfo.address.data(using: String.Encoding.utf8)!, withName: "address")
             multipartFormData.append(restaurantsInfo.description.data(using: String.Encoding.utf8)!, withName: "description")
             multipartFormData.append(restaurantsInfo.descriptionEn.data(using: String.Encoding.utf8)!, withName: "description_en")
             multipartFormData.append(restaurantsInfo.addressEn.data(using: String.Encoding.utf8)!, withName: "address_en")
@@ -125,7 +125,7 @@ class AuthServices{
             multipartFormData.append(restaurantsInfo.timeFrame.data(using: String.Encoding.utf8)!, withName: "time_frame")
             multipartFormData.append(restaurantsInfo.responsibles.data(using: String.Encoding.utf8)!, withName: "responsibles")
             
-        }, to: URL(string: LOGIN_API)!, method: .post, headers: HEADERS) { (encodingResult) in
+        }, to: URL(string: REGISTER_API)!, method: .post, headers: HEADERS) { (encodingResult) in
             
             switch encodingResult{
                 
@@ -137,12 +137,12 @@ class AuthServices{
                         
                     case .success(let data):
                         
-                        print("user",try? JSON(data: data))
+                        print("RegisterResponse",try? JSON(data: data))
                         
                         do{
                             
-                            let dataModel = try JSONDecoder().decode(LoginResponse.self, from: data)
-                            self.instance.myRestaurant = dataModel.myresturant
+                            let dataModel = try JSONDecoder().decode(RegisterResponse.self, from: data)
+                            self.instance.myRestaurant = dataModel.restaurant
                             UserDefaults.init().set(JSON(data)["accessToken"].stringValue, forKey: "accessToken")
                             print(dataModel)
                             self.instance.isLogged = true
@@ -232,5 +232,52 @@ class AuthServices{
         
     }
     
+    static func getAllCities(_ completed: @escaping (CitiesResponse?)->Void){
+        
+        let headers = [
+            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNWU0OGJjNjQwMzU3NTdiZGVmNjdkYjZhODNjODg2NGEzNmFkMzdlYThhNDQwMzdlMDlhMjU1MjE5NzE0ZWFiMDZmN2NmYTE0YjgyNmNkNmIiLCJpYXQiOjE2MDE3NDc1NDYsIm5iZiI6MTYwMTc0NzU0NiwiZXhwIjoxNjMzMjgzNTQ2LCJzdWIiOiIxNjAiLCJzY29wZXMiOltdfQ.IvFjhBE6o8BznywCN_atolCLmlgMZ98fZLwCXMMlZXFF008pea-wEPpHw7HC5AMEgO4jt4OwTe7r4f7lSNy9JJLA0hSrlgJm9XSlnULVq2dnNuMDnui8B9RwGkpHVUJbnCcosPTtDusdnPkYqRpmSdhHYawjMNUCDQDhaC_UdL13Baxp02Kz6fH6Yu7MCcH52rl-9RVCo3I_dg3ujVSz0E5MzVX6nhwVxXcsew3X4qr9Ga9J65Tw0rDOG7zKT2i0H0QKPN0Wi5s9XqiMzEyfQuOyP0g9laDHqtHCK-QFrb-CGTVYK0Yhsne8nZHDAnAfepML7wW60syHHTM8sZFTlNN4lKQLni-HUEKiiCdf_fgaR2INDGqTlyLPJV49CL3m61QG_vPVS-PUs_f41k_hKh36YN1lmNDRSmFPD3OK_IKeVLp_wK0ist0vW55hYDoRBVXxHiID2Kowp9VStrIu7c3XbbJyvddd-WJCu5QHEbxFAMxtW5mwGvj4MIgBSBnrzvPAlqZGRJnoXYx9WjucpahCbKFZbLVnVlOo6uKeqVjJJM85QD8vrQOcMPO4dIyy8AsG0k_lHQ-eQ952vDJVTjHtIGyVJXAg0oou9rAr6jFQcKbvHKkpdKSK4515HGZY2sxOiaFc3yoKL74zM0BdPVY3SFBMPrgDAxD2XuhTuJI",
+            "Accept": "application/json"
+        ]
+        
+        Alamofire.request(ALL_CITIES_API, method: .get, parameters: nil, headers: headers).responseData { (response) in
+            switch response.result{
+            case .success(let data):
+                do{
+                    let dataModel = try JSONDecoder().decode(CitiesResponse.self, from: data)
+                    completed(dataModel)
+                }catch let err{
+                    print(err)
+                    completed(nil)
+                }
+            case .failure(_):
+                completed(nil)
+            }
+        }
+        
+    }
+    
+    static func getDistrictBy(_ id: Int, _ completed: @escaping (DistrictsResponse?)->Void){
+        
+        let headers = [
+            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNWU0OGJjNjQwMzU3NTdiZGVmNjdkYjZhODNjODg2NGEzNmFkMzdlYThhNDQwMzdlMDlhMjU1MjE5NzE0ZWFiMDZmN2NmYTE0YjgyNmNkNmIiLCJpYXQiOjE2MDE3NDc1NDYsIm5iZiI6MTYwMTc0NzU0NiwiZXhwIjoxNjMzMjgzNTQ2LCJzdWIiOiIxNjAiLCJzY29wZXMiOltdfQ.IvFjhBE6o8BznywCN_atolCLmlgMZ98fZLwCXMMlZXFF008pea-wEPpHw7HC5AMEgO4jt4OwTe7r4f7lSNy9JJLA0hSrlgJm9XSlnULVq2dnNuMDnui8B9RwGkpHVUJbnCcosPTtDusdnPkYqRpmSdhHYawjMNUCDQDhaC_UdL13Baxp02Kz6fH6Yu7MCcH52rl-9RVCo3I_dg3ujVSz0E5MzVX6nhwVxXcsew3X4qr9Ga9J65Tw0rDOG7zKT2i0H0QKPN0Wi5s9XqiMzEyfQuOyP0g9laDHqtHCK-QFrb-CGTVYK0Yhsne8nZHDAnAfepML7wW60syHHTM8sZFTlNN4lKQLni-HUEKiiCdf_fgaR2INDGqTlyLPJV49CL3m61QG_vPVS-PUs_f41k_hKh36YN1lmNDRSmFPD3OK_IKeVLp_wK0ist0vW55hYDoRBVXxHiID2Kowp9VStrIu7c3XbbJyvddd-WJCu5QHEbxFAMxtW5mwGvj4MIgBSBnrzvPAlqZGRJnoXYx9WjucpahCbKFZbLVnVlOo6uKeqVjJJM85QD8vrQOcMPO4dIyy8AsG0k_lHQ-eQ952vDJVTjHtIGyVJXAg0oou9rAr6jFQcKbvHKkpdKSK4515HGZY2sxOiaFc3yoKL74zM0BdPVY3SFBMPrgDAxD2XuhTuJI",
+            "Accept": "application/json"
+        ]
+        
+        Alamofire.request(DISTRICTS_API + "\(id)", method: .get, parameters: nil, headers: headers).responseData { (response) in
+            switch response.result{
+            case .success(let data):
+                do{
+                    let dataModel = try JSONDecoder().decode(DistrictsResponse.self, from: data)
+                    completed(dataModel)
+                }catch let err{
+                    print(err)
+                    completed(nil)
+                }
+            case .failure(_):
+                completed(nil)
+            }
+        }
+        
+    }
+    
 }
-

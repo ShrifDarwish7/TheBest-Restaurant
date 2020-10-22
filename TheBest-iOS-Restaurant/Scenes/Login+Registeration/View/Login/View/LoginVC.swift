@@ -8,8 +8,9 @@
 
 import UIKit
 import SVProgressHUD
+import CoreLocation
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController{
 
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var usernameTF: UITextField!
@@ -20,6 +21,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var signupBtn: UIButton!
     
     var authPresenter: AuthPresenter?
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,15 @@ class LoginVC: UIViewController {
         passView.layer.cornerRadius = passView.frame.height/2
         loginBtn.layer.cornerRadius = 15
         signupBtn.layer.cornerRadius = 15
+    }
+    
+    func requestLocationPermission(){
+        locationManager.requestAlwaysAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
     @IBAction func loginAction(_ sender: Any) {
@@ -69,4 +80,13 @@ extension LoginVC: AuthViewDelegate{
     }
     
     
+}
+
+extension LoginVC: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations", locValue.latitude + locValue.longitude)
+        SharedData.userLat = locValue.latitude
+        SharedData.userLng = locValue.longitude
+    }
 }

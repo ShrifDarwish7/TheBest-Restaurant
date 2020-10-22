@@ -20,14 +20,32 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var payTypeChooseCollection: UICollectionView!
     @IBOutlet weak var shopImage: UIImageView!
     @IBOutlet weak var shopIconView: UIView!
-    @IBOutlet weak var categoriesTF: UITextField!
+    
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var nameAr: UITextField!
+    @IBOutlet weak var nameEn: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var pass: UITextField!
+    @IBOutlet weak var add: UITextField!
+    @IBOutlet weak var addEn: UITextField!
+    @IBOutlet weak var descAr: UITextField!
+    @IBOutlet weak var descEn: UITextField!
+    @IBOutlet weak var deliverPrice: UITextField!
+    @IBOutlet weak var ownerName: UITextField!
+    @IBOutlet weak var placePhone: UITextField!
+    @IBOutlet weak var placeEmial: UITextField!
+    @IBOutlet weak var orderLimit: UITextField!
+    
     
     var options = [Option]()
     var payOptions = [Option]()
     var categories: [MainCategory]?
     var authPresenter: AuthPresenter?
-    var receivedSubCategories: [String]?
-    var receivedIDs: [Int]?
+    
+    var selectedImagere: UIImage?
+    var selectedOwnerImage: UIImage?
+    var selectedImageCert: UIImage?
+    var selectedSignatureImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,10 +111,9 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if let _ = self.receivedIDs, let _ = self.receivedSubCategories{
-            print(self.receivedSubCategories)
-            
-        }
+        print(SharedData.selectedRegisteredCategoriesNames)
+        print(SharedData.selectedRegisteredCityID ?? 0)
+        print(SharedData.selectedRegisteredDistrictID ?? 0)
     }
     
     func loadUI(){
@@ -117,6 +134,7 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
     }
     
     func loadActions(){
+        
         shopImage.addTapGesture { (_) in
             
             let imagePicker = UIImagePickerController.init(source: .photoLibrary, allow: .image, showsCameraControls: true, didCancel: { (controller) in
@@ -124,13 +142,34 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
             }) { (result, controller) in
                 controller.dismiss(animated: true, completion: nil)
                 self.shopImage.image = result.originalImage
+                self.selectedImagere = result.originalImage
             }
-            
             self.present(imagePicker, animated: true, completion: nil)
             
         }
         
     }
+    
+    @IBAction func uploadImages(_ sender: UIButton) {
+        let imagePicker = UIImagePickerController.init(source: .photoLibrary, allow: .image, showsCameraControls: true, didCancel: { (controller) in
+            controller.dismiss(animated: true, completion: nil)
+        }) { (result, controller) in
+            controller.dismiss(animated: true, completion: nil)
+            sender.setImage(result.originalImage, for: .normal)
+            switch sender.tag{
+            case 0:
+                self.selectedOwnerImage = result.originalImage
+            case 1:
+                self.selectedSignatureImage = result.originalImage
+            case 2:
+                self.selectedImageCert = result.originalImage
+            default:
+                break
+            }
+        }
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     
     @IBAction func agreeAction(_ sender: UIButton) {
         if sender.tag == 0{
@@ -151,14 +190,56 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
             }
         }
         
+        guard let _ = self.selectedImagere, let _ = self.selectedOwnerImage, let _ = self.selectedSignatureImage, let _ = self.selectedImageCert else {
+            showAlert(title: "", message: "Please upload required images")
+            return
+        }
         
+        guard let _ = SharedData.selectedRegisteredCityID, let _ = SharedData.selectedRegisteredDistrictID,
+            !SharedData.selectedRegisteredCategoriesIDs.isEmpty else {
+                showAlert(title: "", message: "Please choose your place categories, government and district")
+                return
+        }
+        
+        let registeredInfo = RestaurantsInfo(
+            name: name.text!,
+            email: email.text!,
+            password: pass.text!,
+            nameAr: nameAr.text!,
+            nameEn: nameEn.text!,
+            imagere: selectedImagere!,
+            description: descAr.text!,
+            descriptionEn: descEn.text!,
+            address: add.text!,
+            addressEn: addEn.text!,
+            categoryId: "\(SharedData.selectedRegisteredCategoriesIDs.map({ return "\($0)" }))",
+            deliveryPrice: deliverPrice.text!,
+            lat: "\(SharedData.userLat ?? 0.0)", lng: "\(SharedData.userLng ?? 0.0)",
+            typeId: "0",
+            government: "\(SharedData.selectedRegisteredCityID ?? 0)", district: "\(SharedData.selectedRegisteredDistrictID ?? 0)",
+            placeOwnerName: ownerName.text!,
+            ownerImage: selectedOwnerImage!,
+            imgCert: selectedImageCert!,
+            placeEmail: placeEmial.text!,
+            signatureImage: selectedSignatureImage!,
+            placePhone: placePhone.text!,
+            orderLimit: orderLimit.text!,
+            branches: "",
+            workingHours: "",
+            timeFrame: "",
+            responsibles: "",
+            fcmToken: "")
+        
+        authPresenter?.registerWith(prms: registeredInfo)
         
     }
     
     @IBAction func toChoose(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            Router.toChooseCategory(self)
+            Router.toChooseCategory(self, .Categories(nil), cityID: nil)
+        case 1:
+            Router.toChooseCategory(self, .Cities(nil), cityID: nil)
         default:
             break
         }

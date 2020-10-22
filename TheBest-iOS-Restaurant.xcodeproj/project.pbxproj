@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2E101825418D7D00E7A632 /* CitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101725418D7D00E7A632 /* CitiesResponse.swift */; };
+		AA2E101A25418E5F00E7A632 /* DistrictsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101925418E5F00E7A632 /* DistrictsResponse.swift */; };
+		AA2E101C2541C1D900E7A632 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101B2541C1D900E7A632 /* RegisterResponse.swift */; };
+		AA2E101F2541D91900E7A632 /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101E2541D91900E7A632 /* ReportsVC.swift */; };
+		AA2E10212541DAFE00E7A632 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E10202541DAFE00E7A632 /* Constants.swift */; };
 		AA3D296F25277F240083FD54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D296E25277F240083FD54 /* AppDelegate.swift */; };
 		AA3D297125277F240083FD54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D297025277F240083FD54 /* SceneDelegate.swift */; };
 		AA3D297625277F240083FD54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA3D297425277F240083FD54 /* Main.storyboard */; };
@@ -78,6 +83,11 @@
 
 /* Begin PBXFileReference section */
 		4C226ADF93A91387172A80A7 /* Pods_TheBest_iOS_Restaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheBest_iOS_Restaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2E101725418D7D00E7A632 /* CitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesResponse.swift; sourceTree = "<group>"; };
+		AA2E101925418E5F00E7A632 /* DistrictsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictsResponse.swift; sourceTree = "<group>"; };
+		AA2E101B2541C1D900E7A632 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
+		AA2E101E2541D91900E7A632 /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
+		AA2E10202541DAFE00E7A632 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA3D296B25277F240083FD54 /* TheBest-iOS-Restaurant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TheBest-iOS-Restaurant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA3D296E25277F240083FD54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA3D297025277F240083FD54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +180,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AA2E101D2541D8FE00E7A632 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				AA2E101E2541D91900E7A632 /* ReportsVC.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
 		AA3D296225277F240083FD54 = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +262,7 @@
 				AA3D29A9252780AF0083FD54 /* Fonts */,
 				AAC1DD2C253B3EE1003D0E6B /* APIs.swift */,
 				AAC1DD35253B4EF9003D0E6B /* SharedData.swift */,
+				AA2E10202541DAFE00E7A632 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -360,6 +379,7 @@
 		AAB14A9A253F5E6800B562F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA2E101D2541D8FE00E7A632 /* Reports */,
 				AA607150253F654600ABFA1B /* Categories */,
 			);
 			path = View;
@@ -471,8 +491,11 @@
 			children = (
 				AABC77AC252B35FF00F1B896 /* Option.swift */,
 				AAC1DD2E253B4206003D0E6B /* LoginResponse.swift */,
+				AA2E101B2541C1D900E7A632 /* RegisterResponse.swift */,
 				AAC1DD33253B4E48003D0E6B /* RestaurantsInfo.swift */,
 				AA8B23182540690300DBBFB0 /* Categories.swift */,
+				AA2E101725418D7D00E7A632 /* CitiesResponse.swift */,
+				AA2E101925418E5F00E7A632 /* DistrictsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -719,6 +742,7 @@
 				AABC77B5252B361400F1B896 /* LoginVC.swift in Sources */,
 				AA8B2320254074BA00DBBFB0 /* ChooseSubCategoryVC.swift in Sources */,
 				AABC77AD252B35FF00F1B896 /* Option.swift in Sources */,
+				AA2E101A25418E5F00E7A632 /* DistrictsResponse.swift in Sources */,
 				AAC1DD41253B594C003D0E6B /* OrdersPresenter.swift in Sources */,
 				AA3D298D2527805F0083FD54 /* Drawer.swift in Sources */,
 				AAC1DD4E253B6215003D0E6B /* ReportsResponse.swift in Sources */,
@@ -730,6 +754,7 @@
 				AABC77BB252B3B2B00F1B896 /* TextFields.swift in Sources */,
 				AABC77B6252B361400F1B896 /* DrawerVC.swift in Sources */,
 				AAC1DD34253B4E48003D0E6B /* RestaurantsInfo.swift in Sources */,
+				AA2E101825418D7D00E7A632 /* CitiesResponse.swift in Sources */,
 				AAB14A9F253F5EF800B562F9 /* MainPresenter.swift in Sources */,
 				AAE10269252CEB890094AC55 /* OrdersVC+TableViewDelegate.swift in Sources */,
 				AA3D297925277F240083FD54 /* TheBest_iOS_Restaurant.xcdatamodeld in Sources */,
@@ -742,6 +767,7 @@
 				AA3D29902527805F0083FD54 /* CustomViews.swift in Sources */,
 				AA8B23192540690300DBBFB0 /* Categories.swift in Sources */,
 				AA8B23252540781C00DBBFB0 /* ChooseCategoryTableViewCell.swift in Sources */,
+				AA2E10212541DAFE00E7A632 /* Constants.swift in Sources */,
 				AAC1DD50253B6713003D0E6B /* Product.swift in Sources */,
 				AAC1DD4A253B5EFF003D0E6B /* MyPlace.swift in Sources */,
 				AA3D296F25277F240083FD54 /* AppDelegate.swift in Sources */,
@@ -751,8 +777,10 @@
 				AAC1DD2D253B3EE1003D0E6B /* APIs.swift in Sources */,
 				AAC1DD3E253B56FF003D0E6B /* OldOrders.swift in Sources */,
 				AA3D297125277F240083FD54 /* SceneDelegate.swift in Sources */,
+				AA2E101F2541D91900E7A632 /* ReportsVC.swift in Sources */,
 				AA607152253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift in Sources */,
 				AA8B231E254074A400DBBFB0 /* ChooseCategoryVC.swift in Sources */,
+				AA2E101C2541C1D900E7A632 /* RegisterResponse.swift in Sources */,
 				AAE10266252CE8010094AC55 /* OrdersTableViewCell.swift in Sources */,
 				AAE10262252CE7A40094AC55 /* OrdersVC.swift in Sources */,
 			);

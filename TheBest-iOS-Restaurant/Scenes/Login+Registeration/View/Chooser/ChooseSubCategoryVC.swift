@@ -17,9 +17,7 @@ class ChooseSubCategoryVC: UIViewController {
     var receivedId: Int?
     var cats: [MainCategory]?
     var authPresenter: AuthPresenter?
-    var selectedSubCategories = [String]()
-    var selectedIDs = [Int]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         authPresenter = AuthPresenter(authViewDelegate: self)
@@ -35,8 +33,6 @@ class ChooseSubCategoryVC: UIViewController {
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: SignUpVC.self) {
                 let vc = controller as! SignUpVC
-                vc.receivedSubCategories = self.selectedSubCategories
-                vc.receivedIDs = self.selectedIDs
                 self.navigationController!.popToViewController(controller, animated: true)
                 break
             }
@@ -79,22 +75,55 @@ extension ChooseSubCategoryVC: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.chooseSubCategory.dequeueReusableCell(withReuseIdentifier: "ChooseCollectionViewCell", for: indexPath) as! ChooseCollectionViewCell
-        cell.loadFrom(category: self.cats![indexPath.row])
-        if self.cats![indexPath.row].selected ?? false{
-            self.selectedSubCategories.append(self.cats![indexPath.row].name)
-            self.selectedIDs.append(self.cats![indexPath.row].id)
+        
+        for subcat in self.cats!{
+            let temp = SharedData.selectedRegisteredCategoriesIDs.filter({ return $0 == subcat.id })
+            if !temp.isEmpty{
+                for i in 0...self.cats!.count-1{
+                    if temp.contains(self.cats![i].id){
+                        self.cats![i].selected = true
+                    }
+                }
+            }
         }
+        
+        cell.loadFrom(category: self.cats![indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if self.cats![indexPath.row].selected ?? false{
+            let tempIDs = SharedData.selectedRegisteredCategoriesIDs.filter({return $0 == self.cats![indexPath.row].id})
+            if !tempIDs.isEmpty{
+                for i in tempIDs{
+                    if let index = SharedData.selectedRegisteredCategoriesIDs.firstIndex(of: i) {
+                        SharedData.selectedRegisteredCategoriesIDs.remove(at: index)
+                        
+                    }
+                }
+                
+                let tempNames = SharedData.selectedRegisteredCategoriesNames.filter({return $0 == self.cats![indexPath.row].name})
+                if !tempNames.isEmpty{
+                    for i in tempNames{
+                        if let index = SharedData.selectedRegisteredCategoriesNames.firstIndex(of: i) {
+                            SharedData.selectedRegisteredCategoriesNames.remove(at: index)
+                            
+                        }
+                    }
+                }
+            }
+        }else{
+            SharedData.selectedRegisteredCategoriesNames.append(self.cats![indexPath.row].name)
+            SharedData.selectedRegisteredCategoriesIDs.append(self.cats![indexPath.row].id)
+        }
         self.cats![indexPath.row].selected = !(self.cats![indexPath.row].selected ?? false)
         self.chooseSubCategory.reloadData()
-        self.selectedIDs.removeAll()
-        self.selectedSubCategories.removeAll()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.chooseSubCategory.frame.width, height: 50)
     }
 }
+

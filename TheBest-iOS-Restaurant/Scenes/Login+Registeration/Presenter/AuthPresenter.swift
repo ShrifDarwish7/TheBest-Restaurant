@@ -11,15 +11,21 @@ import Foundation
 protocol AuthViewDelegate {
     func SVProgressStatus(_ status: Bool)
     func didCompleteLogin(_ error: Bool)
+    func didCompleteRegistering(_ completed: Bool)
     func didCompleteWithAllCategories(_ categories: [MainCategory]?)
     func didCompleteWithSubCategories(_ categories: [MainCategory]?)
+    func didCompleteWithCities(_ cities: [City]?)
+    func didCompletWithDistricts(_ districts: [District]?)
 }
 
 extension AuthViewDelegate{
     func SVProgressStatus(_ status: Bool){}
     func didCompleteLogin(_ error: Bool){}
+    func didCompleteRegistering(_ completed: Bool){}
     func didCompleteWithAllCategories(_ categories: [MainCategory]?){}
     func didCompleteWithSubCategories(_ categories: [MainCategory]?){}
+    func didCompleteWithCities(_ cities: [City]?){}
+    func didCompletWithDistricts(_ districts: [District]?){}
 }
 
 class AuthPresenter{
@@ -38,6 +44,18 @@ class AuthPresenter{
                 self.authViewDelegate?.didCompleteLogin(false)
             }else{
                 self.authViewDelegate?.didCompleteLogin(true)
+            }
+        }
+    }
+    
+    func registerWith(prms: RestaurantsInfo){
+        self.authViewDelegate?.SVProgressStatus(true)
+        AuthServices.registerWith(restaurantsInfo: prms) { (completed) in
+            self.authViewDelegate?.SVProgressStatus(false)
+            if completed{
+                self.authViewDelegate?.didCompleteRegistering(true)
+            }else{
+                self.authViewDelegate?.didCompleteRegistering(false)
             }
         }
     }
@@ -62,6 +80,30 @@ class AuthPresenter{
                 self.authViewDelegate?.didCompleteWithSubCategories(response?.items)
             }else{
                 self.authViewDelegate?.didCompleteWithSubCategories(nil)
+            }
+        }
+    }
+    
+    func getCities(){
+        self.authViewDelegate?.SVProgressStatus(true)
+        AuthServices.getAllCities { (response) in
+            self.authViewDelegate?.SVProgressStatus(false)
+            if let _ = response{
+                self.authViewDelegate?.didCompleteWithCities(response?.cities)
+            }else{
+                self.authViewDelegate?.didCompleteWithCities(nil)
+            }
+        }
+    }
+    
+    func getDitrictsBy(id: Int){
+        self.authViewDelegate?.SVProgressStatus(true)
+        AuthServices.getDistrictBy(id) { (response) in
+            self.authViewDelegate?.SVProgressStatus(false)
+            if let _ = response{
+                self.authViewDelegate?.didCompletWithDistricts(response?.districts)
+            }else{
+                self.authViewDelegate?.didCompletWithDistricts(nil)
             }
         }
     }

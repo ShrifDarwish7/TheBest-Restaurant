@@ -7,8 +7,22 @@
 //
 
 import Foundation
+import SVProgressHUD
 
 extension SignUpVC: AuthViewDelegate{
     
+    func SVProgressStatus(_ status: Bool) {
+        if status{
+            SVProgressHUD.show()
+        }else{
+            SVProgressHUD.dismiss()
+        }
+    }
+    
+    func didCompleteRegistering(_ completed: Bool) {
+        if completed{
+            Router.toHome(self)
+        }
+    }
     
 }

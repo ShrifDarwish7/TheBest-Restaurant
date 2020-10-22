@@ -23,6 +23,7 @@ class DrawerVC: UIViewController {
     @IBOutlet weak var balance: UIStackView!
     @IBOutlet weak var aboutUs: UIStackView!
     @IBOutlet weak var categories: UIStackView!
+    @IBOutlet weak var reports: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,39 +64,13 @@ class DrawerVC: UIViewController {
             Router.toOrders(self)
         }
         
+        reports.addTapGesture { (_) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
+            Router.toReports(self)
+        }
+        
     }
-    
-//    func loadActions(){
-//
-//        lastOrders.addTapGesture { (_) in
-//            Router.toLastOrders(sender: self)
-//        }
-//
-//        home.addTapGesture { (_) in
-//            Router.toHome(self)
-//        }
-//
-//        howToUse.addTapGesture { (_) in
-//            Router.toHowToUse(sender: self)
-//        }
-//
-//        share.addTapGesture { (_) in
-//            Router.toShare(sender: self)
-//        }
-//
-//        profileImage.addTapGesture { (_) in
-//            Router.toProfile(sender: self)
-//        }
-//
-//        balance.addTapGesture { (_) in
-//            Router.toBalance(sender: self)
-//        }
-//
-//        aboutUs.addTapGesture { (_) in
-//            Router.toTerms(sender: self)
-//        }
-//
-//    }
+ 
     
     @objc func showBlockView(){
         UIView.animate(withDuration: 0.2, delay: 0.2, options: [], animations: {

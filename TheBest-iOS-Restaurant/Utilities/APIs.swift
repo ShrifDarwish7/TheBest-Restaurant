@@ -22,4 +22,6 @@ let MENU_ITEMS_API = BASE_URL + "Restaurants/Main/MenuItems/"
 let REPORTS_API = BASE_URL + "Restaurants/Main/RestaurantsReports"
 let ADD_PRODUCTS_API = BASE_URL + "Restaurants/Main/AddProduct"
 let ADD_MENU_API = BASE_URL + "Restaurants/Main/AddMenu"
+let ALL_CITIES_API = BASE_URL + "Restaurants/Main/allCities"
+let DISTRICTS_API = BASE_URL + "Restaurants/Main/DistrictsById/"
 let HEADERS = ["Accept": "application/json"]

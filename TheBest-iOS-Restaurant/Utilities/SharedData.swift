@@ -10,11 +10,17 @@ import Foundation
 import CoreLocation
 
 class SharedData{
+    
+    static let goolgeApiKey = "AIzaSyDBDV-XxFpmbx79T5HLPrG9RmjDpiYshmE"
+    static var userLat: CLLocationDegrees?
+    static var userLng: CLLocationDegrees?
+    static var selectedRegisteredCategoriesIDs = [Int]()
+    static var selectedRegisteredCategoriesNames = [String]()
+    static var selectedRegisteredCityID: Int?
+    static var selectedRegisteredDistrictID: Int?
     static let headers = [
         "Authorization": "Bearer " + (UserDefaults.init().string(forKey: "accessToken") ?? ""),
         "Accept": "application/json"
     ]
-    static let goolgeApiKey = "AIzaSyDBDV-XxFpmbx79T5HLPrG9RmjDpiYshmE"
-    static var userLat: CLLocationDegrees?
-    static var userLng: CLLocationDegrees?
+    
 }

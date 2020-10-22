@@ -8,8 +8,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Lato-Regular.ttf">
-            <string>Lato-Regular</string>
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
         </array>
     </customFonts>
     <objects>
@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="303" height="90"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0A2-wz-rXC">
-                                <rect key="frame" x="5" y="5" width="293" height="80"/>
+                                <rect key="frame" x="10" y="5" width="283" height="80"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81b-qu-dUj">
                                         <rect key="frame" x="-60" y="0.0" width="60" height="80"/>
@@ -47,13 +47,13 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0K-9N-19v">
-                                        <rect key="frame" x="0.0" y="0.0" width="258" height="80"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="248" height="80"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unchecked" translatesAutoresizingMaskIntoConstraints="NO" id="uGZ-S0-P9z">
-                                        <rect key="frame" x="263" y="0.0" width="30" height="80"/>
+                                        <rect key="frame" x="253" y="0.0" width="30" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="pUN-Na-db6"/>
                                         </constraints>
@@ -64,9 +64,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="0A2-wz-rXC" secondAttribute="bottom" constant="5" id="9jW-te-eYY"/>
-                            <constraint firstAttribute="trailing" secondItem="0A2-wz-rXC" secondAttribute="trailing" constant="5" id="MHj-dc-iaH"/>
+                            <constraint firstAttribute="trailing" secondItem="0A2-wz-rXC" secondAttribute="trailing" constant="10" id="MHj-dc-iaH"/>
                             <constraint firstItem="0A2-wz-rXC" firstAttribute="top" secondItem="rTS-vq-Scp" secondAttribute="top" constant="5" id="ehr-Df-9Rm"/>
-                            <constraint firstItem="0A2-wz-rXC" firstAttribute="leading" secondItem="rTS-vq-Scp" secondAttribute="leading" constant="5" id="msC-tL-twz"/>
+                            <constraint firstItem="0A2-wz-rXC" firstAttribute="leading" secondItem="rTS-vq-Scp" secondAttribute="leading" constant="10" id="msC-tL-twz"/>
                         </constraints>
                     </view>
                 </subviews>
