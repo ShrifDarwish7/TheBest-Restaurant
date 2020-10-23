@@ -41,12 +41,15 @@ class Router{
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
-    static func toChooseCategory(_ sender: UIViewController, _ chooserType: ChooserType, cityID: Int?){
+    static func toChooseCategory(_ sender: UIViewController, _ chooserType: ChooserType, cityID: Int?, menuID: Int?){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ChooseCategoryVC") as! ChooseCategoryVC
         vc.chooserType = chooserType
         if let _ = cityID{
             vc.receivedCityId = cityID
+        }
+        if let _ = menuID{
+            vc.receivedMenuID = menuID
         }
         sender.navigationController?.pushViewController(vc, animated: true)
     }
@@ -61,6 +64,13 @@ class Router{
     static func toReports(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ReportsVC") as! ReportsVC
+        sender.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    static func toProduct(_ sender: UIViewController,_ item: RestaurantMenuItem){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ProductVC") as! ProductVC
+        vc.itemReceived = item
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     

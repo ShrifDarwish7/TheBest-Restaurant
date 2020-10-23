@@ -237,9 +237,9 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
     @IBAction func toChoose(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            Router.toChooseCategory(self, .Categories(nil), cityID: nil)
+            Router.toChooseCategory(self, .Categories(nil), cityID: nil, menuID: nil)
         case 1:
-            Router.toChooseCategory(self, .Cities(nil), cityID: nil)
+            Router.toChooseCategory(self, .Cities(nil), cityID: nil, menuID: nil)
         default:
             break
         }

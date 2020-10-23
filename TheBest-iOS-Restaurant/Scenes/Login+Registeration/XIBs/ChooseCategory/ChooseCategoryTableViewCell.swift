@@ -15,5 +15,6 @@ class ChooseCategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var arrowNext: UIImageView!
+    @IBOutlet weak var desc: UILabel!
     
 }

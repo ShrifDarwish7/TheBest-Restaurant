@@ -20,6 +20,10 @@ class ReportsVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var totalMoney: UILabel!
     @IBOutlet weak var completed: UILabel!
     @IBOutlet weak var canceled: UILabel!
+    @IBOutlet var getReportsBtn: [UIButton]!
+    @IBOutlet weak var filterView: UIView!
+    @IBOutlet weak var blockView: UIView!
+    @IBOutlet weak var filterViewBottomCnst: NSLayoutConstraint!
     
     var mainPresenter: MainPresenter?
     var selectedFromDate: Date?
@@ -38,9 +42,18 @@ class ReportsVC: UIViewController, UITextFieldDelegate {
         }
         
         for v in customView{
-            v.layer.cornerRadius = 15
+            v.layer.cornerRadius = 10
         }
         
+        for btn in getReportsBtn{
+            btn.layer.cornerRadius = 10
+        }
+        filterView.setupShadow()
+        filterView.roundCorners([.layerMinXMinYCorner,.layerMaxXMinYCorner], radius: 30)
+        filterViewBottomCnst.constant = 230
+        blockView.addTapGesture { (_) in
+            self.dismissFilterView()
+        }
         fromTF.setInputViewDatePicker { (datePicker) in
             datePicker.onChange { (date) in
                 let dateformatter = DateFormatter()
@@ -73,5 +86,50 @@ class ReportsVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func viewFilteringOptions(_ sender: Any) {
+        showFilterView()
+    }
+    
+    
+    @IBAction func filterByLastMonth(_ sender: Any) {
+        dismissFilterView()
+        let monthAgo = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+        if let _ = monthAgo{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            fromTF.text = dateFormatter.string(from: monthAgo!)
+            toTF.text = dateFormatter.string(from: Date())
+            mainPresenter?.getReports(from: monthAgo!, to: Date())
+        }
+    }
+    
+    @IBAction func filterByLastWeek(_ sender: Any) {
+        dismissFilterView()
+        let weekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        if let _ = weekAgo{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            fromTF.text = dateFormatter.string(from: weekAgo!)
+            toTF.text = dateFormatter.string(from: Date())
+            mainPresenter?.getReports(from: weekAgo!, to: Date())
+        }
+    }
+    
+    func showFilterView(){
+        blockView.isHidden = false
+        filterViewBottomCnst.constant = 0
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func dismissFilterView(){
+        filterViewBottomCnst.constant = 230
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        }) { (_) in
+            self.blockView.isHidden = true
+        }
+    }
     
 }

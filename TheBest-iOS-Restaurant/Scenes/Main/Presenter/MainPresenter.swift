@@ -13,6 +13,7 @@ protocol MainViewDelegate {
     func didCompleteWithMenus(_ menus: [MyMenu]?)
     func didCompleteAddMenu(_ completed: Bool)
     func didCompleteWithReports(_ reports: ReportsResponse?)
+    func didCompleteWithMenuItems(_ items: [RestaurantMenuItem]?)
 }
 
 extension MainViewDelegate{
@@ -20,6 +21,7 @@ extension MainViewDelegate{
     func didCompleteWithMenus(_ menus: [MyMenu]?){}
     func didCompleteAddMenu(_ completed: Bool){}
     func didCompleteWithReports(_ reports: ReportsResponse?){}
+    func didCompleteWithMenuItems(_ items: [RestaurantMenuItem]?){}
 }
 
 class MainPresenter{
@@ -74,16 +76,24 @@ class MainPresenter{
             return
         }
         
-        print(fromPrms)
-        print(toPrms)
-        
-        
         APIServices.getRestaurantsReports(fromPrms!, toPrms!) { (response) in
             self.mainViewDelegate?.SVProgressStatus(false)
             if let _ = response{
                 self.mainViewDelegate?.didCompleteWithReports(response)
             }else{
                 self.mainViewDelegate?.didCompleteWithReports(nil)
+            }
+        }
+    }
+  
+    func getMenuItems(id: Int){
+        self.mainViewDelegate?.SVProgressStatus(true)
+        APIServices.getMenuItems(id) { (response) in
+            self.mainViewDelegate?.SVProgressStatus(false)
+            if let _ = response{
+                self.mainViewDelegate?.didCompleteWithMenuItems(response!)
+            }else{
+                self.mainViewDelegate?.didCompleteWithMenuItems(nil)
             }
         }
     }

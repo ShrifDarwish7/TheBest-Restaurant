@@ -13,10 +13,11 @@ import SDWebImage
 class ChooseCategoryVC: UIViewController {
 
     @IBOutlet weak var categoriesTable: UITableView!
-    //var cats: [MainCategory]?
     var authPresenter: AuthPresenter?
+    var mainPresenter: MainPresenter?
     var chooserType: ChooserType?
     var receivedCityId: Int?
+    var receivedMenuID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,9 @@ class ChooseCategoryVC: UIViewController {
             authPresenter?.getCities()
         case .Districts(_):
             authPresenter?.getDitrictsBy(id: self.receivedCityId!)
+        case .MenuItems(_):
+            mainPresenter = MainPresenter(mainViewDelegate: self)
+            mainPresenter?.getMenuItems(id: self.receivedMenuID!)
         default:
             break
         }
@@ -71,6 +75,14 @@ extension ChooseCategoryVC: AuthViewDelegate{
 
 extension ChooseCategoryVC: UITableViewDelegate, UITableViewDataSource{
     
+    func loadTableFromNib(){
+        let nib = UINib(nibName: "ChooseCategoryTableViewCell", bundle: nil)
+        self.categoriesTable.register(nib, forCellReuseIdentifier: "ChooseCategoryTableViewCell")
+        self.categoriesTable.delegate = self
+        self.categoriesTable.dataSource = self
+        self.categoriesTable.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.chooserType {
         case .Categories(let cats):
@@ -79,6 +91,8 @@ extension ChooseCategoryVC: UITableViewDelegate, UITableViewDataSource{
             return cities!.count
         case .Districts(let districts):
             return districts!.count
+        case .MenuItems(let items):
+            return items!.count
         default:
             return 0
         }
@@ -98,6 +112,11 @@ extension ChooseCategoryVC: UITableViewDelegate, UITableViewDataSource{
             cell.name.text = districts![indexPath.row].name
             cell.imageContainer?.isHidden = true
             cell.arrowNext.isHidden = true
+        case .MenuItems(let items):
+            cell.name.text = items![indexPath.row].nameEn
+            cell.categoryImage.sd_setImage(with: URL(string: items![indexPath.row].hasImage))
+            cell.desc.isHidden = false
+            cell.desc.text = items![indexPath.row].descriptionEn
         default:
             return UITableViewCell()
         }
@@ -118,7 +137,7 @@ extension ChooseCategoryVC: UITableViewDelegate, UITableViewDataSource{
         case .Categories(let cats):
             Router.toChooseSubCategory(cats![indexPath.row].id, self)
         case .Cities(let cities):
-            Router.toChooseCategory(self, .Districts(nil), cityID: cities![indexPath.row].id)
+            Router.toChooseCategory(self, .Districts(nil), cityID: cities![indexPath.row].id, menuID: nil)
             SharedData.selectedRegisteredCityID = cities![indexPath.row].id
         case .Districts(let districts):
             for controller in self.navigationController!.viewControllers as Array {
@@ -129,24 +148,28 @@ extension ChooseCategoryVC: UITableViewDelegate, UITableViewDataSource{
                     break
                 }
             }
+        case .MenuItems(let items):
+            Router.toProduct(self, items![indexPath.row])
         default:
             break
         }
         
     }
     
-    func loadTableFromNib(){
-        let nib = UINib(nibName: "ChooseCategoryTableViewCell", bundle: nil)
-        self.categoriesTable.register(nib, forCellReuseIdentifier: "ChooseCategoryTableViewCell")
-        self.categoriesTable.delegate = self
-        self.categoriesTable.dataSource = self
-        self.categoriesTable.reloadData()
+}
+
+extension ChooseCategoryVC: MainViewDelegate{
+    func didCompleteWithMenuItems(_ items: [RestaurantMenuItem]?) {
+        if let _ = items{
+            self.chooserType = .MenuItems(items)
+            self.loadTableFromNib()
+        }
     }
-    
 }
 
 enum ChooserType{
     case Categories(_ categories: [MainCategory]?)
     case Cities(_ cities: [City]?)
     case Districts(_ districts: [District]?)
+    case MenuItems(_ items: [RestaurantMenuItem]?)
 }

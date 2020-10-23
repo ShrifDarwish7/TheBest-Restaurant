@@ -80,8 +80,8 @@ class APIServices{
         }
     }
     
-    static func getMenuItems(completed: @escaping ([RestaurantMenuItem]?)->Void){
-        Alamofire.request(URL(string: MENU_ITEMS_API)!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
+    static func getMenuItems(_ id: Int, completed: @escaping ([RestaurantMenuItem]?)->Void){
+        Alamofire.request(URL(string: MENU_ITEMS_API + "\(id)")!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
            switch response.result{
             case .success(let data):
                 

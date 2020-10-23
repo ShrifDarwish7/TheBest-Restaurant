@@ -202,6 +202,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="acceptBtn" destination="X9k-q6-JBR" id="HSr-n6-WWC"/>
+                <outlet property="changStatusStack" destination="VqS-bS-ayO" id="Mue-mg-OhP"/>
                 <outlet property="date" destination="JKq-k9-tx5" id="a8z-e3-NTz"/>
                 <outlet property="denyBtn" destination="OKy-wy-k8d" id="PIE-cl-9kp"/>
                 <outlet property="expandBtn" destination="eQm-L9-1YX" id="2hh-EI-oYi"/>

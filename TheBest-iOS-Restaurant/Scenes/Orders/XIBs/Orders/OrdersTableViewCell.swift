@@ -22,6 +22,7 @@ class OrdersTableViewCell: UITableViewCell {
     @IBOutlet weak var expandBtn: UIButton!
     @IBOutlet weak var totalLbl: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var changStatusStack: UIStackView!
     
     func loadUI(item: Order){
         statusLbl.layer.cornerRadius = 10

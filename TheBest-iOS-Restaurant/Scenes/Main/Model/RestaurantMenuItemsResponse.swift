@@ -19,21 +19,20 @@ struct RestaurantMenuItemsResponse: Codable {
 
 // MARK: - RestaurantMenu
 struct RestaurantMenuItem: Codable {
-    let id: Int
-    let name, nameEn, price, image: String
-    let restaurantMenuDescription, descriptionEn: String
-    let restaurantID: Int
-    let menuCategoryID, attributeTitle: String
+    let id: Int?
+    let name, nameEn, price, image: String?
+    let restaurantMenuDescription, descriptionEn: String?
+    let restaurantID: Int?
+    let menuCategoryID, attributeTitle: String?
     let attributeTitleTwo, attributeTitleThree: String?
-    let attributeTitleEn: String
+    let attributeTitleEn: String?
     let attributeTitleEnTwo, attributeTitleEnThree: String?
-    let attributeBody: String
+    let attributeBody: String?
     let attributeBodyTwo: String?
-    let attributeBodyThree: String
+    let attributeBodyThree: String?
     let additionalItemAr: String?
-    let additionalItemEn, catID, createdAt, updatedAt: String
+    let additionalItemEn, catID, createdAt, updatedAt: String?
     let hasImage: String
-    let itemattributes: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -58,6 +57,5 @@ struct RestaurantMenuItem: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case hasImage = "has_image"
-        case itemattributes
     }
 }

@@ -32,6 +32,7 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersTableViewCell", for: indexPath) as! OrdersTableViewCell
         cell.loadUI(item: orders![indexPath.row])
         cell.expandBtn.tag = indexPath.row
+        cell.changStatusStack.isHidden = true
         // cell.expandBtn.addTarget(self, action: #selector(expandItems(sender:)), for: .touchUpInside)
         
         let nib = UINib(nibName: "OrdersItemsTableViewCell", bundle: nil)
@@ -86,9 +87,9 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if orders![indexPath.row].expanded ?? false{
-            return CGFloat((110 * orders![indexPath.row].orderItems.count) + 280)
+            return CGFloat((110 * orders![indexPath.row].orderItems.count) + 245)
         }else{
-            return 275
+            return 220
         }
     }
     
