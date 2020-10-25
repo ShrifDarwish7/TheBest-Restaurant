@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AuthViewDelegate {
-    func SVProgressStatus(_ status: Bool)
+    func svprogressStatus(_ status: Bool)
     func didCompleteLogin(_ error: Bool)
     func didCompleteRegistering(_ completed: Bool)
     func didCompleteWithAllCategories(_ categories: [MainCategory]?)
@@ -19,7 +19,7 @@ protocol AuthViewDelegate {
 }
 
 extension AuthViewDelegate{
-    func SVProgressStatus(_ status: Bool){}
+    func svprogressStatus(_ status: Bool){}
     func didCompleteLogin(_ error: Bool){}
     func didCompleteRegistering(_ completed: Bool){}
     func didCompleteWithAllCategories(_ categories: [MainCategory]?){}
@@ -37,9 +37,9 @@ class AuthPresenter{
     }
     
     func loginWith(email: String, pass: String, fcm: String){
-        self.authViewDelegate?.SVProgressStatus(true)
+        self.authViewDelegate?.svprogressStatus(true)
         AuthServices.loginWith(email, pass, fcm) { (completed) in
-            self.authViewDelegate?.SVProgressStatus(false)
+            self.authViewDelegate?.svprogressStatus(false)
             if completed{
                 self.authViewDelegate?.didCompleteLogin(false)
             }else{
@@ -49,9 +49,9 @@ class AuthPresenter{
     }
     
     func registerWith(prms: RestaurantsInfo){
-        self.authViewDelegate?.SVProgressStatus(true)
+        self.authViewDelegate?.svprogressStatus(true)
         AuthServices.registerWith(restaurantsInfo: prms) { (completed) in
-            self.authViewDelegate?.SVProgressStatus(false)
+            self.authViewDelegate?.svprogressStatus(false)
             if completed{
                 self.authViewDelegate?.didCompleteRegistering(true)
             }else{
@@ -61,9 +61,9 @@ class AuthPresenter{
     }
     
     func getAllCategories(){
-        self.authViewDelegate?.SVProgressStatus(true)
+        self.authViewDelegate?.svprogressStatus(true)
         AuthServices.getMainCategories { (response) in
-            self.authViewDelegate?.SVProgressStatus(false)
+            self.authViewDelegate?.svprogressStatus(false)
             if let _ = response{
                 self.authViewDelegate?.didCompleteWithAllCategories(response?.MainCategories)
             }else{
@@ -73,9 +73,9 @@ class AuthPresenter{
     }
     
     func getSubCategories(id: Int){
-        self.authViewDelegate?.SVProgressStatus(true)
+        self.authViewDelegate?.svprogressStatus(true)
         AuthServices.getCategoriesBy(id: id) { (response) in
-            self.authViewDelegate?.SVProgressStatus(false)
+            self.authViewDelegate?.svprogressStatus(false)
             if let _ = response{
                 self.authViewDelegate?.didCompleteWithSubCategories(response?.items)
             }else{
@@ -85,9 +85,9 @@ class AuthPresenter{
     }
     
     func getCities(){
-        self.authViewDelegate?.SVProgressStatus(true)
+        self.authViewDelegate?.svprogressStatus(true)
         AuthServices.getAllCities { (response) in
-            self.authViewDelegate?.SVProgressStatus(false)
+            self.authViewDelegate?.svprogressStatus(false)
             if let _ = response{
                 self.authViewDelegate?.didCompleteWithCities(response?.cities)
             }else{
@@ -97,9 +97,9 @@ class AuthPresenter{
     }
     
     func getDitrictsBy(id: Int){
-        self.authViewDelegate?.SVProgressStatus(true)
+        self.authViewDelegate?.svprogressStatus(true)
         AuthServices.getDistrictBy(id) { (response) in
-            self.authViewDelegate?.SVProgressStatus(false)
+            self.authViewDelegate?.svprogressStatus(false)
             if let _ = response{
                 self.authViewDelegate?.didCompletWithDistricts(response?.districts)
             }else{

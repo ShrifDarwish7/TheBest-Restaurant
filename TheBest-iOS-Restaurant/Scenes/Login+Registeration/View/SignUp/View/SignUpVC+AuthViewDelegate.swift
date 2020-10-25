@@ -11,7 +11,7 @@ import SVProgressHUD
 
 extension SignUpVC: AuthViewDelegate{
     
-    func SVProgressStatus(_ status: Bool) {
+    func svprogressStatus(_ status: Bool) {
         if status{
             SVProgressHUD.show()
         }else{

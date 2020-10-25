@@ -13,19 +13,28 @@ class ProductVC: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var productImageVIew: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productDesc: UILabel!
-    @IBOutlet var roundView: [UIView]!
     @IBOutlet weak var variationTitle: UILabel!
     @IBOutlet weak var variationViewHeight: NSLayoutConstraint!
     @IBOutlet weak var variationTableHeight: NSLayoutConstraint!
     @IBOutlet weak var variationTableView: UITableView!
     @IBOutlet weak var variationView: UIView!
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var editNameTF: UITextField!
+    @IBOutlet weak var editDesc: UITextField!
+    @IBOutlet var customTFs: [UITextField]!
+    @IBOutlet weak var editProductImage: UIImageView!
+    @IBOutlet weak var editImageBtn: UIButton!
+    @IBOutlet weak var productPrice: UILabel!
+    @IBOutlet weak var editProductPrice: UITextField!
+    @IBOutlet weak var updateBtn: UIButton!
     
     var itemReceived: RestaurantMenuItem?
     var vendorName: String?
     var vendorImage: String?
     var selectedVariationIndex: Int?
     var selectedVariationPrice: Int?
+    var viewState: VCState?
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,50 +45,58 @@ class ProductVC: UIViewController , UIGestureRecognizerDelegate{
         backBtn.onTap {
             self.navigationController?.popViewController(animated: true)
         }
-        
-        for view in roundView{
-            view.layer.cornerRadius = 15
+        for tf in customTFs{
+            tf.addBottomBorder()
         }
-                
+        updateBtn.layer.cornerRadius = 10
         productImageVIew.sd_setImage(with: URL(string: itemReceived?.hasImage ?? ""))
         productName.text = itemReceived?.nameEn
         productDesc.text = itemReceived?.descriptionEn
+        productPrice.text = "\(itemReceived?.price ?? "") KWD"
         
+        switch viewState {
+        case .preview:
+            editNameTF.isHidden = true
+            editDesc.isHidden = true
+            editImageBtn.isHidden = true
+            editProductPrice.isHidden = true
+            updateBtn.isHidden = true
+        case .edit:
+            productName.isHidden = true
+            productDesc.isHidden = true
+            updateBtn.isHidden = false
+            productPrice.isHidden = true
+        default:
+            break
+        }
+        
+        loadVariationTableFromNIB()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.updateViewConstraints()
+        self.variationTableHeight?.constant = self.variationTableView.contentSize.height + 10
+        self.view.layoutIfNeeded()
+    }
+    
+    @IBAction func updateAction(_ sender: Any) {
+    }
+    
+    
+    @IBAction func editImage(_ sender: Any) {
+        let imagePicker = UIImagePickerController.init(source: .photoLibrary, allow: .image, showsCameraControls: true, didCancel: { (controller) in
+            controller.dismiss(animated: true, completion: nil)
+        }) { (result, controller) in
+            controller.dismiss(animated: true, completion: nil)
+            self.productImageVIew.image = result.originalImage
+            self.selectedImage = result.originalImage
+        }
+        self.present(imagePicker, animated: true, completion: nil)
     }
 
-//    func loadVariationTableView(){
-//
-//        let nib = UINib(nibName: "VariationTableViewCell", bundle: nil)
-//        variationTableView.register(nib, forCellReuseIdentifier: "VariationCell")
-//
-//        variationTableView.numberOfRows { (_) -> Int in
-//            return (self.itemReceived?.itemattributes?.count)!
-//        }.cellForRow { (index) -> UITableViewCell in
-//
-//            let cell = self.variationTableView.dequeueReusableCell(withIdentifier: "VariationCell", for: index) as! VariationTableViewCell
-//            cell.variationName.text = self.itemReceived?.itemattributes[index.row].name
-//            cell.variationName.text = self.itemReceived?.itemattributes[index.row].name
-//            cell.price.text = "\(self.itemReceived?.itemattributes[index.row].price ?? 0)" + " KWD "
-//            if self.itemReceived?.itemattributes[index.row].selected ?? false {
-//                cell.check.setImage(UIImage(named: "select"), for: .normal)
-//            }else{
-//                cell.check.setImage(UIImage(named: "unselect"), for: .normal)
-//            }
-//
-//            return cell
-//
-//        }.didSelectRowAt { (index) in
-//            for i in 0...(self.itemReceived!.itemattributes.count-1){
-//                self.itemReceived!.itemattributes[i].selected = false
-//            }
-//            self.itemReceived!.itemattributes[index.row].selected = true
-//            self.selectedVariationIndex = self.itemReceived!.itemattributes[index.row].id
-//            self.selectedVariationPrice = self.itemReceived!.itemattributes[index.row].price
-//            self.variationTableView.reloadData()
-//        }.heightForRowAt { (_) -> CGFloat in
-//            return 30
-//        }
-//
-//    }
+}
 
+enum VCState {
+    case edit
+    case preview
 }

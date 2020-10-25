@@ -43,7 +43,7 @@ class ChooseSubCategoryVC: UIViewController {
 }
 
 extension ChooseSubCategoryVC: AuthViewDelegate{
-    func SVProgressStatus(_ status: Bool) {
+    func svprogressStatus(_ status: Bool) {
         if status{
             SVProgressHUD.show()
         }else{

@@ -88,14 +88,42 @@ class MainPresenter{
   
     func getMenuItems(id: Int){
         self.mainViewDelegate?.SVProgressStatus(true)
-        APIServices.getMenuItems(id) { (response) in
+        APIServices.getMenuItems(id, completed: { (response) in
             self.mainViewDelegate?.SVProgressStatus(false)
-            if let _ = response{
-                self.mainViewDelegate?.didCompleteWithMenuItems(response!)
-            }else{
-                self.mainViewDelegate?.didCompleteWithMenuItems(nil)
+            for i in 0...response.count-1{
+                var variations = [Variation]()
+                if  let _ = response[i].attributeTitle ,
+                    let _ = response[i].attributeTitleEn ,
+                    let _ = response[i].attributeBody{
+                    
+                    if let bodyDecoded = try? JSONDecoder.init().decode([BodyItem].self, from: response[i].attributeBody?.replacingOccurrences(of: "\\", with: "").data(using: .utf8) ?? Data()){
+                        variations.append(Variation(titleAr: response[i].attributeTitle!, titleEn: response[i].attributeTitleEn!, body: bodyDecoded))
+                    }
+                }
+                if  let _ = response[i].attributeTitleTwo ,
+                    let _ = response[i].attributeTitleEnTwo ,
+                    let _ = response[i].attributeBodyTwo{
+                    
+                    if let bodyDecoded = try? JSONDecoder.init().decode([BodyItem].self, from: response[i].attributeBodyTwo?.replacingOccurrences(of: "\\", with: "").data(using: .utf8) ?? Data()){
+                        variations.append(Variation(titleAr: response[i].attributeTitleTwo!, titleEn: response[i].attributeTitleEnTwo!, body: bodyDecoded))
+                    }
+                }
+                if  let _ = response[i].attributeTitleThree ,
+                    let _ = response[i].attributeTitleEnThree ,
+                    let _ = response[i].attributeBodyThree{
+                    
+                    if let bodyDecoded = try? JSONDecoder.init().decode([BodyItem].self, from: response[i].attributeBodyThree?.replacingOccurrences(of: "\\", with: "").data(using: .utf8) ?? Data()){
+                        variations.append(Variation(titleAr: response[i].attributeTitleThree!, titleEn: response[i].attributeTitleEnThree!, body: bodyDecoded))
+                    }
+                }
+                response[i].variations = variations
+                //print("body\(i)",response[i].variations)
             }
+            self.mainViewDelegate?.didCompleteWithMenuItems(response)
+        }) { (failed) in
+            self.mainViewDelegate?.SVProgressStatus(false)
         }
+        
     }
     
 }

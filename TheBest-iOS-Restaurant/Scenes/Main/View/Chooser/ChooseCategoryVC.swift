@@ -13,6 +13,8 @@ import SDWebImage
 class ChooseCategoryVC: UIViewController {
 
     @IBOutlet weak var categoriesTable: UITableView!
+    @IBOutlet weak var addProduct: UIButton!
+    
     var authPresenter: AuthPresenter?
     var mainPresenter: MainPresenter?
     var chooserType: ChooserType?
@@ -30,6 +32,8 @@ class ChooseCategoryVC: UIViewController {
         case .Districts(_):
             authPresenter?.getDitrictsBy(id: self.receivedCityId!)
         case .MenuItems(_):
+            addProduct.isHidden = false
+            addProduct.layer.cornerRadius = 10
             mainPresenter = MainPresenter(mainViewDelegate: self)
             mainPresenter?.getMenuItems(id: self.receivedMenuID!)
         default:
@@ -40,10 +44,15 @@ class ChooseCategoryVC: UIViewController {
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func addProduct(_ sender: Any) {
+        
+    }
+    
 }
 
 extension ChooseCategoryVC: AuthViewDelegate{
-    func SVProgressStatus(_ status: Bool) {
+    func svprogressStatus(_ status: Bool) {
         if status{
             SVProgressHUD.show()
         }else{
@@ -149,20 +158,47 @@ extension ChooseCategoryVC: UITableViewDelegate, UITableViewDataSource{
                 }
             }
         case .MenuItems(let items):
-            Router.toProduct(self, items![indexPath.row])
+            Router.toProduct(self, items![indexPath.row], viewState: .preview)
         default:
             break
         }
         
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
+        switch chooserType {
+        case .MenuItems(let items):
+            let leadingEditAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
+                Router.toProduct(self, items![indexPath.row], viewState: .edit)
+            }
+            leadingEditAction.backgroundColor = UIColor(named: "MainColor")
+            return UISwipeActionsConfiguration(actions: [leadingEditAction])
+        default:
+            return UISwipeActionsConfiguration()
+        }
+    }
 }
 
 extension ChooseCategoryVC: MainViewDelegate{
+    
+    func SVProgressStatus(_ show: Bool) {
+        if show{
+            SVProgressHUD.show()
+        }else{
+            SVProgressHUD.dismiss()
+        }
+    }
+    
     func didCompleteWithMenuItems(_ items: [RestaurantMenuItem]?) {
         if let _ = items{
             self.chooserType = .MenuItems(items)
             self.loadTableFromNib()
+            print("checkbody 3", items![2].id)
+            print("checkbody 3", items![2].variations)
+//            for i in items!{
+//                print("i",items)
+//            }
         }
     }
 }

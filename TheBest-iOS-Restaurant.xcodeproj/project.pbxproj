@@ -12,6 +12,11 @@
 		AA2E101A25418E5F00E7A632 /* DistrictsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101925418E5F00E7A632 /* DistrictsResponse.swift */; };
 		AA2E101C2541C1D900E7A632 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101B2541C1D900E7A632 /* RegisterResponse.swift */; };
 		AA2E101F2541D91900E7A632 /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101E2541D91900E7A632 /* ReportsVC.swift */; };
+		AA38B9D02545B3580012C6B5 /* VariationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38B9CE2545B3580012C6B5 /* VariationTableViewCell.swift */; };
+		AA38B9D12545B3580012C6B5 /* VariationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA38B9CF2545B3580012C6B5 /* VariationTableViewCell.xib */; };
+		AA38B9D62545B3820012C6B5 /* VariationBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38B9D42545B3820012C6B5 /* VariationBodyTableViewCell.swift */; };
+		AA38B9D72545B3820012C6B5 /* VariationBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA38B9D52545B3820012C6B5 /* VariationBodyTableViewCell.xib */; };
+		AA38B9D92545B6970012C6B5 /* ProductVC+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38B9D82545B6970012C6B5 /* ProductVC+UITableViewDelegate.swift */; };
 		AA3D296F25277F240083FD54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D296E25277F240083FD54 /* AppDelegate.swift */; };
 		AA3D297125277F240083FD54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D297025277F240083FD54 /* SceneDelegate.swift */; };
 		AA3D297625277F240083FD54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA3D297425277F240083FD54 /* Main.storyboard */; };
@@ -91,6 +96,11 @@
 		AA2E101925418E5F00E7A632 /* DistrictsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictsResponse.swift; sourceTree = "<group>"; };
 		AA2E101B2541C1D900E7A632 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		AA2E101E2541D91900E7A632 /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
+		AA38B9CE2545B3580012C6B5 /* VariationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariationTableViewCell.swift; sourceTree = "<group>"; };
+		AA38B9CF2545B3580012C6B5 /* VariationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariationTableViewCell.xib; sourceTree = "<group>"; };
+		AA38B9D42545B3820012C6B5 /* VariationBodyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariationBodyTableViewCell.swift; sourceTree = "<group>"; };
+		AA38B9D52545B3820012C6B5 /* VariationBodyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariationBodyTableViewCell.xib; sourceTree = "<group>"; };
+		AA38B9D82545B6970012C6B5 /* ProductVC+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductVC+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		AA3D296B25277F240083FD54 /* TheBest-iOS-Restaurant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TheBest-iOS-Restaurant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA3D296E25277F240083FD54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA3D297025277F240083FD54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,8 +200,19 @@
 			isa = PBXGroup;
 			children = (
 				AA0B1023254333FC001CD32E /* ProductVC.swift */,
+				AA38B9D82545B6970012C6B5 /* ProductVC+UITableViewDelegate.swift */,
 			);
 			path = Product;
+			sourceTree = "<group>";
+		};
+		AA0B102525434D70001CD32E /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				AAE10261252CE7A40094AC55 /* OrdersVC.swift */,
+				AAE10268252CEB890094AC55 /* OrdersVC+TableViewDelegate.swift */,
+				AAC01BE025424205000437A1 /* OrdersVC+OrdersViewDelegate.swift */,
+			);
+			path = Orders;
 			sourceTree = "<group>";
 		};
 		AA2E101D2541D8FE00E7A632 /* Reports */ = {
@@ -202,6 +223,33 @@
 				AAC01BE225424B23000437A1 /* ReportsVC+UITableViewDelegate.swift */,
 			);
 			path = Reports;
+			sourceTree = "<group>";
+		};
+		AA38B9CD2545B33C0012C6B5 /* Variations */ = {
+			isa = PBXGroup;
+			children = (
+				AA38B9D32545B36A0012C6B5 /* VariationBody */,
+				AA38B9D22545B3600012C6B5 /* Variation */,
+			);
+			path = Variations;
+			sourceTree = "<group>";
+		};
+		AA38B9D22545B3600012C6B5 /* Variation */ = {
+			isa = PBXGroup;
+			children = (
+				AA38B9CE2545B3580012C6B5 /* VariationTableViewCell.swift */,
+				AA38B9CF2545B3580012C6B5 /* VariationTableViewCell.xib */,
+			);
+			path = Variation;
+			sourceTree = "<group>";
+		};
+		AA38B9D32545B36A0012C6B5 /* VariationBody */ = {
+			isa = PBXGroup;
+			children = (
+				AA38B9D42545B3820012C6B5 /* VariationBodyTableViewCell.swift */,
+				AA38B9D52545B3820012C6B5 /* VariationBodyTableViewCell.xib */,
+			);
+			path = VariationBody;
 			sourceTree = "<group>";
 		};
 		AA3D296225277F240083FD54 = {
@@ -227,6 +275,7 @@
 			children = (
 				AA3D298525277FE30083FD54 /* Configurations */,
 				AA3D298625277FFF0083FD54 /* Storyboards */,
+				AA607153253F663900ABFA1B /* XIBs */,
 				AA3D29AD252782F70083FD54 /* Scenes */,
 				AA3D2993252780670083FD54 /* UI-Helpers */,
 				AA3D29A82527809C0083FD54 /* Utilities */,
@@ -304,8 +353,6 @@
 			children = (
 				AABC77B1252B361300F1B896 /* DrawerVC.swift */,
 				AAE10252252CDDF20094AC55 /* Login+Registeration */,
-				AAE10258252CDE430094AC55 /* Home */,
-				AAE1025F252CE7910094AC55 /* Orders */,
 				AAC1DD42253B5D4D003D0E6B /* Main */,
 			);
 			path = Scenes;
@@ -324,6 +371,9 @@
 		AA607153253F663900ABFA1B /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				AA38B9CD2545B33C0012C6B5 /* Variations */,
+				AAE1026A252D05A00094AC55 /* Orders */,
+				AAE1026B252D05C90094AC55 /* Items */,
 				AA607158253F669600ABFA1B /* Item */,
 			);
 			path = XIBs;
@@ -370,7 +420,6 @@
 			children = (
 				AAE10255252CDE1F0094AC55 /* Login */,
 				AAE10253252CDE000094AC55 /* SignUp */,
-				AA8B231C2540747B00DBBFB0 /* Chooser */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,8 +443,11 @@
 		AAB14A9A253F5E6800B562F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA0B102525434D70001CD32E /* Orders */,
+				AAE10258252CDE430094AC55 /* Home */,
 				AA0B102225433396001CD32E /* Product */,
 				AA2E101D2541D8FE00E7A632 /* Reports */,
+				AA8B231C2540747B00DBBFB0 /* Chooser */,
 				AA607150253F654600ABFA1B /* Categories */,
 			);
 			path = View;
@@ -404,31 +456,8 @@
 		AAB14A9D253F5EE200B562F9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				AAB14A9E253F5EF800B562F9 /* MainPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		AAC1DD39253B556D003D0E6B /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				AAC1DD3A253B558A003D0E6B /* OrdersServices.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		AAC1DD3C253B56D2003D0E6B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				AAC1DD3D253B56FF003D0E6B /* OldOrders.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		AAC1DD3F253B592C003D0E6B /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
 				AAC1DD40253B594C003D0E6B /* OrdersPresenter.swift */,
+				AAB14A9E253F5EF800B562F9 /* MainPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -437,10 +466,10 @@
 			isa = PBXGroup;
 			children = (
 				AAC1DD44253B5DA4003D0E6B /* APIServices.swift */,
+				AAC1DD3A253B558A003D0E6B /* OrdersServices.swift */,
 				AAC1DD46253B5DD1003D0E6B /* Model */,
 				AAB14A9A253F5E6800B562F9 /* View */,
 				AAB14A9D253F5EE200B562F9 /* Presenter */,
-				AA607153253F663900ABFA1B /* XIBs */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -448,6 +477,7 @@
 		AAC1DD46253B5DD1003D0E6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AAC1DD3D253B56FF003D0E6B /* OldOrders.swift */,
 				AAC1DD47253B5DE5003D0E6B /* MyMenusResponse.swift */,
 				AAC1DD49253B5EFE003D0E6B /* MyPlace.swift */,
 				AAC1DD4B253B6039003D0E6B /* RestaurantMenuItemsResponse.swift */,
@@ -519,17 +549,9 @@
 		AAE10258252CDE430094AC55 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AAE10259252CDE480094AC55 /* View */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		AAE10259252CDE480094AC55 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				AABC77B8252B362300F1B896 /* HomeVC.swift */,
 			);
-			path = View;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		AAE1025A252CDE5C0094AC55 /* XIBs */ = {
@@ -537,37 +559,6 @@
 			children = (
 				AA8B2322254077FE00DBBFB0 /* ChooseCategory */,
 				AA8B2321254077F700DBBFB0 /* Choose */,
-			);
-			path = XIBs;
-			sourceTree = "<group>";
-		};
-		AAE1025F252CE7910094AC55 /* Orders */ = {
-			isa = PBXGroup;
-			children = (
-				AAC1DD3F253B592C003D0E6B /* Presenter */,
-				AAC1DD3C253B56D2003D0E6B /* Model */,
-				AAC1DD39253B556D003D0E6B /* Interactor */,
-				AAE10263252CE7F30094AC55 /* XIBs */,
-				AAE10260252CE7980094AC55 /* View */,
-			);
-			path = Orders;
-			sourceTree = "<group>";
-		};
-		AAE10260252CE7980094AC55 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				AAE10261252CE7A40094AC55 /* OrdersVC.swift */,
-				AAE10268252CEB890094AC55 /* OrdersVC+TableViewDelegate.swift */,
-				AAC01BE025424205000437A1 /* OrdersVC+OrdersViewDelegate.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		AAE10263252CE7F30094AC55 /* XIBs */ = {
-			isa = PBXGroup;
-			children = (
-				AAE1026B252D05C90094AC55 /* Items */,
-				AAE1026A252D05A00094AC55 /* Orders */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -675,6 +666,8 @@
 				AA3D29A3252780950083FD54 /* Lato-Light.ttf in Resources */,
 				AA3D29A2252780950083FD54 /* Lato-BoldItalic.ttf in Resources */,
 				AA3D29AB252782540083FD54 /* GoogleService-Info.plist in Resources */,
+				AA38B9D72545B3820012C6B5 /* VariationBodyTableViewCell.xib in Resources */,
+				AA38B9D12545B3580012C6B5 /* VariationTableViewCell.xib in Resources */,
 				AA3D299E252780950083FD54 /* Lato-ThinItalic.ttf in Resources */,
 				AA3D299F252780950083FD54 /* Lato-BlackItalic.ttf in Resources */,
 				AABC77BF252B40E700F1B896 /* Drawer.storyboard in Resources */,
@@ -757,6 +750,7 @@
 				AA3D298F2527805F0083FD54 /* Images.swift in Sources */,
 				AA3D298E2527805F0083FD54 /* Alert.swift in Sources */,
 				AABC77B5252B361400F1B896 /* LoginVC.swift in Sources */,
+				AA38B9D92545B6970012C6B5 /* ProductVC+UITableViewDelegate.swift in Sources */,
 				AA8B2320254074BA00DBBFB0 /* ChooseSubCategoryVC.swift in Sources */,
 				AAC01BE325424B23000437A1 /* ReportsVC+UITableViewDelegate.swift in Sources */,
 				AABC77AD252B35FF00F1B896 /* Option.swift in Sources */,
@@ -785,11 +779,13 @@
 				AA0B1024254333FC001CD32E /* ProductVC.swift in Sources */,
 				AAB14A9C253F5E9800B562F9 /* CategoriesVC.swift in Sources */,
 				AA3D29902527805F0083FD54 /* CustomViews.swift in Sources */,
+				AA38B9D02545B3580012C6B5 /* VariationTableViewCell.swift in Sources */,
 				AA8B23192540690300DBBFB0 /* Categories.swift in Sources */,
 				AAC01BDF25423D9D000437A1 /* ReportsVC+MainViewDelegate.swift in Sources */,
 				AA8B23252540781C00DBBFB0 /* ChooseCategoryTableViewCell.swift in Sources */,
 				AAC1DD50253B6713003D0E6B /* Product.swift in Sources */,
 				AAC1DD4A253B5EFF003D0E6B /* MyPlace.swift in Sources */,
+				AA38B9D62545B3820012C6B5 /* VariationBodyTableViewCell.swift in Sources */,
 				AA3D296F25277F240083FD54 /* AppDelegate.swift in Sources */,
 				AABC77B3252B361400F1B896 /* ChooseCollectionViewCell.swift in Sources */,
 				AA3D29912527805F0083FD54 /* SetupPicker.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 import SVProgressHUD
 
 extension ReportsVC: MainViewDelegate{
+    
     func SVProgressStatus(_ show: Bool) {
         if show{
             SVProgressHUD.show()
@@ -20,14 +21,19 @@ extension ReportsVC: MainViewDelegate{
     
     func didCompleteWithReports(_ reports: ReportsResponse?) {
         if let _ = reports{
-            self.orders = reports?.myOrders
-            self.loadOrdersTableFromNib()
-            self.ordersTableView.isHidden = false
-            self.empty.isHidden = true
-            self.canceled.text = "\(reports?.myOrdersCanceled ?? 0)"
-            self.completed.text = "\(reports?.myOrdersDone ?? 0)"
-            self.totalOrders.text = "\(reports?.myOrdersCount ?? 0)"
-            self.totalMoney.text = "\(reports?.myOrdersMoney ?? 0) KWD"
+            if (reports?.myOrders.isEmpty)!{
+                self.empty.isHidden = false
+                self.ordersTableView.isHidden = true
+            }else{
+                self.orders = reports?.myOrders
+                self.empty.isHidden = true
+                self.loadOrdersTableFromNib()
+                self.ordersTableView.isHidden = false
+                self.canceled.text = "\(reports?.myOrdersCanceled ?? 0)"
+                self.completed.text = "\(reports?.myOrdersDone ?? 0)"
+                self.totalOrders.text = "\(reports?.myOrdersCount ?? 0)"
+                self.totalMoney.text = "\(reports?.myOrdersMoney ?? 0) KWD"
+            }
         }else{
             self.empty.isHidden = false
         }

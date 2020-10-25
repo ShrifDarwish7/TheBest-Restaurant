@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - RestaurantMenuItemsResponse
 struct RestaurantMenuItemsResponse: Codable {
-    let restaurantMenu: [RestaurantMenuItem]
+    var restaurantMenu: [RestaurantMenuItem]
 
     enum CodingKeys: String, CodingKey {
         case restaurantMenu = "RestaurantMenu"
@@ -19,6 +19,7 @@ struct RestaurantMenuItemsResponse: Codable {
 
 // MARK: - RestaurantMenu
 struct RestaurantMenuItem: Codable {
+    
     let id: Int?
     let name, nameEn, price, image: String?
     let restaurantMenuDescription, descriptionEn: String?
@@ -33,6 +34,8 @@ struct RestaurantMenuItem: Codable {
     let additionalItemAr: String?
     let additionalItemEn, catID, createdAt, updatedAt: String?
     let hasImage: String
+
+    var variations: [Variation]?
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -58,4 +61,24 @@ struct RestaurantMenuItem: Codable {
         case updatedAt = "updated_at"
         case hasImage = "has_image"
     }
+}
+
+struct Variation {
+    var titleAr: String
+    var titleEn: String
+    var body: [BodyItem]
+}
+
+struct BodyItem: Codable {
+    
+    var nameAr: String
+    var nameEn: String
+    var price: String
+    
+    enum CodingKeys: String, CodingKey {
+        case nameAr = "name_ar"
+        case nameEn = "name_en"
+        case price
+    }
+    
 }

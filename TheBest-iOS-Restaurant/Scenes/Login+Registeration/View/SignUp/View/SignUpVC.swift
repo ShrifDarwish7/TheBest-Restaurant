@@ -36,7 +36,6 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
     @IBOutlet weak var placeEmial: UITextField!
     @IBOutlet weak var orderLimit: UITextField!
     
-    
     var options = [Option]()
     var payOptions = [Option]()
     var categories: [MainCategory]?

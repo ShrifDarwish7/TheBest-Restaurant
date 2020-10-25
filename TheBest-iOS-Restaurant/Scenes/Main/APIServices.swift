@@ -80,23 +80,23 @@ class APIServices{
         }
     }
     
-    static func getMenuItems(_ id: Int, completed: @escaping ([RestaurantMenuItem]?)->Void){
+    static func getMenuItems(_ id: Int, completed: @escaping (_ dataModel: inout [RestaurantMenuItem])->Void, failed: @escaping (Bool)->Void){
         Alamofire.request(URL(string: MENU_ITEMS_API + "\(id)")!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
            switch response.result{
             case .success(let data):
                 
                 do{
                     
-                    let dataModel = try JSONDecoder.init().decode(RestaurantMenuItemsResponse.self, from: data)
-                    completed(dataModel.restaurantMenu)
+                    var dataModel = try JSONDecoder.init().decode(RestaurantMenuItemsResponse.self, from: data)
+                    completed(&dataModel.restaurantMenu)
                     
                 }catch let error{
                     print("errPars",error)
-                    completed(nil)
+                    failed(true)
                 }
             case .failure(let error):
                 print("err",error)
-                completed(nil)
+                failed(true)
             }
         }
     }

@@ -234,12 +234,7 @@ class AuthServices{
     
     static func getAllCities(_ completed: @escaping (CitiesResponse?)->Void){
         
-        let headers = [
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNWU0OGJjNjQwMzU3NTdiZGVmNjdkYjZhODNjODg2NGEzNmFkMzdlYThhNDQwMzdlMDlhMjU1MjE5NzE0ZWFiMDZmN2NmYTE0YjgyNmNkNmIiLCJpYXQiOjE2MDE3NDc1NDYsIm5iZiI6MTYwMTc0NzU0NiwiZXhwIjoxNjMzMjgzNTQ2LCJzdWIiOiIxNjAiLCJzY29wZXMiOltdfQ.IvFjhBE6o8BznywCN_atolCLmlgMZ98fZLwCXMMlZXFF008pea-wEPpHw7HC5AMEgO4jt4OwTe7r4f7lSNy9JJLA0hSrlgJm9XSlnULVq2dnNuMDnui8B9RwGkpHVUJbnCcosPTtDusdnPkYqRpmSdhHYawjMNUCDQDhaC_UdL13Baxp02Kz6fH6Yu7MCcH52rl-9RVCo3I_dg3ujVSz0E5MzVX6nhwVxXcsew3X4qr9Ga9J65Tw0rDOG7zKT2i0H0QKPN0Wi5s9XqiMzEyfQuOyP0g9laDHqtHCK-QFrb-CGTVYK0Yhsne8nZHDAnAfepML7wW60syHHTM8sZFTlNN4lKQLni-HUEKiiCdf_fgaR2INDGqTlyLPJV49CL3m61QG_vPVS-PUs_f41k_hKh36YN1lmNDRSmFPD3OK_IKeVLp_wK0ist0vW55hYDoRBVXxHiID2Kowp9VStrIu7c3XbbJyvddd-WJCu5QHEbxFAMxtW5mwGvj4MIgBSBnrzvPAlqZGRJnoXYx9WjucpahCbKFZbLVnVlOo6uKeqVjJJM85QD8vrQOcMPO4dIyy8AsG0k_lHQ-eQ952vDJVTjHtIGyVJXAg0oou9rAr6jFQcKbvHKkpdKSK4515HGZY2sxOiaFc3yoKL74zM0BdPVY3SFBMPrgDAxD2XuhTuJI",
-            "Accept": "application/json"
-        ]
-        
-        Alamofire.request(ALL_CITIES_API, method: .get, parameters: nil, headers: headers).responseData { (response) in
+        Alamofire.request(ALL_CITIES_API, method: .get, parameters: nil, headers: HEADERS).responseData { (response) in
             switch response.result{
             case .success(let data):
                 do{
@@ -257,13 +252,8 @@ class AuthServices{
     }
     
     static func getDistrictBy(_ id: Int, _ completed: @escaping (DistrictsResponse?)->Void){
-        
-        let headers = [
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNWU0OGJjNjQwMzU3NTdiZGVmNjdkYjZhODNjODg2NGEzNmFkMzdlYThhNDQwMzdlMDlhMjU1MjE5NzE0ZWFiMDZmN2NmYTE0YjgyNmNkNmIiLCJpYXQiOjE2MDE3NDc1NDYsIm5iZiI6MTYwMTc0NzU0NiwiZXhwIjoxNjMzMjgzNTQ2LCJzdWIiOiIxNjAiLCJzY29wZXMiOltdfQ.IvFjhBE6o8BznywCN_atolCLmlgMZ98fZLwCXMMlZXFF008pea-wEPpHw7HC5AMEgO4jt4OwTe7r4f7lSNy9JJLA0hSrlgJm9XSlnULVq2dnNuMDnui8B9RwGkpHVUJbnCcosPTtDusdnPkYqRpmSdhHYawjMNUCDQDhaC_UdL13Baxp02Kz6fH6Yu7MCcH52rl-9RVCo3I_dg3ujVSz0E5MzVX6nhwVxXcsew3X4qr9Ga9J65Tw0rDOG7zKT2i0H0QKPN0Wi5s9XqiMzEyfQuOyP0g9laDHqtHCK-QFrb-CGTVYK0Yhsne8nZHDAnAfepML7wW60syHHTM8sZFTlNN4lKQLni-HUEKiiCdf_fgaR2INDGqTlyLPJV49CL3m61QG_vPVS-PUs_f41k_hKh36YN1lmNDRSmFPD3OK_IKeVLp_wK0ist0vW55hYDoRBVXxHiID2Kowp9VStrIu7c3XbbJyvddd-WJCu5QHEbxFAMxtW5mwGvj4MIgBSBnrzvPAlqZGRJnoXYx9WjucpahCbKFZbLVnVlOo6uKeqVjJJM85QD8vrQOcMPO4dIyy8AsG0k_lHQ-eQ952vDJVTjHtIGyVJXAg0oou9rAr6jFQcKbvHKkpdKSK4515HGZY2sxOiaFc3yoKL74zM0BdPVY3SFBMPrgDAxD2XuhTuJI",
-            "Accept": "application/json"
-        ]
-        
-        Alamofire.request(DISTRICTS_API + "\(id)", method: .get, parameters: nil, headers: headers).responseData { (response) in
+       
+        Alamofire.request(DISTRICTS_API + "\(id)", method: .get, parameters: nil, headers: HEADERS).responseData { (response) in
             switch response.result{
             case .success(let data):
                 do{
