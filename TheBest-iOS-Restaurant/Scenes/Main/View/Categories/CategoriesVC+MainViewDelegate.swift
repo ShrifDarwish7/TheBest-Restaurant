@@ -21,16 +21,31 @@ extension CategoriesVC: MainViewDelegate{
     func didCompleteWithMenus(_ menus: [MyMenu]?) {
         if let _ = menus{
             self.menus = menus
+            self.dismissCatView()
             self.loadTableFromNib()
+            refreshControl.endRefreshing()
         }
     }
     
     func didCompleteAddMenu(_ completed: Bool) {
         if completed{
-            showAlert(title: "", message: "Menu added successfully")
             self.dismissCatView()
+            self.mainPresenter?.getMenus()
         }else{
             showAlert(title: "", message: "Failed to add menu")
         }
     }
+    
+    func didCompleteDeleteMenu(_ completed: Bool) {
+        if completed{
+            mainPresenter?.getMenus()
+        }
+    }
+    
+    func didCompleteUpdateMenu(_ completed: Bool) {
+        if completed{
+            self.mainPresenter?.getMenus()
+        }
+    }
+    
 }

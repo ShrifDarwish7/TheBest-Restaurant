@@ -7,21 +7,36 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainViewDelegate {
     func SVProgressStatus(_ show: Bool)
+    func activityIndicatorStatus(_ show: Bool)
     func didCompleteWithMenus(_ menus: [MyMenu]?)
     func didCompleteAddMenu(_ completed: Bool)
     func didCompleteWithReports(_ reports: ReportsResponse?)
     func didCompleteWithMenuItems(_ items: [RestaurantMenuItem]?)
+    func didCompleteWithAdditionalItems(_ items: [AdditionalItem]?)
+    func didCompleteAddingProduct(_ completed: Bool)
+    func didCompleteUpdateProduct(_ completed: Bool)
+    func didCompleteDeleteProduct(_ completed: Bool)
+    func didCompleteDeleteMenu(_ completed: Bool)
+    func didCompleteUpdateMenu(_ completed: Bool)
 }
 
 extension MainViewDelegate{
     func SVProgressStatus(_ show: Bool){}
+    func activityIndicatorStatus(_ show: Bool){}
     func didCompleteWithMenus(_ menus: [MyMenu]?){}
     func didCompleteAddMenu(_ completed: Bool){}
     func didCompleteWithReports(_ reports: ReportsResponse?){}
     func didCompleteWithMenuItems(_ items: [RestaurantMenuItem]?){}
+    func didCompleteWithAdditionalItems(_ items: [AdditionalItem]?){}
+    func didCompleteAddingProduct(_ completed: Bool){}
+    func didCompleteUpdateProduct(_ completed: Bool){}
+    func didCompleteDeleteProduct(_ completed: Bool){}
+    func didCompleteDeleteMenu(_ completed: Bool){}
+    func didCompleteUpdateMenu(_ completed: Bool){}
 }
 
 class MainPresenter{
@@ -124,6 +139,78 @@ class MainPresenter{
             self.mainViewDelegate?.SVProgressStatus(false)
         }
         
+    }
+    
+    func getAdditionalItems(){
+        self.mainViewDelegate?.activityIndicatorStatus(true)
+        APIServices.getAdditionalItems { (response) in
+            self.mainViewDelegate?.activityIndicatorStatus(false)
+            if let _ = response{
+                self.mainViewDelegate?.didCompleteWithAdditionalItems(response?.additionalItems)
+            }else{
+                self.mainViewDelegate?.didCompleteWithAdditionalItems(nil)
+            }
+        }
+    }
+    
+    func addProduct(parameters: [String:String], image: UIImage){
+        self.mainViewDelegate?.SVProgressStatus(true)
+        APIServices.addProduct(parameters, image) { (completed) in
+            self.mainViewDelegate?.SVProgressStatus(false)
+            if completed{
+                self.mainViewDelegate?.didCompleteAddingProduct(true)
+            }else{
+                self.mainViewDelegate?.didCompleteAddingProduct(false)
+            }
+        }
+    }
+    
+    func updateProduct(id: Int, parameters: [String:String], image: UIImage?){
+        self.mainViewDelegate?.SVProgressStatus(true)
+        APIServices.updateProduct(id, parameters, image) { (completed) in
+            self.mainViewDelegate?.SVProgressStatus(false)
+            if completed{
+                self.mainViewDelegate?.didCompleteUpdateProduct(true)
+            }else{
+                self.mainViewDelegate?.didCompleteUpdateProduct(false)
+            }
+        }
+    }
+    
+    func deleteProduct(id: Int){
+        self.mainViewDelegate?.SVProgressStatus(true)
+        APIServices.deleteProduct("\(id)") { (completed) in
+            if completed{
+                self.mainViewDelegate?.didCompleteDeleteProduct(true)
+            }else{
+                self.mainViewDelegate?.SVProgressStatus(false)
+                self.mainViewDelegate?.didCompleteDeleteProduct(false)
+            }
+        }
+    }
+    
+    func deleteMenu(id: Int){
+        self.mainViewDelegate?.SVProgressStatus(true)
+        APIServices.deleteMenu("\(id)") { (completed) in
+            if completed{
+                self.mainViewDelegate?.didCompleteDeleteMenu(true)
+            }else{
+                self.mainViewDelegate?.SVProgressStatus(false)
+                self.mainViewDelegate?.didCompleteDeleteMenu(false)
+            }
+        }
+    }
+    
+    func updateMenu(id: Int, name: String){
+        self.mainViewDelegate?.SVProgressStatus(true)
+        APIServices.updateMenu("\(id)", name) { (completed) in
+            if completed{
+                self.mainViewDelegate?.didCompleteUpdateMenu(true)
+            }else{
+                self.mainViewDelegate?.SVProgressStatus(false)
+                self.mainViewDelegate?.didCompleteUpdateMenu(false)
+            }
+        }
     }
     
 }

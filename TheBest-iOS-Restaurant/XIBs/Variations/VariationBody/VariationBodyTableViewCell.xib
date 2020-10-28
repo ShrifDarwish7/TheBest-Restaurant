@@ -57,6 +57,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="containerView" destination="Xp4-xe-yo2" id="8gG-W2-eSf"/>
                 <outlet property="name" destination="4ga-pn-43A" id="PvK-J0-M9w"/>
                 <outlet property="price" destination="jOK-jx-S1T" id="5Oz-fE-pIB"/>
             </connections>

@@ -22,7 +22,7 @@ struct RestaurantMenuItem: Codable {
     
     let id: Int?
     let name, nameEn, price, image: String?
-    let restaurantMenuDescription, descriptionEn: String?
+    let descriptionAr, descriptionEn: String?
     let restaurantID: Int?
     let menuCategoryID, attributeTitle: String?
     let attributeTitleTwo, attributeTitleThree: String?
@@ -41,7 +41,7 @@ struct RestaurantMenuItem: Codable {
         case id, name
         case nameEn = "name_en"
         case price, image
-        case restaurantMenuDescription = "description"
+        case descriptionAr = "description"
         case descriptionEn = "description_en"
         case restaurantID = "restaurant_id"
         case menuCategoryID = "menu_category_id"

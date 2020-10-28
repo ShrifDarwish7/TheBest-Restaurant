@@ -67,7 +67,7 @@ class Router{
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
-    static func toProduct(_ sender: UIViewController,_ item: RestaurantMenuItem, viewState: VCState){
+    static func toProduct(_ sender: UIViewController,_ item: RestaurantMenuItem?, viewState: VCState){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ProductVC") as! ProductVC
         vc.itemReceived = item

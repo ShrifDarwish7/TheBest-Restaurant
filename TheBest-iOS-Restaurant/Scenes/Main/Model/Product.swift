@@ -17,7 +17,7 @@ struct Product {
     var description_ar: String
     var description_en: String
     var restaurant_id: String
-    var menu_category_id: String
+    //var menu_category_id: String
     var attribute_title_ar: String
     var attribute_title_en: String
     var attribute_body: String

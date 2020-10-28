@@ -20,18 +20,23 @@ class ChooseCategoryVC: UIViewController {
     var chooserType: ChooserType?
     var receivedCityId: Int?
     var receivedMenuID: Int?
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         authPresenter = AuthPresenter(authViewDelegate: self)
         switch chooserType {
         case .Categories(_):
+            refreshControl.addTarget(self, action: #selector(self.refreshCategories(_:)), for: .valueChanged)
             authPresenter?.getAllCategories()
         case .Cities(_):
+            refreshControl.addTarget(self, action: #selector(self.refreshCities(_:)), for: .valueChanged)
             authPresenter?.getCities()
         case .Districts(_):
+            refreshControl.addTarget(self, action: #selector(self.refreshDistricts), for: .valueChanged)
             authPresenter?.getDitrictsBy(id: self.receivedCityId!)
         case .MenuItems(_):
+            refreshControl.addTarget(self, action: #selector(self.refreshMenuItems), for: .valueChanged)
             addProduct.isHidden = false
             addProduct.layer.cornerRadius = 10
             mainPresenter = MainPresenter(mainViewDelegate: self)
@@ -39,14 +44,32 @@ class ChooseCategoryVC: UIViewController {
         default:
             break
         }
+        
+        categoriesTable.addSubview(refreshControl)
+        
     }
+    
+    @objc func refreshCategories(_ sender: AnyObject) {
+       authPresenter?.getAllCategories()
+    }
+    @objc func refreshCities(_ sender: AnyObject) {
+       authPresenter?.getCities()
+    }
+    @objc func refreshDistricts(_ sender: AnyObject) {
+       authPresenter?.getDitrictsBy(id: self.receivedCityId!)
+    }
+    @objc func refreshMenuItems(_ sender: AnyObject) {
+       mainPresenter = MainPresenter(mainViewDelegate: self)
+       mainPresenter?.getMenuItems(id: self.receivedMenuID!)
+    }
+    
     
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addProduct(_ sender: Any) {
-        
+        Router.toProduct(self, nil, viewState: .add)
     }
     
 }
@@ -64,6 +87,7 @@ extension ChooseCategoryVC: AuthViewDelegate{
         if let _ = categories{
             self.chooserType = .Categories(categories!)
             self.loadTableFromNib()
+            refreshControl.endRefreshing()
         }
     }
     
@@ -71,6 +95,7 @@ extension ChooseCategoryVC: AuthViewDelegate{
         if let _ = cities{
             self.chooserType = .Cities(cities!)
             self.loadTableFromNib()
+            refreshControl.endRefreshing()
         }
     }
     
@@ -78,6 +103,7 @@ extension ChooseCategoryVC: AuthViewDelegate{
         if let _ = districts{
             self.chooserType = .Districts(districts)
             self.loadTableFromNib()
+            refreshControl.endRefreshing()
         }
     }
 }
@@ -178,6 +204,25 @@ extension ChooseCategoryVC: UITableViewDelegate, UITableViewDataSource{
             return UISwipeActionsConfiguration()
         }
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        var trailingRemoveAction = UIContextualAction()
+        
+        switch chooserType {
+        case .MenuItems(let items):
+            trailingRemoveAction = UIContextualAction(style: .normal, title: "Delete") { (_, _, _) in
+                self.mainPresenter?.deleteProduct(id: items![indexPath.row].id!)
+            }
+        default:
+            trailingRemoveAction = UIContextualAction()
+        }
+        
+        trailingRemoveAction.backgroundColor = UIColor.red
+        return UISwipeActionsConfiguration(actions: [trailingRemoveAction])
+       
+    }
+    
 }
 
 extension ChooseCategoryVC: MainViewDelegate{
@@ -194,13 +239,19 @@ extension ChooseCategoryVC: MainViewDelegate{
         if let _ = items{
             self.chooserType = .MenuItems(items)
             self.loadTableFromNib()
-            print("checkbody 3", items![2].id)
-            print("checkbody 3", items![2].variations)
+            refreshControl.endRefreshing()
 //            for i in items!{
 //                print("i",items)
 //            }
         }
     }
+    
+    func didCompleteDeleteProduct(_ completed: Bool) {
+        if completed{
+            mainPresenter?.getMenuItems(id: self.receivedMenuID!)
+        }
+    }
+    
 }
 
 enum ChooserType{

@@ -29,4 +29,10 @@ class ChooseCollectionViewCell: UICollectionViewCell {
         categoryImage.sd_setImage(with: URL(string: category.hasImage ?? ""))
     }
     
+    func loadFrom(additionalItem: AdditionalItem){
+        title.text = additionalItem.nameEn
+        check.image = additionalItem.selected == true ? UIImage(named: "checked") : UIImage(named: "unchecked")
+        imageContainer.isHidden = true
+    }
+    
 }

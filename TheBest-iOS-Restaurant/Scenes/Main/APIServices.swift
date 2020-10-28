@@ -88,7 +88,11 @@ class APIServices{
                 do{
                     
                     var dataModel = try JSONDecoder.init().decode(RestaurantMenuItemsResponse.self, from: data)
-                    completed(&dataModel.restaurantMenu)
+                    if !dataModel.restaurantMenu.isEmpty{
+                        completed(&dataModel.restaurantMenu)
+                    }else{
+                        failed(true)
+                    }
                     
                 }catch let error{
                     print("errPars",error)
@@ -160,25 +164,15 @@ class APIServices{
         
     }
     
-    static func addProduct(_ product: Product, completed: @escaping (ReportsResponse?)->Void){
+    static func addProduct(_ parameters: [String:String],_ image: UIImage, completed: @escaping (Bool)->Void){
         
         URLCache.shared.removeAllCachedResponses()
         Alamofire.upload(multipartFormData: { (multipartFormData) in
-        
-            multipartFormData.append(product.attribute_body.data(using: String.Encoding.utf8)!, withName: "attribute_body")
-            multipartFormData.append(product.attribute_title_ar.data(using: String.Encoding.utf8)!, withName: "attribute_title_ar")
-            multipartFormData.append(product.attribute_title_en.data(using: String.Encoding.utf8)!, withName: "attribute_title_en")
-            multipartFormData.append(product.cat_id.data(using: String.Encoding.utf8)!, withName: "cat_id")
-            multipartFormData.append(product.description_ar.data(using: String.Encoding.utf8)!, withName: "description_ar")
-            multipartFormData.append(product.description_en.data(using: String.Encoding.utf8)!, withName: "description_en")
-            multipartFormData.append(product.image.jpegData(compressionQuality: 0.2)!, withName: "image", mimeType: "image/jpg")
-            multipartFormData.append(product.menu_category_id.data(using: String.Encoding.utf8)!, withName: "menu_category_id")
-            multipartFormData.append(product.name_ar.data(using: String.Encoding.utf8)!, withName: "name_ar")
-            multipartFormData.append(product.name_en.data(using: String.Encoding.utf8)!, withName: "name_en")
-            multipartFormData.append(product.price.data(using: String.Encoding.utf8)!, withName: "price")
-            multipartFormData.append(product.restaurant_id.data(using: String.Encoding.utf8)!, withName: "restaurant_id")
+            for (key,value) in parameters{
+                multipartFormData.append(value.data(using: .utf8)!, withName: key)
+            }
+            multipartFormData.append(image.jpegData(compressionQuality: 0.2)!, withName: "image", mimeType: "image/jpg")
 
-            
         }, to: URL(string: ADD_PRODUCTS_API)!, method: .post, headers: SharedData.headers) { (encodingResult) in
             
             switch encodingResult{
@@ -191,27 +185,18 @@ class APIServices{
                         
                     case .success(let data):
                         
-                        print("reports",try? JSON(data: data))
+                        print("addProdiuctResponse",try? JSON(data: data))
                         
-                        if JSON(data)["status"].intValue == 200{
-                            
-                            do{
-                             
-                                
-                                
-                            }catch let error{
-                                print("parsErrr",error)
-                                completed(nil)
-                            }
-                            
+                        if JSON(data)["status"].stringValue == "200"{
+                            completed(true)
                         }else{
-                            completed(nil)
+                            completed(false)
                         }
                         
                     case .failure(let error):
                         
-                        print("reportsParseError",error)
-                        completed(nil)
+                        print("addProdiuctParseError",error)
+                        completed(false)
                         
                     }
                     
@@ -220,7 +205,60 @@ class APIServices{
             case .failure(let error):
                 
                 print("error",error)
-                completed(nil)
+                completed(false)
+                
+            }
+            
+        }
+        
+    }
+    
+    static func updateProduct(_ id: Int, _ parameters: [String:String], _ image: UIImage?, completed: @escaping (Bool)->Void){
+        
+        URLCache.shared.removeAllCachedResponses()
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            for (key,value) in parameters{
+                multipartFormData.append(value.data(using: .utf8)!, withName: key)
+            }
+            
+            if let image = image{
+                multipartFormData.append(image.jpegData(compressionQuality: 0.2)!, withName: "image", mimeType: "image/jpg")
+            }
+
+        }, to: URL(string: UPDATE_PRODUCT_API + "\(id)")!, method: .post, headers: SharedData.headers) { (encodingResult) in
+            
+            switch encodingResult{
+                
+            case .success(let uploadRequest,_,_):
+                
+                uploadRequest.responseData { (response) in
+                    
+                    switch response.result{
+                        
+                    case .success(let data):
+                        
+                        print("updateProdiuctResponse",try? JSON(data: data))
+                        
+                        if JSON(data)["status"].stringValue == "200"{
+                            completed(true)
+                        }else{
+                            completed(false)
+                        }
+                        
+                    case .failure(let error):
+                        
+                        print("updateProdiuctParseError",error)
+                        completed(false)
+                        
+                    }
+                    
+                }
+                
+            case .failure(let error):
+                
+                print("error",error)
+                completed(false)
                 
             }
             
@@ -248,6 +286,169 @@ class APIServices{
                     case .success(let data):
                         
                         print("menuAdded",try? JSON(data: data))
+                        
+                        if JSON(data)["status"].stringValue == "200"{
+                            completed(true)
+                        }else{
+                            completed(false)
+                        }
+                        
+                    case .failure(let error):
+                        
+                        print("ParseError",error)
+                        completed(false)
+                        
+                    }
+                    
+                }
+                
+            case .failure(let error):
+                
+                print("error",error)
+                completed(false)
+                
+            }
+            
+        }
+        
+    }
+    
+    static func getAdditionalItems(completed: @escaping (AdditionalItemsResponse?)->Void){
+        Alamofire.request(URL(string: ADDITIONAL_ITEMS_API)!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
+            switch response.result{
+            case .success(let data):
+                
+                do{
+                    
+                    let dataModel = try JSONDecoder.init().decode(AdditionalItemsResponse.self, from: data)
+                    completed(dataModel)
+                    
+                }catch let error{
+                    print("errPars",error)
+                    completed(nil)
+                }
+            case .failure(let error):
+                print("err",error)
+                completed(nil)
+            }
+        }
+    }
+    
+    static func deleteProduct(_ id: String, completed: @escaping (Bool)->Void){
+        
+        URLCache.shared.removeAllCachedResponses()
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        
+            
+        }, to: URL(string: DELETE_PRODUCT_API + id)!, method: .post, headers: SharedData.headers) { (encodingResult) in
+            
+            switch encodingResult{
+                
+            case .success(let uploadRequest,_,_):
+                
+                uploadRequest.responseData { (response) in
+                    
+                    switch response.result{
+                        
+                    case .success(let data):
+                        
+                        print("prodDeleted",try? JSON(data: data))
+                        
+                        if JSON(data)["status"].stringValue == "200"{
+                            completed(true)
+                        }else{
+                            completed(false)
+                        }
+                        
+                    case .failure(let error):
+                        
+                        print("ParseError",error)
+                        completed(false)
+                        
+                    }
+                    
+                }
+                
+            case .failure(let error):
+                
+                print("error",error)
+                completed(false)
+                
+            }
+            
+        }
+        
+    }
+    
+    static func deleteMenu(_ id: String, completed: @escaping (Bool)->Void){
+        
+        URLCache.shared.removeAllCachedResponses()
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        
+            
+        }, to: URL(string: DELETE_MENU_API + id)!, method: .post, headers: SharedData.headers) { (encodingResult) in
+            
+            switch encodingResult{
+                
+            case .success(let uploadRequest,_,_):
+                
+                uploadRequest.responseData { (response) in
+                    
+                    switch response.result{
+                        
+                    case .success(let data):
+                        
+                        print("menuDeleted",try? JSON(data: data))
+                        
+                        if JSON(data)["status"].stringValue == "200"{
+                            completed(true)
+                        }else{
+                            completed(false)
+                        }
+                        
+                    case .failure(let error):
+                        
+                        print("ParseError",error)
+                        completed(false)
+                        
+                    }
+                    
+                }
+                
+            case .failure(let error):
+                
+                print("error",error)
+                completed(false)
+                
+            }
+            
+        }
+        
+    }
+    
+    static func updateMenu(_ id: String,_ name: String, completed: @escaping (Bool)->Void){
+        
+        URLCache.shared.removeAllCachedResponses()
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+        
+            multipartFormData.append(name.data(using: String.Encoding.utf8)!, withName: "name")
+            
+        }, to: URL(string: UPDATE_MENU_API + id)!, method: .post, headers: SharedData.headers) { (encodingResult) in
+            
+            switch encodingResult{
+                
+            case .success(let uploadRequest,_,_):
+                
+                uploadRequest.responseData { (response) in
+                    
+                    switch response.result{
+                        
+                    case .success(let data):
+                        
+                        print("menuUpdated",try? JSON(data: data))
                         
                         if JSON(data)["status"].stringValue == "200"{
                             completed(true)
