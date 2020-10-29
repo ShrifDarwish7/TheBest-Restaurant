@@ -29,4 +29,5 @@ let UPDATE_PRODUCT_API = BASE_URL + "Restaurants/Main/UpdateProduct/"
 let DELETE_PRODUCT_API = BASE_URL + "Restaurants/Main/DeleteProduct/"
 let DELETE_MENU_API = BASE_URL + "Restaurants/Main/DeleteMenu/"
 let UPDATE_MENU_API = BASE_URL + "Restaurants/Main/UpdateMenu/"
+let UPDATE_PROFILR_API = BASE_URL + "Restaurants/Main/UpdateProfile"
 let HEADERS = ["Accept": "application/json"]

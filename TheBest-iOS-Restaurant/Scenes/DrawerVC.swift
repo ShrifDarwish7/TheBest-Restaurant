@@ -24,6 +24,7 @@ class DrawerVC: UIViewController {
     @IBOutlet weak var aboutUs: UIStackView!
     @IBOutlet weak var categories: UIStackView!
     @IBOutlet weak var reports: UIStackView!
+    @IBOutlet weak var myRstaurant: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +47,6 @@ class DrawerVC: UIViewController {
             
         }
         
-       // username.text = AuthServices.instance.user.name
-        
         logout.addTapGesture { (_) in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toLoginVC(self)
@@ -69,6 +68,16 @@ class DrawerVC: UIViewController {
             Router.toReports(self)
         }
         
+        myRstaurant.addTapGesture { (_) in
+            Router.toMyRestaurant(self)
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        username.text = AuthServices.instance.myRestaurant.name
+        profileImage.sd_setImage(with: URL(string: AuthServices.instance.myRestaurant.image ?? ""))
     }
  
     

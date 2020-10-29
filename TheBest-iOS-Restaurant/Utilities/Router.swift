@@ -75,4 +75,11 @@ class Router{
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
+    static func toMyRestaurant(_ sender: UIViewController){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
+        vc.pageType = .Profile
+        sender.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }

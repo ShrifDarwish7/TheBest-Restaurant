@@ -95,13 +95,13 @@ class AuthServices{
         URLCache.shared.removeAllCachedResponses()
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             
-           multipartFormData.append(restaurantsInfo.imagere.jpegData(compressionQuality: 0.2)!, withName: "imagere", mimeType: "imagere/jpg")
-            multipartFormData.append(restaurantsInfo.ownerImage.jpegData(compressionQuality: 0.2)!, withName: "ownerimage", mimeType: "ownerimage/jpg")
-            multipartFormData.append(restaurantsInfo.imgCert.jpegData(compressionQuality: 0.2)!, withName: "imgcert", mimeType: "imgcert/jpg")
-            multipartFormData.append(restaurantsInfo.signatureImage.jpegData(compressionQuality: 0.2)!, withName: "signatureimage", mimeType: "signatureimage/jpg")
+            multipartFormData.append(restaurantsInfo.imagere!.jpegData(compressionQuality: 0.2)!, withName: "imagere", mimeType: "imagere/jpg")
+            multipartFormData.append(restaurantsInfo.ownerImage!.jpegData(compressionQuality: 0.2)!, withName: "ownerimage", mimeType: "ownerimage/jpg")
+            multipartFormData.append(restaurantsInfo.imgCert!.jpegData(compressionQuality: 0.2)!, withName: "imgcert", mimeType: "imgcert/jpg")
+            multipartFormData.append(restaurantsInfo.signatureImage!.jpegData(compressionQuality: 0.2)!, withName: "signatureimage", mimeType: "signatureimage/jpg")
             multipartFormData.append(restaurantsInfo.name.data(using: String.Encoding.utf8)!, withName: "name")
-             multipartFormData.append(restaurantsInfo.nameAr.data(using: String.Encoding.utf8)!, withName: "name_ar")
-             multipartFormData.append(restaurantsInfo.nameEn.data(using: String.Encoding.utf8)!, withName: "name_en")
+            multipartFormData.append(restaurantsInfo.nameAr.data(using: String.Encoding.utf8)!, withName: "name_ar")
+            multipartFormData.append(restaurantsInfo.nameEn.data(using: String.Encoding.utf8)!, withName: "name_en")
             multipartFormData.append(restaurantsInfo.email.data(using: String.Encoding.utf8)!, withName: "email")
             multipartFormData.append(restaurantsInfo.password.data(using: String.Encoding.utf8)!, withName: "password")
             multipartFormData.append(restaurantsInfo.fcmToken.data(using: String.Encoding.utf8)!, withName: "fcm_token")
@@ -142,7 +142,7 @@ class AuthServices{
                         do{
                             
                             let dataModel = try JSONDecoder().decode(RegisterResponse.self, from: data)
-                            self.instance.myRestaurant = dataModel.restaurant
+                            self.instance.myRestaurant = dataModel.restaurant!
                             UserDefaults.init().set(JSON(data)["accessToken"].stringValue, forKey: "accessToken")
                             print(dataModel)
                             self.instance.isLogged = true
@@ -151,6 +151,114 @@ class AuthServices{
                         }catch let error{
                             print("parsErrr",error)
                             self.instance.isLogged = false
+                            completed(false)
+                        }
+                        
+                    case .failure(let error):
+                        
+                        print("userParseError",error)
+                        completed(false)
+                        
+                    }
+                    
+                }
+                
+            case .failure(let error):
+                
+                print("error",error)
+                self.instance.isLogged = false
+                completed(false)
+                
+            }
+            
+        }
+    
+    }
+    
+    static func updateMyRestaurantWith(restaurantsInfo: RestaurantsInfo, completed: @escaping (Bool)->Void){
+        
+        URLCache.shared.removeAllCachedResponses()
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            if let _ = restaurantsInfo.imagere{
+                multipartFormData.append(restaurantsInfo.imagere!.jpegData(compressionQuality: 0.2)!, withName: "imagere", mimeType: "imagere/jpg")
+            }
+            if let _ = restaurantsInfo.ownerImage{
+                multipartFormData.append(restaurantsInfo.ownerImage!.jpegData(compressionQuality: 0.2)!, withName: "ownerimage", mimeType: "ownerimage/jpg")
+            }
+            if let _ = restaurantsInfo.imgCert{
+                multipartFormData.append(restaurantsInfo.imgCert!.jpegData(compressionQuality: 0.2)!, withName: "imgcert", mimeType: "imgcert/jpg")
+            }
+            if let _ = restaurantsInfo.signatureImage{
+                multipartFormData.append(restaurantsInfo.signatureImage!.jpegData(compressionQuality: 0.2)!, withName: "signatureimage", mimeType: "signatureimage/jpg")
+            }
+            
+            multipartFormData.append(restaurantsInfo.name.data(using: String.Encoding.utf8)!, withName: "name")
+            multipartFormData.append(restaurantsInfo.nameAr.data(using: String.Encoding.utf8)!, withName: "name_ar")
+            multipartFormData.append(restaurantsInfo.nameEn.data(using: String.Encoding.utf8)!, withName: "name_en")
+            multipartFormData.append(restaurantsInfo.email.data(using: String.Encoding.utf8)!, withName: "email")
+            multipartFormData.append(restaurantsInfo.password.data(using: String.Encoding.utf8)!, withName: "password")
+            multipartFormData.append(restaurantsInfo.fcmToken.data(using: String.Encoding.utf8)!, withName: "fcm_token")
+            multipartFormData.append(restaurantsInfo.placePhone.data(using: String.Encoding.utf8)!, withName: "place_phone")
+            multipartFormData.append(restaurantsInfo.lat.data(using: String.Encoding.utf8)!, withName: "lat")
+            multipartFormData.append(restaurantsInfo.lng.data(using: String.Encoding.utf8)!, withName: "lng")
+            multipartFormData.append(restaurantsInfo.address.data(using: String.Encoding.utf8)!, withName: "address")
+            multipartFormData.append(restaurantsInfo.description.data(using: String.Encoding.utf8)!, withName: "description")
+            multipartFormData.append(restaurantsInfo.descriptionEn.data(using: String.Encoding.utf8)!, withName: "description_en")
+            multipartFormData.append(restaurantsInfo.addressEn.data(using: String.Encoding.utf8)!, withName: "address_en")
+            if restaurantsInfo.categoryId != "[]"{
+                multipartFormData.append(restaurantsInfo.categoryId.data(using: String.Encoding.utf8)!, withName: "category_id")
+            }
+            multipartFormData.append(restaurantsInfo.deliveryPrice.data(using: String.Encoding.utf8)!, withName: "delivery_price")
+            multipartFormData.append(restaurantsInfo.typeId.data(using: String.Encoding.utf8)!, withName: "type_id")
+            if restaurantsInfo.government != "-1"{
+                multipartFormData.append(restaurantsInfo.government.data(using: String.Encoding.utf8)!, withName: "government")
+            }
+            if restaurantsInfo.district != "-1"{
+                multipartFormData.append(restaurantsInfo.district.data(using: String.Encoding.utf8)!, withName: "district")
+            }
+            multipartFormData.append(restaurantsInfo.placeOwnerName.data(using: String.Encoding.utf8)!, withName: "place_owner_name")
+            multipartFormData.append(restaurantsInfo.placeEmail.data(using: String.Encoding.utf8)!, withName: "place_email")
+            multipartFormData.append(restaurantsInfo.orderLimit.data(using: String.Encoding.utf8)!, withName: "order_limit")
+            
+            if restaurantsInfo.branches != "[]"{
+                multipartFormData.append(restaurantsInfo.branches.data(using: String.Encoding.utf8)!, withName: "branches")
+            }
+            if restaurantsInfo.workingHours != "[]"{
+                multipartFormData.append(restaurantsInfo.workingHours.data(using: String.Encoding.utf8)!, withName: "working_hours")
+            }
+            if restaurantsInfo.responsibles != "[]"{
+                multipartFormData.append(restaurantsInfo.responsibles.data(using: String.Encoding.utf8)!, withName: "responsibles")
+            }
+            
+            multipartFormData.append(restaurantsInfo.timeFrame.data(using: String.Encoding.utf8)!, withName: "time_frame")
+            
+        }, to: URL(string: UPDATE_PROFILR_API)!, method: .post, headers: SharedData.headers) { (encodingResult) in
+            
+            switch encodingResult{
+                
+            case .success(let uploadRequest,_,_):
+                
+                uploadRequest.responseData { (response) in
+                    
+                    switch response.result{
+                        
+                    case .success(let data):
+                        
+                        print("RegisterResponse",try? JSON(data: data))
+                        
+                        do{
+                            
+                            if JSON(data)["status"].stringValue == "200"{
+                                let dataModel = try JSONDecoder().decode(RegisterResponse.self, from: data)
+                                self.instance.myRestaurant = dataModel.updatedRestaurant!
+                                completed(true)
+                            }else{
+                                completed(false)
+                            }
+                            
+                        }catch let error{
+                            print("parsErrr",error)
                             completed(false)
                         }
                         

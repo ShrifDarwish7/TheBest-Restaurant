@@ -10,13 +10,15 @@ import Foundation
 
 // MARK: - RegisterResponse
 struct RegisterResponse: Codable {
-    let massege: String
-    let restaurant: MyResturant
-    let accessToken: String
+    let massege: String?
+    let restaurant: MyResturant?
+    let updatedRestaurant: MyResturant?
+    let accessToken: String?
 
     enum CodingKeys: String, CodingKey {
         case massege
         case restaurant = "Restaurant"
+        case updatedRestaurant = "Restaurants"
         case accessToken
     }
 }

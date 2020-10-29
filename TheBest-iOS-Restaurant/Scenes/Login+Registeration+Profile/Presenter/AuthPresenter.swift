@@ -16,6 +16,7 @@ protocol AuthViewDelegate {
     func didCompleteWithSubCategories(_ categories: [MainCategory]?)
     func didCompleteWithCities(_ cities: [City]?)
     func didCompletWithDistricts(_ districts: [District]?)
+    func didCompleteUpdateProfile(_ completed: Bool)
 }
 
 extension AuthViewDelegate{
@@ -26,6 +27,7 @@ extension AuthViewDelegate{
     func didCompleteWithSubCategories(_ categories: [MainCategory]?){}
     func didCompleteWithCities(_ cities: [City]?){}
     func didCompletWithDistricts(_ districts: [District]?){}
+    func didCompleteUpdateProfile(_ completed: Bool){}
 }
 
 class AuthPresenter{
@@ -41,6 +43,7 @@ class AuthPresenter{
         AuthServices.loginWith(email, pass, fcm) { (completed) in
             self.authViewDelegate?.svprogressStatus(false)
             if completed{
+             //   self.decodeRestaurantInfo()
                 self.authViewDelegate?.didCompleteLogin(false)
             }else{
                 self.authViewDelegate?.didCompleteLogin(true)
@@ -53,6 +56,7 @@ class AuthPresenter{
         AuthServices.registerWith(restaurantsInfo: prms) { (completed) in
             self.authViewDelegate?.svprogressStatus(false)
             if completed{
+                //self.decodeRestaurantInfo()
                 self.authViewDelegate?.didCompleteRegistering(true)
             }else{
                 self.authViewDelegate?.didCompleteRegistering(false)
@@ -107,5 +111,27 @@ class AuthPresenter{
             }
         }
     }
+    
+    func updateProfile(prms: RestaurantsInfo){
+        self.authViewDelegate?.svprogressStatus(true)
+        AuthServices.updateMyRestaurantWith(restaurantsInfo: prms) { (completed) in
+            self.authViewDelegate?.svprogressStatus(false)
+            if completed{
+               // self.decodeRestaurantInfo()
+                self.authViewDelegate?.didCompleteUpdateProfile(true)
+            }else{
+                self.authViewDelegate?.didCompleteUpdateProfile(false)
+            }
+        }
+    }
+    
+//    func decodeRestaurantInfo(){
+//
+//        AuthServices.instance.myRestaurant.decodedBranches = try? JSONDecoder.init().decode([Branch].self, from: AuthServices.instance.myRestaurant.branches.replacingOccurrences(of: "\\", with: "").data(using: .utf8) ?? Data())
+//        AuthServices.instance.myRestaurant.decodedWorkingHours = try? JSONDecoder.init().decode([WorkingHours].self, from: AuthServices.instance.myRestaurant.workingHours.replacingOccurrences(of: "\\", with: "").data(using: .utf8) ?? Data())
+//        AuthServices.instance.myRestaurant.decodedResponsibles = try? JSONDecoder.init().decode([Responsible].self, from: AuthServices.instance.myRestaurant.responsibles.replacingOccurrences(of: "\\", with: "").data(using: .utf8) ?? Data())
+//        print("branches123",AuthServices.instance.myRestaurant.decodedBranches)
+//
+//    }
     
 }

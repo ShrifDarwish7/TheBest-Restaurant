@@ -25,4 +25,12 @@ extension SignUpVC: AuthViewDelegate{
         }
     }
     
+    func didCompleteUpdateProfile(_ completed: Bool) {
+        if completed{
+            showAlert(title: "", message: "Your restaurant updated successfully")
+        }else{
+            showAlert(title: "", message: "An error occured when updating your restaurant, please try again later")
+        }
+    }
+    
 }
