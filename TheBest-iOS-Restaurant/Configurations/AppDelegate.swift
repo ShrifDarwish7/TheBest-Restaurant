@@ -13,6 +13,7 @@ import IQKeyboardManagerSwift
 import SVProgressHUD
 import GoogleMaps
 import GooglePlaces
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,8 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDBDV-XxFpmbx79T5HLPrG9RmjDpiYshmE")
         GMSPlacesClient.provideAPIKey("AIzaSyDBDV-XxFpmbx79T5HLPrG9RmjDpiYshmE")
         SVProgressHUD.setDefaultMaskType(.black)
-        SVProgressHUD.setDefaultAnimationType(.flat)
-        SVProgressHUD.setBackgroundColor(.white)
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setCornerRadius(10)
+        SVProgressHUD.setMinimumSize(CGSize(width: 75, height: 75))
+        SVProgressHUD.setForegroundColor(UIColor(named: "MainColor")!)
+        // SVProgressHUD.setBackgroundColor(UIColor.black)
         
         if #available(iOS 13.0, *){
             
@@ -47,6 +52,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
         }
+        
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
         
         return true
     }
@@ -99,3 +121,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate{
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+}
+
+extension AppDelegate: MessagingDelegate{
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("fcmTokenHere",fcmToken)
+        UserDefaults.init().set(fcmToken, forKey: "FCM_Token")
+    }
+}

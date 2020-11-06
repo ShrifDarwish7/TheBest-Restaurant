@@ -25,7 +25,7 @@ class Router{
     
     static func toHome(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+        let vc = storyboard.instantiateViewController(withIdentifier: "CategoriesVC") as! CategoriesVC
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     

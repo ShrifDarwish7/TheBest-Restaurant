@@ -17,6 +17,7 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
         self.variationTableView.delegate = self
         self.variationTableView.dataSource = self
         self.variationTableView.reloadData()
+        self.viewDidLayoutSubviews()
     }
     
     func loadAddedVariationTableFromNIB(){
@@ -112,6 +113,7 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
             default:
                 variations = self.itemReceived?.variations
             }
+            
             return (CGFloat((variations?[indexPath.row].body.count)! * 30 + 70))
         default:
             return 30

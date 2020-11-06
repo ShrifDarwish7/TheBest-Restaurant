@@ -345,7 +345,7 @@ class SignUpVC: UIViewController , UIGestureRecognizerDelegate{
             workingHours: String(bytes: try! JSONEncoder.init().encode(wokringHrs), encoding: .utf8) ?? "",
             timeFrame: timeFrame.text!,
             responsibles: String(bytes: try! JSONEncoder.init().encode(responsibles), encoding: .utf8) ?? "",
-            fcmToken: "")
+            fcmToken: UserDefaults.init().string(forKey: "FCM_Token") ?? "")
         
         switch pageType {
         case .Register:

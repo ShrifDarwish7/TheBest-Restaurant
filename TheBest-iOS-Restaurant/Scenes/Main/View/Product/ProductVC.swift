@@ -123,7 +123,11 @@ class ProductVC: UIViewController , UIGestureRecognizerDelegate{
             productDesc.text = itemReceived?.descriptionEn
             productNameAr.text = itemReceived?.name
             productDescAr.text = itemReceived?.descriptionAr
-            productPrice.text = "\(itemReceived?.price ?? "") KWD"
+            if let price = itemReceived?.price, price != "0.0", price != "0"{
+                productPrice.text = (itemReceived?.price ?? "") + " " + "KWD"
+            }else{
+                productPrice.isHidden = true
+            }
             switch viewState {
             case .edit:
                 productImageVIew.sd_setImage(with: URL(string: itemReceived?.hasImage ?? ""))
@@ -131,7 +135,7 @@ class ProductVC: UIViewController , UIGestureRecognizerDelegate{
                 editDesc.text = itemReceived?.descriptionEn
                 editNameTFAr.text = itemReceived?.name
                 editDescAr.text = itemReceived?.descriptionAr
-                editProductPrice.text = "\(itemReceived?.price ?? "") KWD"
+                editProductPrice.text = "\(itemReceived?.price ?? "0.0") KWD"
                 variationTableView.isHidden = false
                 for v in itemReceived!.variations!{
                     addedVariations.append(v)
@@ -151,6 +155,11 @@ class ProductVC: UIViewController , UIGestureRecognizerDelegate{
         self.view.layoutIfNeeded()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.updateViewConstraints()
+        self.variationTableHeight?.constant = self.variationTableView.contentSize.height + 10
+        self.view.layoutIfNeeded()
+    }
     
     @IBAction func editImage(_ sender: Any) {
         let imagePicker = UIImagePickerController.init(source: .photoLibrary, allow: .image, showsCameraControls: true, didCancel: { (controller) in

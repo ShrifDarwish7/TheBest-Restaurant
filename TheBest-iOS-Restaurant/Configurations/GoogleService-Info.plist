@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>88616747039-sj7aakla1p5sor4tbl8u65r1vnmf3lgp.apps.googleusercontent.com</string>
+	<string>88616747039-c353en1jmhb7u9pciu0sv4kr206oogre.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.88616747039-sj7aakla1p5sor4tbl8u65r1vnmf3lgp</string>
+	<string>com.googleusercontent.apps.88616747039-c353en1jmhb7u9pciu0sv4kr206oogre</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>88616747039-6a1cno6919nluvrjam3evg4uhipdierl.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.thebest.TheBest-iOS-Restaurant</string>
+	<string>com.thebest.TheBest-Restaurant-iOS</string>
 	<key>PROJECT_ID</key>
 	<string>thebest-99ba6</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:88616747039:ios:33b460f05ec1371f4a552a</string>
+	<string>1:88616747039:ios:3f1ce7adc0fe5a0a4a552a</string>
 	<key>DATABASE_URL</key>
 	<string>https://thebest-99ba6.firebaseio.com</string>
 </dict>

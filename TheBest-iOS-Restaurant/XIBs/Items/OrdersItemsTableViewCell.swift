@@ -20,7 +20,7 @@ class OrdersItemsTableViewCell: UITableViewCell {
         containerView.setupShadow()
         containerView.layer.cornerRadius = 15
         logo.layer.cornerRadius = logo.frame.height/2
-        quantityValue.text = "\(item.count)"
+        quantityValue.text = "\(item.count ?? 1)"
     }
     
 }

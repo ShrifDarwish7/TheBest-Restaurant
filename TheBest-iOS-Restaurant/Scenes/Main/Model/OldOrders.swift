@@ -27,7 +27,8 @@ struct Order: Codable {
     let lat, lng: Double
     let comment, address, phone, total: String
     let status: String
-    let catID, driverID: String?
+    let driverID: Int?
+    let catID: Int?
     let userParent: Int
     let createdAt, updatedAt: String
     let orderItems: [OrderItem]
@@ -49,8 +50,10 @@ struct Order: Codable {
 
 // MARK: - OrderItem
 struct OrderItem: Codable {
-    let id, itemID, placeID, orderID: Int
-    let count, variationID: Int
+    let id, itemID, placeID, orderID: Int?
+    let count: Int?
+    let attributeBody, attributeBodyTwo, attributeBodyThree: String?
+    let additional: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -58,6 +61,9 @@ struct OrderItem: Codable {
         case placeID = "place_id"
         case orderID = "order_id"
         case count
-        case variationID = "variation_id"
+        case attributeBody = "attribute_body"
+        case attributeBodyTwo = "attribute_body_two"
+        case attributeBodyThree = "attribute_body_three"
+        case additional
     }
 }

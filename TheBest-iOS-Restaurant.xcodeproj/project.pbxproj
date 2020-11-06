@@ -39,11 +39,11 @@
 		AA3D29A5252780950083FD54 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA3D299B252780940083FD54 /* Lato-LightItalic.ttf */; };
 		AA3D29A6252780950083FD54 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA3D299C252780940083FD54 /* Lato-Thin.ttf */; };
 		AA3D29A7252780950083FD54 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA3D299D252780950083FD54 /* Lato-Italic.ttf */; };
-		AA3D29AB252782540083FD54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA3D29AA252782540083FD54 /* GoogleService-Info.plist */; };
 		AA4515C9253F692D00414B3F /* CategoriesVC+MainViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4515C8253F692D00414B3F /* CategoriesVC+MainViewDelegate.swift */; };
 		AA607152253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA607151253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift */; };
 		AA607156253F669000ABFA1B /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA607154253F669000ABFA1B /* ItemTableViewCell.swift */; };
 		AA607157253F669000ABFA1B /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA607155253F669000ABFA1B /* ItemTableViewCell.xib */; };
+		AA6DD764254D8375005D154C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6DD763254D8375005D154C /* GoogleService-Info.plist */; };
 		AA8B23192540690300DBBFB0 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B23182540690300DBBFB0 /* Categories.swift */; };
 		AA8B231B25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B231A25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift */; };
 		AA8B231E254074A400DBBFB0 /* ChooseCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B231D254074A300DBBFB0 /* ChooseCategoryVC.swift */; };
@@ -130,11 +130,11 @@
 		AA3D299B252780940083FD54 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		AA3D299C252780940083FD54 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
 		AA3D299D252780950083FD54 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
-		AA3D29AA252782540083FD54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA4515C8253F692D00414B3F /* CategoriesVC+MainViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesVC+MainViewDelegate.swift"; sourceTree = "<group>"; };
 		AA607151253F656300ABFA1B /* CategoriesVC+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesVC+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		AA607154253F669000ABFA1B /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		AA607155253F669000ABFA1B /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		AA6DD763254D8375005D154C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA8B23182540690300DBBFB0 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		AA8B231A25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpVC+AuthViewDelegate.swift"; sourceTree = "<group>"; };
 		AA8B231D254074A300DBBFB0 /* ChooseCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryVC.swift; sourceTree = "<group>"; };
@@ -174,6 +174,7 @@
 		AAD7658E254740FC00C8318D /* ProductVC+MainViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductVC+MainViewDelegate.swift"; sourceTree = "<group>"; };
 		AAD7659025474A9800C8318D /* AdditionalItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalItemsResponse.swift; sourceTree = "<group>"; };
 		AAD7659225474E1200C8318D /* ProductVC+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductVC+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		AAD94780254EE61E00E75266 /* The Best Restaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The Best Restaurant.entitlements"; sourceTree = "<group>"; };
 		AAE10261252CE7A40094AC55 /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		AAE10264252CE8010094AC55 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		AAE10265252CE8010094AC55 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
@@ -285,6 +286,7 @@
 		AA3D296D25277F240083FD54 /* TheBest-iOS-Restaurant */ = {
 			isa = PBXGroup;
 			children = (
+				AAD94780254EE61E00E75266 /* The Best Restaurant.entitlements */,
 				AA3D298525277FE30083FD54 /* Configurations */,
 				AA3D298625277FFF0083FD54 /* Storyboards */,
 				AA607153253F663900ABFA1B /* XIBs */,
@@ -300,8 +302,8 @@
 			children = (
 				AA3D296E25277F240083FD54 /* AppDelegate.swift */,
 				AA3D297025277F240083FD54 /* SceneDelegate.swift */,
-				AA3D29AA252782540083FD54 /* GoogleService-Info.plist */,
 				AA3D297A25277F250083FD54 /* Assets.xcassets */,
+				AA6DD763254D8375005D154C /* GoogleService-Info.plist */,
 				AA3D297F25277F250083FD54 /* Info.plist */,
 			);
 			path = Configurations;
@@ -516,35 +518,19 @@
 		AAE10253252CDE000094AC55 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				AAE10254252CDE090094AC55 /* View */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		AAE10254252CDE090094AC55 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				AABC77B2252B361400F1B896 /* SignUpVC.swift */,
 				AA8B231A25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift */,
 				AAEFE37A254AED25002B00C0 /* SignUpVC+UITableViewDelegate.swift */,
 			);
-			path = View;
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		AAE10255252CDE1F0094AC55 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				AAE10256252CDE270094AC55 /* View */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		AAE10256252CDE270094AC55 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				AABC77B0252B361300F1B896 /* LoginVC.swift */,
 			);
-			path = View;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		AAE10257252CDE340094AC55 /* Model */ = {
@@ -688,13 +674,13 @@
 				AAE1026F252D06370094AC55 /* OrdersItemsTableViewCell.xib in Resources */,
 				AA3D29A3252780950083FD54 /* Lato-Light.ttf in Resources */,
 				AA3D29A2252780950083FD54 /* Lato-BoldItalic.ttf in Resources */,
-				AA3D29AB252782540083FD54 /* GoogleService-Info.plist in Resources */,
 				AA38B9D72545B3820012C6B5 /* VariationBodyTableViewCell.xib in Resources */,
 				AA38B9D12545B3580012C6B5 /* VariationTableViewCell.xib in Resources */,
 				AA3D299E252780950083FD54 /* Lato-ThinItalic.ttf in Resources */,
 				AA3D299F252780950083FD54 /* Lato-BlackItalic.ttf in Resources */,
 				AABC77BF252B40E700F1B896 /* Drawer.storyboard in Resources */,
 				AA3D297B25277F250083FD54 /* Assets.xcassets in Resources */,
+				AA6DD764254D8375005D154C /* GoogleService-Info.plist in Resources */,
 				AA3D297625277F240083FD54 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -971,15 +957,17 @@
 			baseConfigurationReference = CA381A6AC4874979C6EF5029 /* Pods-TheBest-iOS-Restaurant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TheBest-iOS-Restaurant/The Best Restaurant.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P675879D6G;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 3Z2NC2D4N3;
 				INFOPLIST_FILE = "TheBest-iOS-Restaurant/Configurations/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thebest.TheBest-iOS-Restaurant";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thebest.TheBest-Restaurant-iOS";
 				PRODUCT_NAME = "The Best Restaurant";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -991,15 +979,17 @@
 			baseConfigurationReference = F127DE397EB0E80CF91B6406 /* Pods-TheBest-iOS-Restaurant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TheBest-iOS-Restaurant/The Best Restaurant.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P675879D6G;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 3Z2NC2D4N3;
 				INFOPLIST_FILE = "TheBest-iOS-Restaurant/Configurations/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thebest.TheBest-iOS-Restaurant";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thebest.TheBest-Restaurant-iOS";
 				PRODUCT_NAME = "The Best Restaurant";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -112,7 +112,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="X43-3l-0Ug">
-                                                                <rect key="frame" x="0.0" y="110" width="205.5" height="45"/>
+                                                                <rect key="frame" x="0.0" y="110" width="206.5" height="45"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_offers" translatesAutoresizingMaskIntoConstraints="NO" id="2Vt-9H-Qat">
                                                                         <rect key="frame" x="0.0" y="5" width="35" height="35"/>
@@ -121,8 +121,8 @@
                                                                             <constraint firstAttribute="width" constant="35" id="e3z-17-7YV"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories &amp; products" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMR-fK-FGY">
-                                                                        <rect key="frame" x="45" y="13" width="160.5" height="19"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories &amp; Products" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMR-fK-FGY">
+                                                                        <rect key="frame" x="45" y="13" width="161.5" height="19"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>

@@ -69,6 +69,7 @@ class DrawerVC: UIViewController {
         }
         
         myRstaurant.addTapGesture { (_) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toMyRestaurant(self)
         }
         
