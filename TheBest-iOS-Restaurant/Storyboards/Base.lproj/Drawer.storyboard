@@ -73,7 +73,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="290.5" height="499.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jNc-CO-nRm">
-                                                        <rect key="frame" x="20" y="10" width="250.5" height="265"/>
+                                                        <rect key="frame" x="20" y="10" width="250.5" height="320"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pd8-Kt-aoA">
                                                                 <rect key="frame" x="0.0" y="0.0" width="149.5" height="45"/>
@@ -147,8 +147,26 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fPr-3T-rwY">
+                                                                <rect key="frame" x="0.0" y="220" width="141" height="45"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_icon" translatesAutoresizingMaskIntoConstraints="NO" id="uht-Y4-4aW">
+                                                                        <rect key="frame" x="0.0" y="5" width="35" height="35"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="35" id="TEQ-Q4-rn1"/>
+                                                                            <constraint firstAttribute="width" constant="35" id="tXi-fG-THX"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Lang" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-kA-o2Z">
+                                                                        <rect key="frame" x="45" y="13" width="96" height="19"/>
+                                                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="oZL-A2-lv7">
-                                                                <rect key="frame" x="0.0" y="220" width="98.5" height="45"/>
+                                                                <rect key="frame" x="0.0" y="275" width="98.5" height="45"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0h-uv-t2k">
                                                                         <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
@@ -255,6 +273,8 @@
                         <outlet property="backBtn" destination="jie-jA-qsl" id="4aM-EC-HeL"/>
                         <outlet property="blockView" destination="Z6t-Hu-8eo" id="twZ-Ja-umN"/>
                         <outlet property="categories" destination="X43-3l-0Ug" id="KEk-Zd-md7"/>
+                        <outlet property="changeLang" destination="fPr-3T-rwY" id="Puc-ZV-QdR"/>
+                        <outlet property="chngeLngLbl" destination="SyT-kA-o2Z" id="hxV-9e-7MR"/>
                         <outlet property="drawerView" destination="ITa-s2-PA2" id="JyK-1L-peH"/>
                         <outlet property="lastOrders" destination="rFg-ls-ljd" id="psd-dj-pjJ"/>
                         <outlet property="logout" destination="oZL-A2-lv7" id="Tgm-i0-feg"/>

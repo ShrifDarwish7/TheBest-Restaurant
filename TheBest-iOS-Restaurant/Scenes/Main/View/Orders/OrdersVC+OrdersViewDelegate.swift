@@ -24,4 +24,15 @@ extension OrdersVC: OrdersViewDelegate{
             self.loadOrdersTableFromNib()
         }
     }
+    
+    func didCompleteChangeStatus(_ done: Bool) {
+        if done{
+            let alert = UIAlertController(title: "", message: "Order status updated successfully".localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Done".localized, style: .default, handler: { (_) in
+                self.ordersPresenter?.getOldOrers()
+            }))
+        }else{
+            self.showAlert(title: "", message: "An error occured when updating order status, please try again later".localized)
+        }
+    }
 }

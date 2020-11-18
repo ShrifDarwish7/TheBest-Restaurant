@@ -25,7 +25,7 @@ struct MyResturant: Codable {
     let name, nameEn: String
     let image: String?
     let myresturantDescription, descriptionEn, address, addressEn: String
-    let categoryID: String
+    let categoryID: Int
   //  let deliveryPrice: Int?
   //  let lat, lng: Double
     let typeID, parentUser: Int

@@ -54,32 +54,6 @@ class APIServices{
         }
     }
     
-    static func changeOrderStatus(completed: @escaping (Bool)->Void){
-        Alamofire.request(URL(string: CHANGE_ORDER_STATUS)!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
-            switch response.result{
-            case .success(let data):
-                
-                do{
-                    
-                    let json = try JSON(data: data)
-                    
-                    if json["status"].stringValue == "200"{
-                        completed(true)
-                    }else{
-                        completed(false)
-                    }
-                    
-                }catch let error{
-                    print("errPars",error)
-                    completed(false)
-                }
-            case .failure(let error):
-                print("err",error)
-                completed(false)
-            }
-        }
-    }
-    
     static func getMenuItems(_ id: Int, completed: @escaping (_ dataModel: inout [RestaurantMenuItem])->Void, failed: @escaping (Bool)->Void){
         Alamofire.request(URL(string: MENU_ITEMS_API + "\(id)")!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
            switch response.result{

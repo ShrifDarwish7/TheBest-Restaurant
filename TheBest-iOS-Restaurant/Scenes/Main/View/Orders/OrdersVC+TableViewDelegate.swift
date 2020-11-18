@@ -31,8 +31,11 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersTableViewCell", for: indexPath) as! OrdersTableViewCell
         cell.loadUI(item: oldOrders![indexPath.row])
-        cell.expandBtn.tag = indexPath.row
+        //cell.expandBtn.tag = indexPath.row
        // cell.expandBtn.addTarget(self, action: #selector(expandItems(sender:)), for: .touchUpInside)
+        cell.acceptBtn.onTap {
+            self.ordersPresenter?.changeOrderStatus(id: "\(self.oldOrders![indexPath.row].id)", status: SharedData.orderInProgress)
+        }
         
         let nib = UINib(nibName: "OrdersItemsTableViewCell", bundle: nil)
         cell.itemsTableView.register(nib, forCellReuseIdentifier: "OrdersItemsTableViewCell")
@@ -49,7 +52,9 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
             return 110
         }
         
+        let offset = self.ordersTableView.contentOffset
         cell.itemsTableView.reloadData()
+        self.ordersTableView.setContentOffset(offset, animated: false)
         
         if oldOrders![indexPath.row].expanded ?? false{
             cell.expandBtn.setImage(UIImage(named: "up-arrow"), for: .normal)
@@ -77,7 +82,9 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
 //                cell.expandBtn.setImage(UIImage(named: "down-arrow"), for: .normal)
 //            }
             self.ordersTableView.scrollToRow(at: IndexPath(row: indexPath.row, section: 0), at: .top, animated: true)
+            let offset = self.ordersTableView.contentOffset
             self.ordersTableView.reloadData()
+            self.ordersTableView.setContentOffset(offset, animated: false)
         }
         
         return cell

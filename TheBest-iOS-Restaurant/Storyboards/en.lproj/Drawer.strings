@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Categories & Products"; ObjectID = "aMR-fK-FGY"; */
+"aMR-fK-FGY.text" = "Categories & Products";
+
+/* Class = "UILabel"; text = "Reports"; ObjectID = "eTJ-u8-yjc"; */
+"eTJ-u8-yjc.text" = "Reports";
+
+/* Class = "UILabel"; text = "Orders"; ObjectID = "gut-PZ-ds5"; */
+"gut-PZ-ds5.text" = "Orders";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "w1P-CT-e5i"; */
+"w1P-CT-e5i.text" = "Logout";
+
+/* Class = "UILabel"; text = "My Restaurant"; ObjectID = "wME-Bl-mBO"; */
+"wME-Bl-mBO.text" = "My Restaurant";

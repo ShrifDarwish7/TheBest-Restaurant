@@ -14,6 +14,7 @@ import SVProgressHUD
 import GoogleMaps
 import GooglePlaces
 import FirebaseMessaging
+import MOLH
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setMinimumSize(CGSize(width: 75, height: 75))
         SVProgressHUD.setForegroundColor(UIColor(named: "MainColor")!)
         // SVProgressHUD.setBackgroundColor(UIColor.black)
+        
+        MOLH.shared.activate(true)
         
         if #available(iOS 13.0, *){
             
@@ -131,5 +134,50 @@ extension AppDelegate: MessagingDelegate{
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("fcmTokenHere",fcmToken)
         UserDefaults.init().set(fcmToken, forKey: "FCM_Token")
+    }
+}
+
+extension String{
+    var localized: String{
+        return NSLocalizedString(self, comment: "")
+    }
+}
+
+extension AppDelegate:  MOLHResetable {
+    @available(iOS 13.0, *)
+    func swichRoot(){
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
+            if AuthServices.instance.isLogged{
+                let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
+                let protectedPage = mainStoryboard.instantiateViewController(withIdentifier: "NavHome") as! UINavigationController
+                sd.window!.rootViewController = protectedPage
+                window!.makeKeyAndVisible()
+            }
+        }
+    }
+    func reset() {
+        if #available(iOS 13.0, *) {
+            self.swichRoot()
+        }else{
+            let rootViewController: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+            if AuthServices.instance.isLogged{
+                 let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
+                 let protectedPage = mainStoryboard.instantiateViewController(withIdentifier: "NavHome") as! UINavigationController
+                rootViewController.rootViewController = protectedPage
+                window!.makeKeyAndVisible()
+            }
+        }
+    }
+    static func changeLangTo(_ lang: String){
+        MOLHLanguage.setDefaultLanguage("en")
+        MOLH.setLanguageTo(lang)
+        
+        if #available(iOS 13.0, *) {
+            let delegate = UIApplication.shared.delegate as? AppDelegate
+            delegate!.swichRoot()
+        } else {
+            MOLH.reset()
+        }
     }
 }

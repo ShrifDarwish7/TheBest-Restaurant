@@ -38,6 +38,7 @@ class OrdersTableViewCell: UITableViewCell {
         name.text = item.username
         totalLbl.text = item.total + " KWD "
         date.text = item.createdAt
+        
     }
     
 }

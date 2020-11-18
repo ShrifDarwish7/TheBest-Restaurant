@@ -11,11 +11,13 @@ import Foundation
 protocol OrdersViewDelegate {
     func SVProgressStatus(_ status: Bool)
     func didCompleteWith(_ orders: [Order]?)
+    func didCompleteChangeStatus(_ done: Bool)
 }
 
 extension OrdersViewDelegate{
     func SVProgressStatus(_ status: Bool){}
     func didCompleteWith(_ orders: [Order]?){}
+    func didCompleteChangeStatus(_ done: Bool){}
 }
 
 class OrdersPresenter{
@@ -27,7 +29,6 @@ class OrdersPresenter{
     }
     
     func getOldOrers(){
-        
         self.ordersViewDelegate?.SVProgressStatus(true)
         OrdersServices.getOldOrders { (response) in
             self.ordersViewDelegate?.SVProgressStatus(false)
@@ -37,7 +38,18 @@ class OrdersPresenter{
                 self.ordersViewDelegate?.didCompleteWith(nil)
             }
         }
-        
+    }
+    
+    func changeOrderStatus(id: String, status: String){
+        self.ordersViewDelegate?.SVProgressStatus(true)
+        OrdersServices.changeOrderStatus(id: id, status: status) { (done) in
+            self.ordersViewDelegate?.SVProgressStatus(false)
+            if done{
+                self.ordersViewDelegate?.didCompleteChangeStatus(true)
+            }else{
+                self.ordersViewDelegate?.didCompleteChangeStatus(false)
+            }
+        }
     }
     
 }

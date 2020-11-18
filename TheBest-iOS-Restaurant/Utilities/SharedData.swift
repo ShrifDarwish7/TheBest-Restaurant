@@ -18,6 +18,7 @@ class SharedData{
     static var selectedRegisteredCategoriesNames = [String]()
     static var selectedRegisteredCityID: Int?
     static var selectedRegisteredDistrictID: Int?
+    static var orderInProgress = "in progress"
     static let headers = [
         "Authorization": "Bearer " + (UserDefaults.init().string(forKey: "accessToken") ?? ""),
         "Accept": "application/json"

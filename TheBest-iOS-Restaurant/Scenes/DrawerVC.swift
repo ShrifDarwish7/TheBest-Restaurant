@@ -25,9 +25,13 @@ class DrawerVC: UIViewController {
     @IBOutlet weak var categories: UIStackView!
     @IBOutlet weak var reports: UIStackView!
     @IBOutlet weak var myRstaurant: UIStackView!
+    @IBOutlet weak var changeLang: UIStackView!
+    @IBOutlet weak var chngeLngLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        chngeLngLbl.text = "Change language".localized
         
         NotificationCenter.default.addObserver(self, selector: #selector(showBlockView), name: NSNotification.Name("opened"), object: nil)
         
@@ -71,6 +75,17 @@ class DrawerVC: UIViewController {
         myRstaurant.addTapGesture { (_) in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toMyRestaurant(self)
+        }
+        
+        changeLang.addTapGesture { (_) in
+            let alert = UIAlertController(title: "", message: "Choose language".localized, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "English US".localized, style: .default, handler: { (_) in
+                AppDelegate.changeLangTo("en")
+            }))
+            alert.addAction(UIAlertAction(title: "Arabic".localized, style: .default, handler: { (_) in
+                AppDelegate.changeLangTo("ar")
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
         
     }

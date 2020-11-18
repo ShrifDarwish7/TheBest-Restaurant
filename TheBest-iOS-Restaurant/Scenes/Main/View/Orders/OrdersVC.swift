@@ -24,9 +24,13 @@ class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
   //  var orders = [order]()
     var oldOrders: [Order]?
     var ordersPresenter: OrdersPresenter?
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        ordersTableView.addSubview(refreshControl)
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -43,9 +47,13 @@ class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
         ordersPresenter?.getOldOrers()
     }
     
+    @objc func refresh(_ sender: AnyObject) {
+        ordersPresenter?.getOldOrers()
+    }
+    
     func loadUI(){
         
-        drawerPosition.constant = self.view.frame.width
+        drawerPosition.constant = "lang".localized == "en" ? self.view.frame.width : -self.view.frame.width
         upperView.setupShadow()
         upperView.layer.cornerRadius = upperView.frame.height/2
         

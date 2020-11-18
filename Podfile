@@ -17,4 +17,5 @@ pod 'Firebase/Messaging'
 pod 'SVProgressHUD'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'MOLH'
 end
