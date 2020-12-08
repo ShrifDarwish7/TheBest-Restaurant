@@ -35,6 +35,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
        // cell.expandBtn.addTarget(self, action: #selector(expandItems(sender:)), for: .touchUpInside)
         cell.acceptBtn.onTap {
             self.ordersPresenter?.changeOrderStatus(id: "\(self.oldOrders![indexPath.row].id)", status: SharedData.orderInProgress)
+            self.acceptedOrderId =  "\(self.oldOrders![indexPath.row].trip.id)"
         }
         
         let nib = UINib(nibName: "OrdersItemsTableViewCell", bundle: nil)
@@ -49,19 +50,17 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
             return cell
             
         }.heightForRowAt { (_) -> CGFloat in
-            return 110
+            return 150
         }
         
-        let offset = self.ordersTableView.contentOffset
         cell.itemsTableView.reloadData()
-        self.ordersTableView.setContentOffset(offset, animated: false)
         
         if oldOrders![indexPath.row].expanded ?? false{
             cell.expandBtn.setImage(UIImage(named: "up-arrow"), for: .normal)
             UIView.animate(withDuration: 0.25) {
                 cell.itemsTableView.isHidden = false
-                cell.itemsViewHeight.constant = CGFloat((110 * self.oldOrders![indexPath.row].orderItems.count) + 80)
-                cell.itemsTableViewHeight.constant = CGFloat((110 * self.oldOrders![indexPath.row].orderItems.count))
+                cell.itemsViewHeight.constant = CGFloat((150 * self.oldOrders![indexPath.row].orderItems.count) + 80)
+                cell.itemsTableViewHeight.constant = CGFloat((150 * self.oldOrders![indexPath.row].orderItems.count))
                 self.view.layoutIfNeeded()
             }
         }else{
@@ -81,7 +80,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
 //            }else{
 //                cell.expandBtn.setImage(UIImage(named: "down-arrow"), for: .normal)
 //            }
-            self.ordersTableView.scrollToRow(at: IndexPath(row: indexPath.row, section: 0), at: .top, animated: true)
+           // self.ordersTableView.scrollToRow(at: IndexPath(row: indexPath.row, section: 0), at: .top, animated: true)
             let offset = self.ordersTableView.contentOffset
             self.ordersTableView.reloadData()
             self.ordersTableView.setContentOffset(offset, animated: false)
@@ -93,7 +92,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if oldOrders![indexPath.row].expanded ?? false{
-            return CGFloat((110 * oldOrders![indexPath.row].orderItems.count) + 280)
+            return CGFloat((150 * oldOrders![indexPath.row].orderItems.count) + 280)
         }else{
             return 275
         }

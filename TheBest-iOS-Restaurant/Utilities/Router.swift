@@ -26,19 +26,40 @@ class Router{
     static func toHome(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "CategoriesVC") as! CategoriesVC
+        guard !(sender.navigationController?.topViewController?.isKind(of: CategoriesVC.self))! else { return }
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
     static func toCategories(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "CategoriesVC") as! CategoriesVC
+        guard !(sender.navigationController?.topViewController?.isKind(of: CategoriesVC.self))! else { return }
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
     static func toOrders(_ sender: UIViewController){
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "OrdersVC") as! OrdersVC
-        sender.navigationController?.pushViewController(vc, animated: true)
+        
+        if let visibleVC = sender.navigationController?.visibleViewController as? OrdersVC,
+            visibleVC.orders == .old{
+            return
+        }else{
+            sender.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    static func toNewOrders(_ sender: UIViewController){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "OrdersVC") as! OrdersVC
+        vc.orders = .new
+        if let visibleVC = sender.navigationController?.visibleViewController as? OrdersVC ,
+            visibleVC.orders == .new{
+            return
+        }else{
+            sender.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     static func toChooseCategory(_ sender: UIViewController, _ chooserType: ChooserType, cityID: Int?, menuID: Int?){
@@ -64,6 +85,7 @@ class Router{
     static func toReports(_ sender: UIViewController){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ReportsVC") as! ReportsVC
+        guard !(sender.navigationController?.topViewController?.isKind(of: ReportsVC.self))! else { return }
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -72,6 +94,7 @@ class Router{
         let vc = storyboard.instantiateViewController(withIdentifier: "ProductVC") as! ProductVC
         vc.itemReceived = item
         vc.viewState = viewState
+        guard !(sender.navigationController?.topViewController?.isKind(of: ProductVC.self))! else { return }
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -79,6 +102,7 @@ class Router{
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
         vc.pageType = .Profile
+        guard !(sender.navigationController?.topViewController?.isKind(of: SignUpVC.self))! else { return }
         sender.navigationController?.pushViewController(vc, animated: true)
     }
     

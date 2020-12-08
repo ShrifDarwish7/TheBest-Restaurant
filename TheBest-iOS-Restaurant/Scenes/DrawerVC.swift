@@ -27,34 +27,38 @@ class DrawerVC: UIViewController {
     @IBOutlet weak var myRstaurant: UIStackView!
     @IBOutlet weak var changeLang: UIStackView!
     @IBOutlet weak var chngeLngLbl: UILabel!
+    @IBOutlet weak var newOrders: UIStackView!
+    @IBOutlet weak var newOrdersLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         chngeLngLbl.text = "Change language".localized
+        newOrdersLbl.text = "New Orders".localized
         
         NotificationCenter.default.addObserver(self, selector: #selector(showBlockView), name: NSNotification.Name("opened"), object: nil)
         
         blockView.addTapGesture { (_) in
-            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             self.blockView.alpha = 0
-            
         }
         
         drawerView.setupShadow()
         
         backBtn.onTap {
-            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             self.blockView.alpha = 0
-            
         }
         
         logout.addTapGesture { (_) in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
             Router.toLoginVC(self)
             AuthServices.instance.isLogged = false
+        }
+        
+        newOrders.addTapGesture { (_) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
+            Router.toNewOrders(self)
         }
         
         categories.addTapGesture { (_) in

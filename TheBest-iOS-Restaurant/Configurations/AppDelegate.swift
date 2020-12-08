@@ -15,6 +15,7 @@ import GoogleMaps
 import GooglePlaces
 import FirebaseMessaging
 import MOLH
+import SwiftToast
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -80,26 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
         let container = NSPersistentContainer(name: "TheBest_iOS_Restaurant")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
@@ -114,8 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
@@ -128,6 +110,49 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
     }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print(userInfo)
+        
+        SharedData.receivedPushNotification = userInfo
+        
+        
+        
+        let navController = self.window?.rootViewController as! UINavigationController
+        
+        guard
+            let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
+            let alert = aps["alert"] as? NSDictionary,
+            let body = alert["body"] as? String
+            else { return }
+            
+            if let vc = navController.visibleViewController{
+                if vc is OrdersVC{
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "IncomingNewOrder"), object: nil, userInfo: nil)
+                }else{
+                    if UIApplication.shared.applicationState != .active{
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
+                        Router.toNewOrders(navController.visibleViewController!)
+                    }else{
+                        let toast =  SwiftToast(
+                            text: body.localized,
+                            textAlignment: "lang".localized == "en" ? .left : .right ,
+                            image: UIImage(),
+                            backgroundColor: UIColor(named: "MainColor"),
+                            textColor: .white,
+                            font: .boldSystemFont(ofSize: 13),
+                            duration: 2.0,
+                            minimumHeight: CGFloat(65),
+                            statusBarStyle: .lightContent,
+                            aboveStatusBar: false,
+                            target: (vc as SwiftToastDelegate),
+                            style: .navigationBar)
+                        vc.present(toast, animated: true)
+                    }
+                }
+            }
+            
+        }
+        
 }
 
 extension AppDelegate: MessagingDelegate{
@@ -180,4 +205,23 @@ extension AppDelegate:  MOLHResetable {
             MOLH.reset()
         }
     }
+}
+
+extension UIViewController: SwiftToastDelegate{
+    public func swiftToastDidTouchUpInside(_ swiftToast: SwiftToastProtocol) {
+        guard
+            let aps = SharedData.receivedPushNotification![AnyHashable("aps")] as? NSDictionary,
+            let alert = aps["alert"] as? NSDictionary,
+            let body = alert["body"] as? String
+            else { return }
+                
+        if body == "You have Order request"{
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
+            Router.toNewOrders(self)
+            
+        }
+        
+    }
+    
 }

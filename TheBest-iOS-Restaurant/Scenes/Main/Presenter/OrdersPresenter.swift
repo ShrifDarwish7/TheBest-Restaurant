@@ -12,12 +12,14 @@ protocol OrdersViewDelegate {
     func SVProgressStatus(_ status: Bool)
     func didCompleteWith(_ orders: [Order]?)
     func didCompleteChangeStatus(_ done: Bool)
+    func didCompleteScheduleTrip(_ done: Bool)
 }
 
 extension OrdersViewDelegate{
     func SVProgressStatus(_ status: Bool){}
     func didCompleteWith(_ orders: [Order]?){}
     func didCompleteChangeStatus(_ done: Bool){}
+    func didCompleteScheduleTrip(_ done: Bool){}
 }
 
 class OrdersPresenter{
@@ -40,6 +42,18 @@ class OrdersPresenter{
         }
     }
     
+    func getNewOrers(){
+        self.ordersViewDelegate?.SVProgressStatus(true)
+        OrdersServices.getNewOrders { (response) in
+            self.ordersViewDelegate?.SVProgressStatus(false)
+            if let _ = response{
+                self.ordersViewDelegate?.didCompleteWith(response!.data)
+            }else{
+                self.ordersViewDelegate?.didCompleteWith(nil)
+            }
+        }
+    }
+    
     func changeOrderStatus(id: String, status: String){
         self.ordersViewDelegate?.SVProgressStatus(true)
         OrdersServices.changeOrderStatus(id: id, status: status) { (done) in
@@ -48,6 +62,18 @@ class OrdersPresenter{
                 self.ordersViewDelegate?.didCompleteChangeStatus(true)
             }else{
                 self.ordersViewDelegate?.didCompleteChangeStatus(false)
+            }
+        }
+    }
+    
+    func scheduleTrip(id: String, date: String){
+        self.ordersViewDelegate?.SVProgressStatus(true)
+        OrdersServices.scheduleTripWith(id: id, date: date) { (done) in
+            self.ordersViewDelegate?.SVProgressStatus(false)
+            if done{
+                self.ordersViewDelegate?.didCompleteScheduleTrip(true)
+            }else{
+                self.ordersViewDelegate?.didCompleteScheduleTrip(false)
             }
         }
     }

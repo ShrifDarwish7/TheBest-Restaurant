@@ -18,4 +18,6 @@ pod 'SVProgressHUD'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'MOLH'
+pod 'Toast-Swift'
+pod 'SwiftToast'
 end

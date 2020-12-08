@@ -21,10 +21,9 @@ class Drawer{
     
     static func close(_ constraint: NSLayoutConstraint, _ vc: UIViewController){
         
-        
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
             
-            constraint.constant = "lang".localized == "en" ? vc.view.frame.width : -vc.view.frame.width
+            constraint.constant = "lang".localized == "ar" ? vc.view.frame.width : -vc.view.frame.width
             vc.view.layoutIfNeeded()
             
         }) { (_) in

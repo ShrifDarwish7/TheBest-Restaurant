@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  TheBest-iOS-Restaurant
+
+  Created by Sherif Darwish on 11/16/20.
+  Copyright © 2020 Sherif Darwish. All rights reserved.
+*/
+
+"lang" = "en";
+"Change language" = "Change language";
+"Choose language" = "Choose language";
+"English US" = "English US";
+"Arabic" = "Arabic";
+"Order status updated successfully" = "Order status updated successfully";
+"An error occured when updating order status, please try again later" = "An error occured when updating order status, please try again later";
+"Done" = "Done";
+"New Orders" = "New Orders";
+"Accept Order" = "Accept Order";
+"Deny Order" = "Deny Order";
+"You have Order request" = "You have Order request";

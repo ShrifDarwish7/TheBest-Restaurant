@@ -19,20 +19,29 @@ extension OrdersVC: OrdersViewDelegate{
     }
     
     func didCompleteWith(_ orders: [Order]?) {
+        refreshControl.endRefreshing()
         if let _ = orders{
-            self.oldOrders = orders
+            self.oldOrders = orders?.reversed()
             self.loadOrdersTableFromNib()
         }
     }
     
     func didCompleteChangeStatus(_ done: Bool) {
         if done{
-            let alert = UIAlertController(title: "", message: "Order status updated successfully".localized, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Done".localized, style: .default, handler: { (_) in
-                self.ordersPresenter?.getOldOrers()
-            }))
+            self.showAlert(title: "", message: "Order status updated successfully".localized)
+            self.ordersPresenter?.getNewOrers()
+            self.showScheduleView()
         }else{
             self.showAlert(title: "", message: "An error occured when updating order status, please try again later".localized)
         }
     }
+    
+    func didCompleteScheduleTrip(_ done: Bool) {
+        if done{
+            print("didCompleteScheduleTrip")
+        }else{
+            print("didCompleteScheduleTrip failed")
+        }
+    }
+    
 }

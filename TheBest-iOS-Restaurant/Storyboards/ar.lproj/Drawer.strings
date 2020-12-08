@@ -6,7 +6,7 @@
 "eTJ-u8-yjc.text" = "التقارير";
 
 /* Class = "UILabel"; text = "Orders"; ObjectID = "gut-PZ-ds5"; */
-"gut-PZ-ds5.text" = "الطلبات";
+"gut-PZ-ds5.text" = "الطلبات السابقة";
 
 /* Class = "UILabel"; text = "Logout"; ObjectID = "w1P-CT-e5i"; */
 "w1P-CT-e5i.text" = "تسجيل خروج";

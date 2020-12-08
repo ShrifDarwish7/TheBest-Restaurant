@@ -19,6 +19,7 @@ class SharedData{
     static var selectedRegisteredCityID: Int?
     static var selectedRegisteredDistrictID: Int?
     static var orderInProgress = "in progress"
+    static var receivedPushNotification: [AnyHashable: Any]?
     static let headers = [
         "Authorization": "Bearer " + (UserDefaults.init().string(forKey: "accessToken") ?? ""),
         "Accept": "application/json"

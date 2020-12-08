@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA0B1024254333FC001CD32E /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B1023254333FC001CD32E /* ProductVC.swift */; };
+		AA13271D256706210041ECD0 /* NewOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13271C256706210041ECD0 /* NewOrders.swift */; };
 		AA2E101825418D7D00E7A632 /* CitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101725418D7D00E7A632 /* CitiesResponse.swift */; };
 		AA2E101A25418E5F00E7A632 /* DistrictsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101925418E5F00E7A632 /* DistrictsResponse.swift */; };
 		AA2E101C2541C1D900E7A632 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101B2541C1D900E7A632 /* RegisterResponse.swift */; };
@@ -89,16 +90,17 @@
 		AAE10266252CE8010094AC55 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE10264252CE8010094AC55 /* OrdersTableViewCell.swift */; };
 		AAE10267252CE8010094AC55 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE10265252CE8010094AC55 /* OrdersTableViewCell.xib */; };
 		AAE10269252CEB890094AC55 /* OrdersVC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE10268252CEB890094AC55 /* OrdersVC+TableViewDelegate.swift */; };
-		AAE1026E252D06370094AC55 /* OrdersItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1026C252D06370094AC55 /* OrdersItemsTableViewCell.swift */; };
-		AAE1026F252D06370094AC55 /* OrdersItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE1026D252D06370094AC55 /* OrdersItemsTableViewCell.xib */; };
 		AAEFE37B254AED25002B00C0 /* SignUpVC+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEFE37A254AED25002B00C0 /* SignUpVC+UITableViewDelegate.swift */; };
 		AAEFE37E254B0722002B00C0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEFE37D254B0722002B00C0 /* ProfileVC.swift */; };
+		AAF6A695256E70C9009ADC43 /* OrdersItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF6A697256E70C9009ADC43 /* OrdersItemsTableViewCell.xib */; };
+		AAF6A6A6256E7AD0009ADC43 /* OrdersItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6A6A4256E7AD0009ADC43 /* OrdersItemsTableViewCell.swift */; };
 		EBD534F567DD7047A66545D5 /* Pods_TheBest_iOS_Restaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C226ADF93A91387172A80A7 /* Pods_TheBest_iOS_Restaurant.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C226ADF93A91387172A80A7 /* Pods_TheBest_iOS_Restaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheBest_iOS_Restaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0B1023254333FC001CD32E /* ProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
+		AA13271C256706210041ECD0 /* NewOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrders.swift; sourceTree = "<group>"; };
 		AA2E101725418D7D00E7A632 /* CitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesResponse.swift; sourceTree = "<group>"; };
 		AA2E101925418E5F00E7A632 /* DistrictsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictsResponse.swift; sourceTree = "<group>"; };
 		AA2E101B2541C1D900E7A632 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
@@ -188,10 +190,11 @@
 		AAE10264252CE8010094AC55 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		AAE10265252CE8010094AC55 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		AAE10268252CEB890094AC55 /* OrdersVC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrdersVC+TableViewDelegate.swift"; sourceTree = "<group>"; };
-		AAE1026C252D06370094AC55 /* OrdersItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersItemsTableViewCell.swift; sourceTree = "<group>"; };
-		AAE1026D252D06370094AC55 /* OrdersItemsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersItemsTableViewCell.xib; sourceTree = "<group>"; };
 		AAEFE37A254AED25002B00C0 /* SignUpVC+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpVC+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		AAEFE37D254B0722002B00C0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		AAF6A696256E70C9009ADC43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OrdersItemsTableViewCell.xib; sourceTree = "<group>"; };
+		AAF6A699256E70D4009ADC43 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/OrdersItemsTableViewCell.strings; sourceTree = "<group>"; };
+		AAF6A6A5256E7AD0009ADC43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Base; path = Base.lproj/OrdersItemsTableViewCell.swift; sourceTree = "<group>"; };
 		CA381A6AC4874979C6EF5029 /* Pods-TheBest-iOS-Restaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBest-iOS-Restaurant.debug.xcconfig"; path = "Target Support Files/Pods-TheBest-iOS-Restaurant/Pods-TheBest-iOS-Restaurant.debug.xcconfig"; sourceTree = "<group>"; };
 		F127DE397EB0E80CF91B6406 /* Pods-TheBest-iOS-Restaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBest-iOS-Restaurant.release.xcconfig"; path = "Target Support Files/Pods-TheBest-iOS-Restaurant/Pods-TheBest-iOS-Restaurant.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -504,6 +507,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC1DD3D253B56FF003D0E6B /* OldOrders.swift */,
+				AA13271C256706210041ECD0 /* NewOrders.swift */,
 				AAC1DD47253B5DE5003D0E6B /* MyMenusResponse.swift */,
 				AAC1DD49253B5EFE003D0E6B /* MyPlace.swift */,
 				AAC1DD4B253B6039003D0E6B /* RestaurantMenuItemsResponse.swift */,
@@ -587,8 +591,8 @@
 		AAE1026B252D05C90094AC55 /* Items */ = {
 			isa = PBXGroup;
 			children = (
-				AAE1026C252D06370094AC55 /* OrdersItemsTableViewCell.swift */,
-				AAE1026D252D06370094AC55 /* OrdersItemsTableViewCell.xib */,
+				AAF6A6A4256E7AD0009ADC43 /* OrdersItemsTableViewCell.swift */,
+				AAF6A697256E70C9009ADC43 /* OrdersItemsTableViewCell.xib */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -684,7 +688,7 @@
 				AA3D29A0252780950083FD54 /* Lato-Regular.ttf in Resources */,
 				AAE10267252CE8010094AC55 /* OrdersTableViewCell.xib in Resources */,
 				AA8B23262540781C00DBBFB0 /* ChooseCategoryTableViewCell.xib in Resources */,
-				AAE1026F252D06370094AC55 /* OrdersItemsTableViewCell.xib in Resources */,
+				AAF6A695256E70C9009ADC43 /* OrdersItemsTableViewCell.xib in Resources */,
 				AA3D29A3252780950083FD54 /* Lato-Light.ttf in Resources */,
 				AA3D29A2252780950083FD54 /* Lato-BoldItalic.ttf in Resources */,
 				AA38B9D72545B3820012C6B5 /* VariationBodyTableViewCell.xib in Resources */,
@@ -767,9 +771,9 @@
 				AAD7658F254740FC00C8318D /* ProductVC+MainViewDelegate.swift in Sources */,
 				AAC1DD32253B42F4003D0E6B /* AuthServices.swift in Sources */,
 				AABC77B7252B361400F1B896 /* SignUpVC.swift in Sources */,
+				AA13271D256706210041ECD0 /* NewOrders.swift in Sources */,
 				AAC1DD48253B5DE5003D0E6B /* MyMenusResponse.swift in Sources */,
 				AA8B231B25406C4400DBBFB0 /* SignUpVC+AuthViewDelegate.swift in Sources */,
-				AAE1026E252D06370094AC55 /* OrdersItemsTableViewCell.swift in Sources */,
 				AA3D298F2527805F0083FD54 /* Images.swift in Sources */,
 				AA3D298E2527805F0083FD54 /* Alert.swift in Sources */,
 				AAD7659325474E1200C8318D /* ProductVC+UICollectionViewDelegate.swift in Sources */,
@@ -816,6 +820,7 @@
 				AA3D296F25277F240083FD54 /* AppDelegate.swift in Sources */,
 				AABC77B3252B361400F1B896 /* ChooseCollectionViewCell.swift in Sources */,
 				AA3D29912527805F0083FD54 /* SetupPicker.swift in Sources */,
+				AAF6A6A6256E7AD0009ADC43 /* OrdersItemsTableViewCell.swift in Sources */,
 				AA4515C9253F692D00414B3F /* CategoriesVC+MainViewDelegate.swift in Sources */,
 				AAC1DD2D253B3EE1003D0E6B /* APIs.swift in Sources */,
 				AAC1DD3E253B56FF003D0E6B /* OldOrders.swift in Sources */,
@@ -868,6 +873,23 @@
 				AA5068692562B12600860E7D /* ar */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AAF6A697256E70C9009ADC43 /* OrdersItemsTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAF6A696256E70C9009ADC43 /* Base */,
+				AAF6A699256E70D4009ADC43 /* ar */,
+			);
+			name = OrdersItemsTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		AAF6A6A4256E7AD0009ADC43 /* OrdersItemsTableViewCell.swift */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAF6A6A5256E7AD0009ADC43 /* Base */,
+			);
+			name = OrdersItemsTableViewCell.swift;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -996,7 +1018,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "TheBest-iOS-Restaurant/The Best Restaurant.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 3Z2NC2D4N3;
 				INFOPLIST_FILE = "TheBest-iOS-Restaurant/Configurations/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -1018,7 +1040,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "TheBest-iOS-Restaurant/The Best Restaurant.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 3Z2NC2D4N3;
 				INFOPLIST_FILE = "TheBest-iOS-Restaurant/Configurations/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;

@@ -36,9 +36,11 @@ class OrdersTableViewCell: UITableViewCell {
         }
         statusLbl.text = item.status
         name.text = item.username
-        totalLbl.text = item.total + " KWD "
-        date.text = item.createdAt
-        
+//        totalLbl.text = item.total + " KWD "
+        totalLbl.text = "\(item.id)"
+        date.text = item.orderDate
+        acceptBtn.setTitle("Accept Order".localized, for: .normal)
+        denyBtn.setTitle("Deny Order".localized, for: .normal)
     }
     
 }
