@@ -39,11 +39,11 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource{
         cell.itemsTableView.register(nib, forCellReuseIdentifier: "OrdersItemsTableViewCell")
         
         cell.itemsTableView.numberOfRows { (_) -> Int in
-            return self.orders![indexPath.row].orderItems.count
+            return self.orders![indexPath.row].orderItems!.count
         }.cellForRow { (index) -> UITableViewCell in
             
             let cell = cell.itemsTableView.dequeueReusableCell(withIdentifier: "OrdersItemsTableViewCell", for: index) as! OrdersItemsTableViewCell
-            cell.loadUI(item: self.orders![indexPath.row].orderItems[index.row])
+            cell.loadUI(item: self.orders![indexPath.row].orderItems![index.row])
             return cell
             
         }.heightForRowAt { (_) -> CGFloat in
@@ -56,8 +56,8 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource{
             cell.expandBtn.setImage(UIImage(named: "up-arrow"), for: .normal)
             UIView.animate(withDuration: 0.25) {
                 cell.itemsTableView.isHidden = false
-                cell.itemsViewHeight.constant = CGFloat((110 * self.orders![indexPath.row].orderItems.count) + 80)
-                cell.itemsTableViewHeight.constant = CGFloat((110 * self.orders![indexPath.row].orderItems.count))
+                cell.itemsViewHeight.constant = CGFloat((110 * self.orders![indexPath.row].orderItems!.count) + 80)
+                cell.itemsTableViewHeight.constant = CGFloat((110 * self.orders![indexPath.row].orderItems!.count))
                 self.view.layoutIfNeeded()
             }
         }else{
@@ -87,7 +87,7 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if orders![indexPath.row].expanded ?? false{
-            return CGFloat((110 * orders![indexPath.row].orderItems.count) + 245)
+            return CGFloat((110 * orders![indexPath.row].orderItems!.count) + 245)
         }else{
             return 220
         }

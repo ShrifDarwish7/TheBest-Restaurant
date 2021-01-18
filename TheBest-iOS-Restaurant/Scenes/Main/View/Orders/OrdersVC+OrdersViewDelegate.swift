@@ -40,7 +40,7 @@ extension OrdersVC: OrdersViewDelegate{
         if done{
             print("didCompleteScheduleTrip")
         }else{
-            print("didCompleteScheduleTrip failed")
+            print("No nearby found")
         }
     }
     

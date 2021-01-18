@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		104001F42590E2BF00F63130 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104001F32590E2BF00F63130 /* MapVC.swift */; };
+		104001F72590E34600F63130 /* MapVC+OrderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104001F62590E34600F63130 /* MapVC+OrderViewDelegate.swift */; };
+		104001FA2590EE9200F63130 /* MarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104001F92590EE9200F63130 /* MarkerView.xib */; };
+		104001FD2590EEA900F63130 /* MarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104001FC2590EEA800F63130 /* MarkerView.swift */; };
 		AA0B1024254333FC001CD32E /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0B1023254333FC001CD32E /* ProductVC.swift */; };
 		AA13271D256706210041ECD0 /* NewOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13271C256706210041ECD0 /* NewOrders.swift */; };
 		AA2E101825418D7D00E7A632 /* CitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2E101725418D7D00E7A632 /* CitiesResponse.swift */; };
@@ -27,7 +31,6 @@
 		AA3D298D2527805F0083FD54 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D29872527805B0083FD54 /* Drawer.swift */; };
 		AA3D298E2527805F0083FD54 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D29882527805C0083FD54 /* Alert.swift */; };
 		AA3D298F2527805F0083FD54 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D29892527805D0083FD54 /* Images.swift */; };
-		AA3D29902527805F0083FD54 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D298A2527805D0083FD54 /* CustomViews.swift */; };
 		AA3D29912527805F0083FD54 /* SetupPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D298B2527805E0083FD54 /* SetupPicker.swift */; };
 		AA3D29922527805F0083FD54 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D298C2527805E0083FD54 /* Gradient.swift */; };
 		AA3D299E252780950083FD54 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA3D2994252780900083FD54 /* Lato-ThinItalic.ttf */; };
@@ -98,6 +101,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		104001F32590E2BF00F63130 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		104001F62590E34600F63130 /* MapVC+OrderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVC+OrderViewDelegate.swift"; sourceTree = "<group>"; };
+		104001F92590EE9200F63130 /* MarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkerView.xib; sourceTree = "<group>"; };
+		104001FC2590EEA800F63130 /* MarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerView.swift; sourceTree = "<group>"; };
 		4C226ADF93A91387172A80A7 /* Pods_TheBest_iOS_Restaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheBest_iOS_Restaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0B1023254333FC001CD32E /* ProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
 		AA13271C256706210041ECD0 /* NewOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrders.swift; sourceTree = "<group>"; };
@@ -121,7 +128,6 @@
 		AA3D29872527805B0083FD54 /* Drawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
 		AA3D29882527805C0083FD54 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		AA3D29892527805D0083FD54 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
-		AA3D298A2527805D0083FD54 /* CustomViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		AA3D298B2527805E0083FD54 /* SetupPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupPicker.swift; sourceTree = "<group>"; };
 		AA3D298C2527805E0083FD54 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		AA3D2994252780900083FD54 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -211,6 +217,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		104001F22590E27B00F63130 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				104001F32590E2BF00F63130 /* MapVC.swift */,
+				104001F62590E34600F63130 /* MapVC+OrderViewDelegate.swift */,
+				104001F92590EE9200F63130 /* MarkerView.xib */,
+				104001FC2590EEA800F63130 /* MarkerView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		58EDF96A140A7B3D437A8743 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,7 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				AA3D29882527805C0083FD54 /* Alert.swift */,
-				AA3D298A2527805D0083FD54 /* CustomViews.swift */,
 				AA3D29872527805B0083FD54 /* Drawer.swift */,
 				AABC77BA252B3B2B00F1B896 /* TextFields.swift */,
 				AA3D298C2527805E0083FD54 /* Gradient.swift */,
@@ -472,11 +488,12 @@
 		AAB14A9A253F5E6800B562F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AA0B102525434D70001CD32E /* Orders */,
 				AAE10258252CDE430094AC55 /* Home */,
+				AA0B102525434D70001CD32E /* Orders */,
 				AA0B102225433396001CD32E /* Product */,
 				AA2E101D2541D8FE00E7A632 /* Reports */,
 				AA8B231C2540747B00DBBFB0 /* Chooser */,
+				104001F22590E27B00F63130 /* Map */,
 				AA607150253F654600ABFA1B /* Categories */,
 			);
 			path = View;
@@ -688,6 +705,7 @@
 				AA3D29A0252780950083FD54 /* Lato-Regular.ttf in Resources */,
 				AAE10267252CE8010094AC55 /* OrdersTableViewCell.xib in Resources */,
 				AA8B23262540781C00DBBFB0 /* ChooseCategoryTableViewCell.xib in Resources */,
+				104001FA2590EE9200F63130 /* MarkerView.xib in Resources */,
 				AAF6A695256E70C9009ADC43 /* OrdersItemsTableViewCell.xib in Resources */,
 				AA3D29A3252780950083FD54 /* Lato-Light.ttf in Resources */,
 				AA3D29A2252780950083FD54 /* Lato-BoldItalic.ttf in Resources */,
@@ -783,6 +801,7 @@
 				AAC01BE325424B23000437A1 /* ReportsVC+UITableViewDelegate.swift in Sources */,
 				AABC77AD252B35FF00F1B896 /* Option.swift in Sources */,
 				AA2E101A25418E5F00E7A632 /* DistrictsResponse.swift in Sources */,
+				104001F42590E2BF00F63130 /* MapVC.swift in Sources */,
 				AAC1DD41253B594C003D0E6B /* OrdersPresenter.swift in Sources */,
 				AA3D298D2527805F0083FD54 /* Drawer.swift in Sources */,
 				AAC1DD4E253B6215003D0E6B /* ReportsResponse.swift in Sources */,
@@ -801,6 +820,7 @@
 				AA3D297925277F240083FD54 /* TheBest_iOS_Restaurant.xcdatamodeld in Sources */,
 				AABC77BD252B3B4B00F1B896 /* Router.swift in Sources */,
 				AAC1DD2F253B4206003D0E6B /* LoginResponse.swift in Sources */,
+				104001FD2590EEA900F63130 /* MarkerView.swift in Sources */,
 				AA3D29922527805F0083FD54 /* Gradient.swift in Sources */,
 				AAC1DD36253B4EF9003D0E6B /* SharedData.swift in Sources */,
 				AAC01BE125424205000437A1 /* OrdersVC+OrdersViewDelegate.swift in Sources */,
@@ -808,7 +828,6 @@
 				AA0B1024254333FC001CD32E /* ProductVC.swift in Sources */,
 				AAB14A9C253F5E9800B562F9 /* CategoriesVC.swift in Sources */,
 				AAEFE37B254AED25002B00C0 /* SignUpVC+UITableViewDelegate.swift in Sources */,
-				AA3D29902527805F0083FD54 /* CustomViews.swift in Sources */,
 				AA38B9D02545B3580012C6B5 /* VariationTableViewCell.swift in Sources */,
 				AA8B23192540690300DBBFB0 /* Categories.swift in Sources */,
 				AAC01BDF25423D9D000437A1 /* ReportsVC+MainViewDelegate.swift in Sources */,
@@ -817,6 +836,7 @@
 				AAC1DD4A253B5EFF003D0E6B /* MyPlace.swift in Sources */,
 				AA38B9D62545B3820012C6B5 /* VariationBodyTableViewCell.swift in Sources */,
 				AA50686B2562B23E00860E7D /* UIComponentsHelpers.swift in Sources */,
+				104001F72590E34600F63130 /* MapVC+OrderViewDelegate.swift in Sources */,
 				AA3D296F25277F240083FD54 /* AppDelegate.swift in Sources */,
 				AABC77B3252B361400F1B896 /* ChooseCollectionViewCell.swift in Sources */,
 				AA3D29912527805F0083FD54 /* SetupPicker.swift in Sources */,
@@ -1018,7 +1038,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "TheBest-iOS-Restaurant/The Best Restaurant.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 3Z2NC2D4N3;
 				INFOPLIST_FILE = "TheBest-iOS-Restaurant/Configurations/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -1040,7 +1060,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "TheBest-iOS-Restaurant/The Best Restaurant.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 3Z2NC2D4N3;
 				INFOPLIST_FILE = "TheBest-iOS-Restaurant/Configurations/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;

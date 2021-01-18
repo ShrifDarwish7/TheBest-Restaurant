@@ -34,19 +34,22 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
         //cell.expandBtn.tag = indexPath.row
        // cell.expandBtn.addTarget(self, action: #selector(expandItems(sender:)), for: .touchUpInside)
         cell.acceptBtn.onTap {
-            self.ordersPresenter?.changeOrderStatus(id: "\(self.oldOrders![indexPath.row].id)", status: SharedData.orderInProgress)
-            self.acceptedOrderId =  "\(self.oldOrders![indexPath.row].trip.id)"
+            self.ordersPresenter?.changeOrderStatus(id: "\(self.oldOrders![indexPath.row].id ?? 0)", status: SharedData.orderInProgress)
+            guard let _ = self.oldOrders![indexPath.row].trip?.id else{return}
+            self.acceptedOrderId =  "\(self.oldOrders![indexPath.row].trip!.id ?? 0)"
+            self.acceptedOrder = self.oldOrders![indexPath.row]
+            self.showScheduleView()
         }
         
         let nib = UINib(nibName: "OrdersItemsTableViewCell", bundle: nil)
         cell.itemsTableView.register(nib, forCellReuseIdentifier: "OrdersItemsTableViewCell")
         
         cell.itemsTableView.numberOfRows { (_) -> Int in
-            return self.oldOrders![indexPath.row].orderItems.count
+            return (self.oldOrders![indexPath.row].orderItems?.count ?? 0)
         }.cellForRow { (index) -> UITableViewCell in
             
             let cell = cell.itemsTableView.dequeueReusableCell(withIdentifier: "OrdersItemsTableViewCell", for: index) as! OrdersItemsTableViewCell
-            cell.loadUI(item: self.oldOrders![indexPath.row].orderItems[index.row])
+            cell.loadUI(item: (self.oldOrders![indexPath.row].orderItems?[index.row])!)
             return cell
             
         }.heightForRowAt { (_) -> CGFloat in
@@ -59,8 +62,8 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
             cell.expandBtn.setImage(UIImage(named: "up-arrow"), for: .normal)
             UIView.animate(withDuration: 0.25) {
                 cell.itemsTableView.isHidden = false
-                cell.itemsViewHeight.constant = CGFloat((150 * self.oldOrders![indexPath.row].orderItems.count) + 80)
-                cell.itemsTableViewHeight.constant = CGFloat((150 * self.oldOrders![indexPath.row].orderItems.count))
+                cell.itemsViewHeight.constant = CGFloat((150 * self.oldOrders![indexPath.row].orderItems!.count) + 80)
+                cell.itemsTableViewHeight.constant = CGFloat((150 * self.oldOrders![indexPath.row].orderItems!.count))
                 self.view.layoutIfNeeded()
             }
         }else{
@@ -92,7 +95,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if oldOrders![indexPath.row].expanded ?? false{
-            return CGFloat((150 * oldOrders![indexPath.row].orderItems.count) + 280)
+            return CGFloat((150 * oldOrders![indexPath.row].orderItems!.count) + 280)
         }else{
             return 275
         }

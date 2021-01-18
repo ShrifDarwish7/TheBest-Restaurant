@@ -36,6 +36,7 @@ class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
     var selectedTripSchedule: String?
     var acceptedOrderId: String?
     var orders: Orders = .old
+    var acceptedOrder: Order?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,6 +159,21 @@ class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
         
         if let _ = selectedTripSchedule{
             
+            let order = self.acceptedOrder
+            
+            var parameters: [String:Any] = [
+                "from_lat": order?.trip?.fromLat ?? 0.0,
+                "from_lng": order?.trip?.fromLng ?? 0.0,
+                "to_lat": order?.trip?.toLat ?? 0.0,
+                "to_lng": order?.trip?.toLng ?? 0.0,
+                "address_from": order?.orderItems?.first?.restaurantName ?? "",
+                "address_to": order?.address ?? "",
+                "total": Double(order?.total ?? "0.0")! > 9999.0 ? 9999.0 : (order?.total ?? "0.0"),
+                "lat": order?.lat ?? 0.0,
+                "lng": order?.lng ?? 0.0,
+                "ride_type": order?.trip?.rideType ?? 0
+            ]
+            
             if selectedTripSchedule! != "" && selectedTripSchedule != "15"{
                 
                 guard !minutesTF.text!.isEmpty else{
@@ -165,11 +181,18 @@ class OrdersVC: UIViewController , UIGestureRecognizerDelegate{
                     return
                 }
                 
-                self.ordersPresenter?.scheduleTrip(id: self.acceptedOrderId!, date: minutesTF.text!)
+                parameters.updateValue(minutesTF.text!, forKey: "date")
+                
+                self.ordersPresenter?.scheduleTrip(id: self.acceptedOrderId!, parameters )
                 
             }else{
-                self.ordersPresenter?.scheduleTrip(id: self.acceptedOrderId!, date: selectedTripSchedule!)
+                
+                parameters.updateValue(selectedTripSchedule!, forKey: "date")
+                
+                self.ordersPresenter?.scheduleTrip(id: self.acceptedOrderId!,parameters)
             }
+            
+            print("parameters",parameters)
             
         }else{
           showAlert(title: "", message: "Select schedule option first")

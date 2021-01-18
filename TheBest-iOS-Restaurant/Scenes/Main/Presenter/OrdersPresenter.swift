@@ -66,14 +66,15 @@ class OrdersPresenter{
         }
     }
     
-    func scheduleTrip(id: String, date: String){
+    func scheduleTrip(id: String,_ parameters: [String:Any]){
         self.ordersViewDelegate?.SVProgressStatus(true)
-        OrdersServices.scheduleTripWith(id: id, date: date) { (done) in
+        OrdersServices.scheduleTripWith(parameters, id: id) { (done) in
             self.ordersViewDelegate?.SVProgressStatus(false)
             if done{
                 self.ordersViewDelegate?.didCompleteScheduleTrip(true)
             }else{
                 self.ordersViewDelegate?.didCompleteScheduleTrip(false)
+                
             }
         }
     }

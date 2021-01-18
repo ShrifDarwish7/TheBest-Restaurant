@@ -29,12 +29,15 @@ class DrawerVC: UIViewController {
     @IBOutlet weak var chngeLngLbl: UILabel!
     @IBOutlet weak var newOrders: UIStackView!
     @IBOutlet weak var newOrdersLbl: UILabel!
+    @IBOutlet weak var maps: UIStackView!
+    @IBOutlet weak var mapLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         chngeLngLbl.text = "Change language".localized
         newOrdersLbl.text = "New Orders".localized
+        mapLbl.text = "Map".localized
         
         NotificationCenter.default.addObserver(self, selector: #selector(showBlockView), name: NSNotification.Name("opened"), object: nil)
         
@@ -90,6 +93,11 @@ class DrawerVC: UIViewController {
                 AppDelegate.changeLangTo("ar")
             }))
             self.present(alert, animated: true, completion: nil)
+        }
+        
+        maps.addTapGesture { (_) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CloseDrawer"), object: nil)
+            Router.toMap(self)
         }
         
     }

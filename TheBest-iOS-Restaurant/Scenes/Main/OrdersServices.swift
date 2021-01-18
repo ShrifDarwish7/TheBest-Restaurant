@@ -16,7 +16,7 @@ class OrdersServices{
         Alamofire.request(URL(string: OLD_ORDERS_API)!, method: .get, parameters: nil, headers: SharedData.headers).responseData { (response) in
             switch response.result{
             case .success(let data):
-                
+                print(JSON(data))
                 if JSON(data)["OldOrders"].stringValue == "There are no Old Orders"{
                     completed(nil)
                 }else{
@@ -75,7 +75,7 @@ class OrdersServices{
                         do{
                             
                             let json = try JSON(data: data)
-                            
+                            print(json)
                             if json["status"].stringValue == "200"{
                                 completed(true)
                             }else{
@@ -97,9 +97,12 @@ class OrdersServices{
         }
     }
     
-    static func scheduleTripWith(id: String, date: String, completed: @escaping (Bool)->Void){
+    static func scheduleTripWith(_ parameters: [String:Any],id: String, completed: @escaping (Bool)->Void){
         Alamofire.upload(multipartFormData: { (multipart) in
-            multipart.append(date.data(using: .utf8)!, withName: "date")
+            //multipart.append(date.data(using: .utf8)!, withName: "date")
+            for (key,value) in parameters{
+                multipart.append("\(value)".data(using: .utf8)!, withName: key)
+            }
         }, to: SCHEDULE_TRIP_API+id, method: .post, headers: SharedData.headers) { (encodingResult) in
             switch encodingResult{
             case.success(request: let request,_,_):
@@ -111,6 +114,7 @@ class OrdersServices{
                             
                             let json = try JSON(data: data)
                             print(json)
+
                             if json["message"].stringValue == "Done"{
                                 completed(true)
                             }else{
